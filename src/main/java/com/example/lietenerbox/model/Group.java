@@ -8,20 +8,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class MemberWord {
+public class Group {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long MemberWordId;
-    private String MemberWordName;
-    private String MemberWordMean;
-    private int MemberWordLevel;
-    private String MemberWordPhoto;
-    private String MemberWordPhotoLocation;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long GroupId;
+
+    private String GroupName;
+    private LocalDateTime createdAt;
+    private boolean groupStatus;
+    private String groupContents;
 
 }

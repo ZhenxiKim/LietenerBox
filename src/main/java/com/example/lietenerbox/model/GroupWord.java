@@ -13,15 +13,15 @@ import javax.persistence.Id;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class MemberWord {
-
+public class GroupWord {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long MemberWordId;
-    private String MemberWordName;
-    private String MemberWordMean;
-    private int MemberWordLevel;
-    private String MemberWordPhoto;
-    private String MemberWordPhotoLocation;
+    private Long GroupWordId;
+
+    private String GroupWordName;
+    private String GroupWordMean;
+    private int GroupWordLevel;
+    private String GroupWordPhoto;
+    private String GroupWordPhotoLocation;
 
 }

@@ -14,20 +14,13 @@ import java.time.LocalDateTime;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Member {
+public class GroupSet {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long MemberId;
+    private Long GroupSetId;
 
-    private String MemberAccount;
-    private String MemberName;
-    private String MemberPassword;
-    private String MemberEmail;
-    private boolean MemberInfoAgree;
-    private String MemberStatus;
-    private String MemberProfile;
-    private String MemberProfileLocation;
-    private LocalDateTime MemberRegisterDate;
-
+    private String GroupSetName;
+    private LocalDateTime GroupSetCreatedAt;
 
 }
