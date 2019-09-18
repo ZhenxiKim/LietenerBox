@@ -17,17 +17,17 @@ import java.time.LocalDateTime;
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long MemberId;
+    private Long memberId;
 
-    private String MemberAccount;
-    private String MemberName;
-    private String MemberPassword;
-    private String MemberEmail;
-    private boolean MemberInfoAgree;
-    private String MemberStatus;
-    private String MemberProfile;
-    private String MemberProfileLocation;
-    private LocalDateTime MemberRegisterDate;
+    private String memberAccount;
+    private String memberName;
+    private String memberPassword;
+    private String memberEmail;
+    private boolean memberInfoAgree;
+    private boolean memberStatus;
+    private String memberProfile;
+    private String memberProfileLocation;
+    private LocalDateTime memberRegisterDate;
 
 
 }

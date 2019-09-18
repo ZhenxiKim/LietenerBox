@@ -16,12 +16,12 @@ import javax.persistence.Id;
 public class GroupWord {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long GroupWordId;
+    private Long groupWordId;
 
-    private String GroupWordName;
-    private String GroupWordMean;
-    private int GroupWordLevel;
-    private String GroupWordPhoto;
-    private String GroupWordPhotoLocation;
+    private String groupWordName;
+    private String groupWordMean;
+    private int groupWordLevel;
+    private String groupWordPhoto;
+    private String groupWordPhotoLocation;
 
 }

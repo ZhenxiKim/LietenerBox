@@ -18,9 +18,9 @@ public class GroupSet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long GroupSetId;
+    private Long groupSetId;
 
-    private String GroupSetName;
-    private LocalDateTime GroupSetCreatedAt;
+    private String groupSetName;
+    private LocalDateTime groupSetCreatedAt;
 
 }

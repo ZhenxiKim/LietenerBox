@@ -18,9 +18,9 @@ import java.time.LocalDateTime;
     public class MemberSet {
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
-        private Long MemberSetId;
+        private Long memberSetId;
 
-        private String MemberSetName;
+        private String memberSetName;
         private LocalDateTime createdAt;
 
     }

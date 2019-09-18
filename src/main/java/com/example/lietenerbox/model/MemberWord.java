@@ -17,11 +17,11 @@ public class MemberWord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long MemberWordId;
-    private String MemberWordName;
-    private String MemberWordMean;
-    private int MemberWordLevel;
-    private String MemberWordPhoto;
-    private String MemberWordPhotoLocation;
+    private Long memberWordId;
+    private String memberWordName;
+    private String memberWordMean;
+    private int memberWordLevel;
+    private String memberWordPhoto;
+    private String memberWordPhotoLocation;
 
 }

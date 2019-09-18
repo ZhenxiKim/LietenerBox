@@ -21,7 +21,6 @@ build/
 *.ipr
 gradlew.bat
 gradlew
-build.gradle
 out/
 
 ### NetBeans ###

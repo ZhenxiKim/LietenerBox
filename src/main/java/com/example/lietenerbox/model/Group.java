@@ -18,9 +18,9 @@ public class Group {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long GroupId;
+    private Long groupId;
 
-    private String GroupName;
+    private String groupName;
     private LocalDateTime createdAt;
     private boolean groupStatus;
     private String groupContents;
