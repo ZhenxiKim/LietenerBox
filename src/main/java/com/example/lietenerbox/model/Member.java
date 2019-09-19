@@ -26,7 +26,7 @@ public class Member {
     private boolean memberInfoAgree;
     private boolean memberStatus;
     private String memberProfile;
-    private String memberProfileLocation;
+    private String memberProfileLoc;
     private LocalDateTime memberRegisterDate;
 
 

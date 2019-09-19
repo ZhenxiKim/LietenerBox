@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import javax.tools.JavaCompiler;
 
 public interface GroupSetRepository  extends JpaRepository <GroupSet,Long>{
+    //GroupSet findByMemberAccount(String memberAccount);
 }

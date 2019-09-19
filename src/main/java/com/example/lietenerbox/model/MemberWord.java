@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -20,8 +17,9 @@ public class MemberWord {
     private Long memberWordId;
     private String memberWordName;
     private String memberWordMean;
-    private int memberWordLevel;
+    @Column(nullable=false, columnDefinition = "number(2) default 1")
+    private Integer memberWordLevel;
     private String memberWordPhoto;
-    private String memberWordPhotoLocation;
+    private String memberWordPhotoLoc;
 
 }

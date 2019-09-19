@@ -14,15 +14,14 @@ import java.time.LocalDateTime;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Group {
+public class Groups {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long groupId;
 
     private String groupName;
     private LocalDateTime createdAt;
-    private boolean groupStatus;
     private String groupContents;
-
+    private boolean groupStatus;
 }
