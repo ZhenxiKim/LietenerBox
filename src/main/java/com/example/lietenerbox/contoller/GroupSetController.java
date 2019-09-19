@@ -17,7 +17,6 @@ public class GroupSetController {
 
     @GetMapping("{id}")
     public GroupSet grouplist(@PathVariable Long id){
-        return groupSetRepository.findById(id).get();
-
+        return groupSetRepository.findById(id).orElseThrow(() -> new IllegalArgumentException());
     }
 }

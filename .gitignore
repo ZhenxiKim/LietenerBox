@@ -19,8 +19,6 @@ build/
 *.iws
 *.iml
 *.ipr
-gradlew.bat
-gradlew
 out/
 
 ### NetBeans ###

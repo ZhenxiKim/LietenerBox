@@ -18,6 +18,8 @@
 #### 19.09.19 (목)
 1. import.sql파일에 실제 퀴즐렛 데이터 추가 
 2. Wordlevel 컬럼 default값 설정
+3. heroku 배포에 필요한 gradlew/gradlew.bat 파일 gitignore에서 제거
+4. heroku 계정 생성, github 연동
 
 
 
