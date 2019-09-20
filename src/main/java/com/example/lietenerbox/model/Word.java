@@ -10,16 +10,21 @@ import javax.persistence.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class GroupWord {
+public class Word {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long groupWordId;
+    private Long wordId;
+    private String wordName;
+    private String wordMean;
 
-    private String groupWordName;
-    private String groupWordMean;
     @Column(nullable=false, columnDefinition = "number(2) default 1")
-    private Integer groupWordLevel;
-    private String groupWordPhoto;
-    private String groupWordPhotoLoc;
+    private Integer wordLevel;
+    private String wordPhoto;
+    private String wordPhotoLoc;
+
+    @ManyToOne
+    @JoinColumn(name="set_setId")
+    private Set set;
 
 }

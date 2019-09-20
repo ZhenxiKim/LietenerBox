@@ -21,6 +21,10 @@
 3. heroku 배포에 필요한 gradlew/gradlew.bat 파일 gitignore에서 제거
 4. heroku 계정 생성, github 연동
 
+#### 19.09.20 (금)
+1. entity간 관계차수 설정
+2. entity명 정리
+3. 
 
 
 [추후 시나리오]
@@ -29,4 +33,17 @@
 * 멤버 개인이 생성하는 세트,단어 생성 , 수정 api controller 구현
 * 화면 템플릿 resource 추가(메인화면,클래스 생성화면,클래스 수정화면,단어세트 생성화면)
 * 서비스 클래스에 비즈니스 로직 추가
-* heroku,github연동
+
+[controller]
+* MemberController 
+    * 회원리스트 read
+    * 회원 정보 read
+    * 회원 정보 update
+* SetConroller
+    * setlist만 read,write,update
+    * set id값을 기반으로 단어 리스트 read,write,update
+* SetInGroupConroller
+    * Group에 속한 setlist만 read,write,update
+    * Group에 속한 set id값을 기반으로 단어 리스트 read,write,update
+    
+   
