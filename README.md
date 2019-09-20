@@ -41,9 +41,9 @@
     * 회원 정보 update
 * SetConroller
     * setlist만 read,write,update
-    * set id값을 기반으로 단어 리스트 read,write,update
+    * item id값을 기반으로 단어 리스트 read,write,update
 * SetInGroupConroller
     * Group에 속한 setlist만 read,write,update
-    * Group에 속한 set id값을 기반으로 단어 리스트 read,write,update
+    * Group에 속한 item id값을 기반으로 단어 리스트 read,write,update
     
    

@@ -11,16 +11,16 @@ import java.time.LocalDateTime;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "setInGroup")
-public class SetInGroup {
+@Table(name = "itemInGroup")
+public class ItemInGroup {
 
     @Id
     @Column(name = "groupSetId")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long groupSetId;
+    private Long groupItemId;
 
-    private String groupSetName;
-    private LocalDateTime groupSetCreatedAt;
+    private String groupItemName;
+    private LocalDateTime groupItemCreatedAt;
 
     @ManyToOne
     @JoinColumn(name = "groups_groupId")

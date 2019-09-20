@@ -28,10 +28,8 @@ public class Enrollment implements Serializable {
     private Groups groups; //goups테이블과 1:1 단방향 연결
 
 
-
     private LocalDateTime subscribeAt;
     private boolean subscribeStatus;
-
 
 
 }

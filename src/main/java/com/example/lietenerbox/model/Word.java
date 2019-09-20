@@ -18,13 +18,13 @@ public class Word {
     private String wordName;
     private String wordMean;
 
-    @Column(nullable=false, columnDefinition = "number(2) default 1")
+    @Column(nullable = false, columnDefinition = "number(2) default 1")
     private Integer wordLevel;
     private String wordPhoto;
     private String wordPhotoLoc;
 
     @ManyToOne
-    @JoinColumn(name="set_setId")
-    private Set set;
+    @JoinColumn(name = "item_itemId")
+    private Item item;
 
 }

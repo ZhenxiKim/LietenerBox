@@ -24,7 +24,7 @@ public class WordInGroup {
     private String groupWordPhotoLoc;
 
     @ManyToOne
-    @JoinColumn(name = "setInGroup_groupSetId")
-    private SetInGroup setInGroup;
+    @JoinColumn(name = "itemInGroup_groupItemId")
+    private ItemInGroup itemInGroup;
 
 }

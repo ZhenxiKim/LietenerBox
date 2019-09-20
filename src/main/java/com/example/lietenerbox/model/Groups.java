@@ -25,7 +25,7 @@ public class Groups {
     private String groupContents;//그룹 소개 설명
 
     @ManyToOne
-    @JoinColumn(name = "member_memId")
+    @JoinColumn(name="member_sn", referencedColumnName = "member_sn", nullable = false)
     private Member member; //Member테이블의 memId컬럼 참조
 
 }

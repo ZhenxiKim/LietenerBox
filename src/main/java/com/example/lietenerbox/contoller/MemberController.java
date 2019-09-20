@@ -3,7 +3,6 @@ package com.example.lietenerbox.contoller;
 import com.example.lietenerbox.model.Member;
 import com.example.lietenerbox.repository.MemberRepository;
 import com.example.lietenerbox.service.MemberService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -13,8 +12,11 @@ import javax.servlet.http.HttpSession;
 //회원정보 controller
 public class MemberController {
 
-    @Autowired
-    private MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
+
+    public MemberController(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
     /*어떤 방식이 맞는지?
     private UserRepository userRepository;
@@ -33,9 +35,10 @@ public class MemberController {
     }
 
     //회원 id 정보
-    @GetMapping("/member/{id}")
+    @GetMapping("/members/{id}")
     public Member memberInfo(@PathVariable Long id){
-        return memberRepository.findByMemId(id);
+
+        return memberRepository.findByMemberSn(id);
     }
 
     //회원정보수정
