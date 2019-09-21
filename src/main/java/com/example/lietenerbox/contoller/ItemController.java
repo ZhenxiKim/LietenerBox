@@ -1,9 +1,9 @@
 package com.example.lietenerbox.contoller;
 
-import com.example.lietenerbox.model.Item;
+import com.example.lietenerbox.model.Items;
 import com.example.lietenerbox.repository.MemberRepository;
-import com.example.lietenerbox.repository.ItemRepository;
-import com.example.lietenerbox.repository.WordRepository;
+import com.example.lietenerbox.repository.ItemsRepository;
+import com.example.lietenerbox.repository.WordsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,27 +16,16 @@ import java.util.List;
 @RequestMapping("/api/sets")
 public class ItemController {
 
+
     @Autowired
-    private MemberRepository memberRepository;
-    @Autowired
-    private ItemRepository itemRepository;
-    @Autowired
-    private WordRepository wordRepository;
+    private ItemsRepository itemsRepository;
 
     //회원이 만든 세트리스트
-    @GetMapping("/{id}")
-    public List<Item> setAll(@PathVariable Long memberSn){
-        return itemRepository.findAllByMember(memberSn);
-    }
-
-//    @GetMapping("/{id}/{
+//    @GetMapping("/{memberId}")
+//    public List<Items> itemList(@PathVariable String memberId) {
 //
-//
-//
-//
-//
-//    setId}")
-//    public Iterable<Word> WordListAll(){
-//        return wordRepository.findAll();
+//        //return Item
 //    }
+
+
 }

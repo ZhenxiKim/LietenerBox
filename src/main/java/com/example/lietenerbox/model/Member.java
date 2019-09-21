@@ -33,5 +33,18 @@ public class Member {
     private String memberProfileLoc;//회원 프로필 사진 파일 경로
     private LocalDateTime memberRegisterDate;//회원 가입 날짜
 
+    public boolean matchPassword(String loginPassword) {
+        if(loginPassword == null){
+            System.out.println("값이 제대로 안들어옴");
+        }
+        return loginPassword.equals(memberPassword);
+    }
+
+    public void login(Member loginMember){
+        this.memberId = "testmember";
+        this.memberPassword ="testpassword";
+        this.memberName = "test";
+    }
+
 
 }

@@ -1,12 +1,12 @@
 package com.example.lietenerbox.repository;
 
-import com.example.lietenerbox.model.Item;
+import com.example.lietenerbox.model.Items;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ItemRepository extends JpaRepository<Item,Long> {
+public interface ItemsRepository extends JpaRepository<Items,Long> {
     //Item findAllBymemId(Long memberSn);
 
-    List<Item> findAllByMember(Long memberSn);
+    List<Items> findAllByMember(Long memberSn);
 }

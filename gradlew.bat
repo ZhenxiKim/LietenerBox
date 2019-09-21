@@ -8,39 +8,39 @@
 @rem Set local scope for the variables with windows NT shell
 if "%OS%"=="Windows_NT" setlocal
 
-item DIRNAME=%~dp0
-if "%DIRNAME%" == "" item DIRNAME=.
-item APP_BASE_NAME=%~n0
-item APP_HOME=%DIRNAME%
+items DIRNAME=%~dp0
+if "%DIRNAME%" == "" items DIRNAME=.
+items APP_BASE_NAME=%~n0
+items APP_HOME=%DIRNAME%
 
 @rem Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
-item DEFAULT_JVM_OPTS=
+items DEFAULT_JVM_OPTS=
 
 @rem Find java.exe
 if defined JAVA_HOME goto findJavaFromJavaHome
 
-item JAVA_EXE=java.exe
+items JAVA_EXE=java.exe
 %JAVA_EXE% -version >NUL 2>&1
 if "%ERRORLEVEL%" == "0" goto init
 
 echo.
-echo ERROR: JAVA_HOME is not item and no 'java' command could be found in your PATH.
+echo ERROR: JAVA_HOME is not items and no 'java' command could be found in your PATH.
 echo.
-echo Please item the JAVA_HOME variable in your environment to match the
+echo Please items the JAVA_HOME variable in your environment to match the
 echo location of your Java installation.
 
 goto fail
 
 :findJavaFromJavaHome
-item JAVA_HOME=%JAVA_HOME:"=%
-item JAVA_EXE=%JAVA_HOME%/bin/java.exe
+items JAVA_HOME=%JAVA_HOME:"=%
+items JAVA_EXE=%JAVA_HOME%/bin/java.exe
 
 if exist "%JAVA_EXE%" goto init
 
 echo.
-echo ERROR: JAVA_HOME is item to an invalid directory: %JAVA_HOME%
+echo ERROR: JAVA_HOME is items to an invalid directory: %JAVA_HOME%
 echo.
-echo Please item the JAVA_HOME variable in your environment to match the
+echo Please items the JAVA_HOME variable in your environment to match the
 echo location of your Java installation.
 
 goto fail
@@ -52,18 +52,18 @@ if not "%OS%" == "Windows_NT" goto win9xME_args
 
 :win9xME_args
 @rem Slurp the command line arguments.
-item CMD_LINE_ARGS=
-item _SKIP=2
+items CMD_LINE_ARGS=
+items _SKIP=2
 
 :win9xME_args_slurp
 if "x%~1" == "x" goto execute
 
-item CMD_LINE_ARGS=%*
+items CMD_LINE_ARGS=%*
 
 :execute
 @rem Setup the command line
 
-item CLASSPATH=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar
+items CLASSPATH=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar
 
 @rem Execute Gradle
 "%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %GRADLE_OPTS% "-Dorg.gradle.appname=%APP_BASE_NAME%" -classpath "%CLASSPATH%" org.gradle.wrapper.GradleWrapperMain %CMD_LINE_ARGS%

@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Word {
+public class Words {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,6 +25,6 @@ public class Word {
 
     @ManyToOne
     @JoinColumn(name = "item_itemId")
-    private Item item;
+    private Items items;
 
 }

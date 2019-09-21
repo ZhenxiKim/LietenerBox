@@ -9,13 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/group")
-public class SetInGroupController {
+public class ItemInGroupController {
 
 
     private ItemInGroupRepository itemInGroupRepository;
 
-    @GetMapping("{id}")
-    public ItemInGroup groupList(@PathVariable Long id){
-        return itemInGroupRepository.findById(id).orElseThrow(() -> new IllegalArgumentException());
+    @GetMapping("/{groupId}")
+    public ItemInGroup itemList(@PathVariable Long groupId){
+        return itemInGroupRepository.findAllBygroupsGroupId(groupId);
+
+        // .orElseThrow(() -> new IllegalArgumentException());
     }
 }

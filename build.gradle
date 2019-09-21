@@ -13,19 +13,20 @@ repositories {
 }
 
 dependencies {
-    compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.springframework.boot:spring-boot-starter-mustache')
+    compile('org.webjars:jquery-ui:1.11.4')
+    compile group: 'org.webjars', name: 'bootstrap', version: '3.3.5'
+    compile('org.springframework.boot:spring-boot-starter-webflux')
+
+
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.springframework.boot:spring-boot-devtools')
     compile group: 'com.h2database', name: 'h2', version: '1.4.197'
     compile('org.projectlombok:lombok')
     compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
-    compile('org.webjars:jquery-ui:1.11.4')
-
     annotationProcessor('org.projectlombok:lombok:1.18.8')
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-
     testCompile group: 'org.hamcrest', name: 'hamcrest-core', version: '1.3'
 
 }

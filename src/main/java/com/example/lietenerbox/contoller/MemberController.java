@@ -2,50 +2,47 @@ package com.example.lietenerbox.contoller;
 
 import com.example.lietenerbox.model.Member;
 import com.example.lietenerbox.repository.MemberRepository;
-import com.example.lietenerbox.service.MemberService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
 
-@RestController
-@RequestMapping("/api")
-//회원정보 controller
+@Controller
+@RequestMapping("/members")
 public class MemberController {
 
-    private final MemberRepository memberRepository;
-
-    public MemberController(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
-    }
-
-    /*어떤 방식이 맞는지?
-    private UserRepository userRepository;
-
     @Autowired
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }*/
+    private MemberRepository memberRepository;
 
-    private MemberService memberService;
-
-    //회원 전체 리스트
-    @GetMapping("/members")
-    public Iterable<Member> memberAll(){
-        return  memberRepository.findAll();
+    @GetMapping("/loginForm")
+    public String loginForm(){
+        return "/member/login";
     }
 
-    //회원 id 정보
-    @GetMapping("/members/{id}")
-    public Member memberInfo(@PathVariable Long id){
+    @PostMapping("/login")
+    private String login(String memberId, String password, HttpSession session) {
+        Member member = memberRepository.findByMemberId(memberId);
 
-        return memberRepository.findByMemberSn(id);
+        if (memberId == null) {
+            System.out.println("로그인 실패");
+            //return "redirect:/"
+        }
+        if (member.matchPassword(password)) {
+            System.out.println("로그인 성공");
+        }
+        session.setAttribute("sessionMember",member);
+        return "redirect:/members";
     }
 
-    //회원정보수정
-    @PutMapping("/{id}")
-    public String update(@PathVariable Long id, Member updateMem, HttpSession httpSession){
-        //로그인 유저 검사
-        return null;
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.removeAttribute("sessionMember");
+        return "로그아웃";
     }
+
+
 
 }

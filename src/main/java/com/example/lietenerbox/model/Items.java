@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "item")
-public class Item {
+public class Items {
     @Id
     @Column(name = "setId")
     @GeneratedValue(strategy = GenerationType.AUTO)
