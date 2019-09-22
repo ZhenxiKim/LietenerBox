@@ -3,6 +3,7 @@ package com.example.lietenerbox.api;
 import com.example.lietenerbox.api.exception.DataDuplicatedException;
 import com.example.lietenerbox.model.Member;
 import com.example.lietenerbox.model.dto.MemberSignupRequestDto;
+import com.example.lietenerbox.model.dto.MemberUpdateRequestDto;
 import com.example.lietenerbox.repository.MemberRepository;
 import com.example.lietenerbox.service.MemberService;
 import org.springframework.http.HttpStatus;
@@ -26,21 +27,13 @@ public class MemberApi {
         this.memberService = memberService;
     }
 
-    /*어떤 방식이 맞는지?
-    private UserRepository userRepository;
-
-    @Autowired
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }*/
-
-    //회원 전체 리스트
+    //회원 전체 리스트 출력
     @GetMapping("/members")
     public Iterable<Member> memberAll() {
         return memberRepository.findAll();
     }
 
-    //회원 id 정보
+    //회원 id 정보 출력
     @GetMapping("/members/{id}")
     public Member memberInfo(@PathVariable Long id) {
 
@@ -64,9 +57,13 @@ public class MemberApi {
 
     //회원정보수정
     @PutMapping("/{memberSn}")
-    public String update(@PathVariable Long memberSn, Member updateMem, HttpSession httpSession) {
-        //로그인 유저 검사
-        return null;
+    public HttpStatus update(@PathVariable Long memberSn, Member updateMem, HttpSession httpSession, @RequestBody MemberUpdateRequestDto updateDto) {
+
+        //이미 로그인한 회원에 대해서 검사?
+        // memberRepository.findByMemberId()
+
+        memberService.updateMember(updateDto);
+        return HttpStatus.OK;
     }
 
 }

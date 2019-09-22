@@ -1,6 +1,7 @@
 package com.example.lietenerbox.model;
 
 import com.example.lietenerbox.model.dto.MemberSignupRequestDto;
+import com.example.lietenerbox.model.dto.MemberUpdateRequestDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -57,5 +58,7 @@ public class Member {
         this.memberName = "test";
     }
 
-
+    public Member(MemberUpdateRequestDto updateDto) {
+        this.memberPassword = memberPassword;
+    }
 }
