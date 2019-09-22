@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class ItemInGroupApi {
 
-    private ItemInGroupRepository itemInGroupRepository;
-
-    public ItemInGroupApi(ItemInGroupRepository itemInGroupRepository){
-        this.itemInGroupRepository = itemInGroupRepository;
-    }
-
-    @GetMapping("/items/{groupId}")
-    private ItemInGroup ItemInGroupAll(@PathVariable Long groupId){
-        return itemInGroupRepository.findAllBygroupsGroupId(groupId);
-    }
+//    private ItemInGroupRepository itemInGroupRepository;
+//
+//    public ItemInGroupApi(ItemInGroupRepository itemInGroupRepository){
+//        this.itemInGroupRepository = itemInGroupRepository;
+//    }
+//
+//    @GetMapping("/items/{groupId}")
+//    private ItemInGroup ItemInGroupAll(@PathVariable Long groupId){
+//        return itemInGroupRepository.findAllBygroupsGroupId(groupId);
+//    }
 }

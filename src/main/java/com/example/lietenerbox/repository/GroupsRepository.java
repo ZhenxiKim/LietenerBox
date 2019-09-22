@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface GroupsRepository extends JpaRepository<Groups,Long> {
     List<Groups> findAllByOrderByCreatedAtDesc();
+    List<Groups> findAllByMemberSnOrderByCreatedAtDesc(Long MemberSn);
+
 }
