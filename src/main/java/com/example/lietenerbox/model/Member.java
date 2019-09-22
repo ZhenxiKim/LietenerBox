@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @AllArgsConstructor
-@NoArgsConstructor
 //회원 엔티티 클래스
 @Table(name="member")
 public class Member {

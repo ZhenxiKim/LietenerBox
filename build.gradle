@@ -19,6 +19,8 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-webflux')
 
 
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.5.0'
+    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.5.0'
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.springframework.boot:spring-boot-devtools')
     compile group: 'com.h2database', name: 'h2', version: '1.4.197'
