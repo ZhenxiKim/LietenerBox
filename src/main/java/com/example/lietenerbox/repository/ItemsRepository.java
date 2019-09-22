@@ -9,4 +9,6 @@ public interface ItemsRepository extends JpaRepository<Items,Long> {
     //Item findAllBymemId(Long memberSn);
 
     List<Items> findAllByMember(Long memberSn);
+
+    List<Items> findAll();
 }

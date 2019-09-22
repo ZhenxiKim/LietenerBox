@@ -1,5 +1,6 @@
 package com.example.lietenerbox.model;
 
+import com.example.lietenerbox.model.dto.MemberSignupRequestDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -38,6 +39,17 @@ public class Member {
             System.out.println("값이 제대로 안들어옴");
         }
         return loginPassword.equals(memberPassword);
+    }
+
+    public Member() {
+
+    }
+
+    public Member (MemberSignupRequestDto requestDto) {
+        this.memberId = requestDto.getMemberId();
+        this.memberPassword = requestDto.getMemberPassword();
+        this.memberName = requestDto.getMemberName();
+        this.memberEmail = requestDto.getEmail();
     }
 
     public void login(Member loginMember){

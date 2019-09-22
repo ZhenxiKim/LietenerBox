@@ -3,6 +3,7 @@ package com.example.lietenerbox.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.domain.Sort;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="groups")
+@Table(name = "groups")
 public class Groups {
 
     @Id
@@ -24,8 +25,27 @@ public class Groups {
     private boolean groupStatus;//그룹 상태(활성/비활성)
     private String groupContents;//그룹 소개 설명
 
-    @ManyToOne
-    @JoinColumn(name="member_sn", referencedColumnName = "member_sn", nullable = false)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "member_sn", referencedColumnName = "member_sn", nullable = false)
     private Member member; //Member테이블의 memId컬럼 참조
 
+    public Member getMember() {
+        return member;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
+
+    public Groups(String groupName, String groupContents, Member sessionMember) {
+        this.groupName = groupName;
+        this.createdAt = LocalDateTime.now();
+        this.groupStatus = true;
+        this.groupContents = groupContents;
+        this.member = sessionMember;
+    }
+
+    private Sort orderByCreatedAtDesc() {
+        return new Sort(Sort.Direction.DESC, "createdAt");
+    }
 }

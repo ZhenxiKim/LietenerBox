@@ -51,12 +51,12 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a href="../index.html">단어학습</a></li>
                 {{^sessionMember}}
-                <li><a href="/users/loginForm" role="button">로그인</a></li>
-                <li><a href="/users/form" role="button">회원가입</a></li>
+                <li><a href="/members/loginForm" role="button">로그인</a></li>
+                <li><a href="" role="button">회원가입</a></li>
                 {{/sessionMember}}
                 {{#sessionMember}}
-                <li><a href="/users/logout" role="button">로그아웃</a></li>
-                <li><a href="/users/{{id}}/form" role="button">개인정보수정</a></li>
+                <li><a href="/members/logout" role="button">로그아웃</a></li>
+                <li><a href="" role="button">개인정보수정</a></li>
                 {{/sessionMember}}
             </ul>
         </div>

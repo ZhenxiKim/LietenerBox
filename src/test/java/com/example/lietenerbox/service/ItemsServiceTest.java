@@ -2,7 +2,7 @@
 //
 //import com.example.lietenerbox.TestConfiguration;
 //import com.example.lietenerbox.model.Items;
-//import com.example.lietenerbox.model.Member;
+//import com.example.lietenerbox.model.member;
 //import com.example.lietenerbox.repository.MemberRepository;
 //import com.example.lietenerbox.repository.ItemsRepository;
 //import org.junit.Test;
@@ -29,10 +29,10 @@
 //
 //    @Test
 //    public void createSet() {
-//        Member member = new Member();
+//        member member = new member();
 //        member.setMemberId("test");
 //
-//        Member save = memberRepository.save(member);
+//        member save = memberRepository.save(member);
 //
 //        Items items = new Items();
 //        items.setMember(save);
