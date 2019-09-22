@@ -59,11 +59,17 @@ public class MemberApi {
     @PutMapping("/{memberSn}")
     public HttpStatus update(@PathVariable Long memberSn, Member updateMem, HttpSession httpSession, @RequestBody MemberUpdateRequestDto updateDto) {
 
-        //이미 로그인한 회원에 대해서 검사?
-        // memberRepository.findByMemberId()
+        //현재 로그인 정보
+        Member loginMember = (Member) httpSession.getAttribute("member");
+
+        //로그인한 회원의 정보와 url로 넘어오는 회원의 정보가 같은지 비교
+        if (loginMember.getMemberSn() != memberSn) {
+            return HttpStatus.BAD_REQUEST;
+        }
 
         memberService.updateMember(updateDto);
         return HttpStatus.OK;
     }
+
 
 }
