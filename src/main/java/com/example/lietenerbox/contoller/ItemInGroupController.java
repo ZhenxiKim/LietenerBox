@@ -31,7 +31,7 @@ public class ItemInGroupController {
     //그룹에 속해진 item 리스트 출력
     @GetMapping("/{groupId}")
     public String itemList(@PathVariable Long groupId, Model model) {
-        model.addAttribute("itemInGroup", itemInGroupRepository.findAllBygroupsGroupId(groupId));
+        model.addAttribute("itemInGroup", itemInGroupRepository.findAllByGroupsGroupId();
         return "/index";
         // .orElseThrow(() -> new IllegalArgumentException());
 
@@ -39,17 +39,17 @@ public class ItemInGroupController {
 
     //item 생성 form
     @GetMapping("/{groupId}/itemForm")
-    private String itemForm(@PathVariable Long groupId,HttpSession session,Model model) {
+    private String itemForm(@PathVariable Long groupId, HttpSession session,Model model) {
         //그룹 생성 시 로그인 유저 확인
         if (!HttpSessionUtils.isLoginMember(session)) {
             return "/members/loginForm";
         }
 
-/       //현재 로그인 정보 가져오기
+       //현재 로그인 정보 가져오기
         Member sessionMember = HttpSessionUtils.getMemberFromSession(session);
         Long loginMember = sessionMember.getMemberSn();
 
-        model.addAttribute("groups", groupsRepository.findAllByMemberSn(loginMember));
+        model.addAttribute("groups", groupsRepository.findById(groupId));
         //로그인 회원일 경우 아이템 생성 페이지로 이동
         return "/item/itemForm";
     }

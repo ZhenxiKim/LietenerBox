@@ -6,12 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface GroupsRepository extends JpaRepository<Groups,Long> {
-    List<Groups> findAllByOrderByCreatedAtDesc();
-   // List<Groups> findAllByMemberSnOrderByCreatedAtDesc(Long MemberSn);
+public interface GroupsRepository extends JpaRepository<Groups, Long> {
+    //List<Groups> findAllByOrderByCreatedAtDesc();
 
-    List<Groups> findAllByGroupId(Long GroupId);
+    List<Groups> findByMember(Long memberSn);
 
-    List<Groups> findAllByMemberSn(Long memberSn);
+    List<Groups> findByMemberOrderByCreatedAtDesc(Member member);
 
 }

@@ -57,7 +57,7 @@ public class GroupsController {
 
     //그룹 생성 후 전체 리스트 페이지로 이동
     @GetMapping("")
-    public String list(Model model,HttpSession session) {
+    public String list(Model model, HttpSession session) {
         //model.addAttribute("groups", groupsRepository.findAllByOrderByCreatedAtDesc());
 
         //현재 로그인 정보 가져오기
@@ -65,7 +65,7 @@ public class GroupsController {
         Long loginMember = sessionMember.getMemberSn();
 
         //현재 로그인한 회원이 생성한 그룹만 가져오기
-        model.addAttribute("groups", groupsRepository.findAllByMemberSn(loginMember));
+        model.addAttribute("groups", groupsRepository.findByMemberOrderByCreatedAtDesc(sessionMember));
         return "/index";
 
     }
