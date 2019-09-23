@@ -17,17 +17,35 @@
                 </thead>
                 <tbody>
                 {{#groups}}
-
                 <tr>
                     <th scope="row">{{groupId}}</th>
-
                     <td>{{groupName}}</td>
                     <td>{{member.memberId}}</td>
                     <td>{{groupContents}}</td>
                     <td>{{createdAt}}</td>
-                    <td><a href="" class="btn btn-success" role="button">단어보기</a></td>
+                    <td><a href="/items/{{groupId}}/itemForm" class="btn btn-success" role="button">세트 생성하기</a></td>
+                    <td><a href="/items/{groupId}" class="btn btn-success" role="button">세트 목록보기</a></td>
                 </tr>
                 {{/groups}}
+            </table>
+                <!--아이템 목록-->
+                <hr>
+                <br>
+                <br>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>#</th> <th>세트 이름</th> <th>만든 날짜</th><th></th>
+                </tr>
+                </thead>
+                {{#itemInGroup}}
+                <tr>
+                    <th scope="row">{{groupItemName}}</th>
+                    <td>{{groupItemCreatedAt}}</td>
+                    <td><a href="" class="btn btn-success" role="button">단어 생성하기</a></td>
+                    <td><a href="" class="btn btn-success" role="button">단어 목록보기</a></td>
+                </tr>
+                {{/itemInGroup}}
                 </tbody>
             </table>
         </div>

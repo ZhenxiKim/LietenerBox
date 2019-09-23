@@ -13,13 +13,13 @@ public class GroupsService {
 
     private final GroupsRepository groupsRepository;
 
-    public GroupsService(GroupsRepository groupsRepository, GroupsRepository groupsRepository1){
-        this.groupsRepository = groupsRepository1;
+    public GroupsService(GroupsRepository groupsRepository) {
+        this.groupsRepository = groupsRepository;
     }
 
-    public Groups groupsList(Long memberSn) {
-        return (Groups) groupsRepository.findAllByMemberSnOrderByCreatedAtDesc(memberSn);
-    }
+//    public Groups groupsList(Long memberSn) {
+//        return (Groups) groupsRepository.findAllByMemberSnOrderByCreatedAtDesc(memberSn);
+//    }
 
 
     public void createGroup(String groupName, String groupContents, Member sessionMember) {

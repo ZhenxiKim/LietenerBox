@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -27,11 +28,11 @@ public class GroupsController {
     private GroupsService groupsService;
 
     @GetMapping("/groupForm")
-    private String form(HttpSession session) {
+    private String groupForm(HttpSession session) {
 
         //그룹 생성 시 로그인 유저 확인
         if (!HttpSessionUtils.isLoginMember(session)) {
-            return "/memers/loginForm";
+            return "/members/loginForm";
         }
         //로그인 회원일 경우 그룹 생성 페이지로 이동
         return "/groups/groupForm";
@@ -39,7 +40,7 @@ public class GroupsController {
     }
 
 
-    //그룹 생성 메서드
+    //그룹 생성
     @PostMapping("")
     public String createGroup(String groupName, String groupContents, HttpSession session) {
 
@@ -47,20 +48,24 @@ public class GroupsController {
         if (!HttpSessionUtils.isLoginMember(session)) {
             return "/members/loginForm";
         }
-
         Member sessionMember = HttpSessionUtils.getMemberFromSession(session);
-
 
         //session 객체는 controller까지만
         groupsService.createGroup(groupName, groupContents, sessionMember);
         return "redirect:/groups";
-
     }
 
-    //그룹 생성 후 전 리스트 페이지로 이동
+    //그룹 생성 후 전체 리스트 페이지로 이동
     @GetMapping("")
-    public String list(Model model) {
-        model.addAttribute("groups", groupsRepository.findAllByOrderByCreatedAtDesc());
+    public String list(Model model,HttpSession session) {
+        //model.addAttribute("groups", groupsRepository.findAllByOrderByCreatedAtDesc());
+
+        //현재 로그인 정보 가져오기
+        Member sessionMember = HttpSessionUtils.getMemberFromSession(session);
+        Long loginMember = sessionMember.getMemberSn();
+
+        //현재 로그인한 회원이 생성한 그룹만 가져오기
+        model.addAttribute("groups", groupsRepository.findAllByMemberSn(loginMember));
         return "/index";
 
     }

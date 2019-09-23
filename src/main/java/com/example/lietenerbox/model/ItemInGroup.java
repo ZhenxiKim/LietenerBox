@@ -3,6 +3,7 @@ package com.example.lietenerbox.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.cglib.core.Local;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -23,7 +24,12 @@ public class ItemInGroup {
     private LocalDateTime groupItemCreatedAt;
 
     @ManyToOne
-    @JoinColumn(name = "groups_groupId")
-    private Groups groups;
+    @JoinColumn(name = "groupId",referencedColumnName = "groupId",nullable = false)
+    private Groups groups; //Groups테이블의 groupId컬럼 참조
 
+    public ItemInGroup(String itemName, Member sessionMember,Groups itemIngroup){
+        this.groupItemName = itemName;
+        this.groupItemCreatedAt = LocalDateTime.now();
+        this.groups = itemIngroup;
+    }
 }
