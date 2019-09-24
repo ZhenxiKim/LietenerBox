@@ -1,5 +1,6 @@
 package com.example.lietenerbox.contoller;
 
+import com.example.lietenerbox.api.exception.DataNotFoundException;
 import com.example.lietenerbox.model.Groups;
 import com.example.lietenerbox.model.ItemInGroup;
 import com.example.lietenerbox.model.Member;
@@ -31,7 +32,10 @@ public class ItemInGroupController {
     //그룹에 속해진 item 리스트 출력
     @GetMapping("/{groupId}")
     public String itemList(@PathVariable Long groupId, Model model) {
-        model.addAttribute("itemInGroup", itemInGroupRepository.findAllByGroupsGroupId();
+        Groups groups = groupsRepository.findById(groupId)
+                .orElseThrow(DataNotFoundException::new);
+
+        model.addAttribute("itemInGroup", itemInGroupRepository.findAllByGroups(groups));
         return "/index";
         // .orElseThrow(() -> new IllegalArgumentException());
 
