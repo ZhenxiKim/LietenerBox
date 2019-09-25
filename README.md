@@ -24,7 +24,12 @@
 #### 19.09.20 (금)
 1. entity간 관계차수 설정
 2. entity명 정리
-3. 
+ 
+#### 19.09.25 (수)
+1. GroupsApi 구현
+    - createGroups 날짜 형식 오류
+    - Group Api get 구현
+
 
 
 [추후 시나리오]
@@ -34,16 +39,17 @@
 * 화면 템플릿 resource 추가(메인화면,클래스 생성화면,클래스 수정화면,단어세트 생성화면)
 * 서비스 클래스에 비즈니스 로직 추가
 
-[controller]
-* MemberController 
+[Api]
+* MemberApi
     * 회원리스트 read
     * 회원 정보 read
     * 회원 정보 update
-* SetConroller
+* GroupsApi
     * setlist만 read,write,update
     * items id값을 기반으로 단어 리스트 read,write,update
-* SetInGroupConroller
+* ItemApi
     * Group에 속한 setlist만 read,write,update
     * Group에 속한 items id값을 기반으로 단어 리스트 read,write,update
+* WordApi
     
    

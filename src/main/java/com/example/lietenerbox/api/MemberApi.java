@@ -27,6 +27,21 @@ public class MemberApi {
         this.memberService = memberService;
     }
 
+
+    //회원 가입
+    @PostMapping("/members/create")
+    public HttpStatus createMember(@RequestBody MemberSignupRequestDto requestDto) {
+
+        memberRepository.findByMemberId(requestDto.getMemberId())
+                .ifPresent(v -> {
+                    throw new DataDuplicatedException();
+                });
+
+        memberService.signupMember(requestDto);
+
+        return HttpStatus.OK;
+    }
+
     //회원 전체 리스트 출력
     @GetMapping("/members")
     public Iterable<Member> memberAll() {
@@ -40,23 +55,8 @@ public class MemberApi {
         return memberRepository.findByMemberSn(id);
     }
 
-    //회원 가입
-    @PostMapping("/create")
-    public HttpStatus create(@RequestBody MemberSignupRequestDto requestDto) {
-
-        memberRepository.findByMemberId(requestDto.getMemberId())
-                .ifPresent(v -> {
-                    throw new DataDuplicatedException();
-                });
-
-        memberService.signupMember(requestDto);
-
-        return HttpStatus.OK;
-    }
-
-
     //회원정보수정
-    @PutMapping("/{memberSn}")
+    @PutMapping("/{memberSn}/update")
     public HttpStatus update(@PathVariable Long memberSn, Member updateMem, HttpSession httpSession, @RequestBody MemberUpdateRequestDto updateDto) {
 
         //현재 로그인 정보

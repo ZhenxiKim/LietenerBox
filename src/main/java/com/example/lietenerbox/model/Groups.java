@@ -1,11 +1,14 @@
 package com.example.lietenerbox.model;
 
+import com.example.lietenerbox.model.dto.GroupsRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Sort;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Data
@@ -19,8 +22,8 @@ public class Groups {
     @Column(name = "groupId")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long groupId;//그룹 pk 아이디
-
     private String groupName;//그룹 명
+   // @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime createdAt;//그룹 생성 날짜
     private boolean groupStatus;//그룹 상태(활성/비활성)
     private String groupContents;//그룹 소개 설명
@@ -28,6 +31,14 @@ public class Groups {
     @ManyToOne(optional = false)
     @JoinColumn(name = "member_sn", referencedColumnName = "member_sn", nullable = false)
     private Member member; //Member테이블의 memId컬럼 참조
+
+    public Groups(GroupsRequestDto requestDto, Member sessionMember) {
+        this.groupName = requestDto.getGroupName();
+        this.createdAt = LocalDateTime.now();
+        this.groupStatus = true;
+        this.groupContents = requestDto.getGroupContents();
+        this.member = sessionMember;
+    }
 
     public Member getMember() {
         return member;

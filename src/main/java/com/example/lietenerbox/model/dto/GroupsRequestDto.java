@@ -20,7 +20,7 @@ public class GroupsRequestDto {
     }
 
     public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+        this.createdAt = LocalDateTime.now();
     }
 
     public String getGroupContents() {

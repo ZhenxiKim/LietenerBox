@@ -18,7 +18,7 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    //회원 가입 메서
+    //회원 가입 메서드
     public void signupMember(MemberSignupRequestDto requestDto) {
         Member member = new Member(requestDto);
         memberRepository.save(member);
