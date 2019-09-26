@@ -5,6 +5,7 @@ import com.example.lietenerbox.model.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface GroupsRepository extends JpaRepository<Groups, Long> {
     //List<Groups> findAllByOrderByCreatedAtDesc();
@@ -13,4 +14,5 @@ public interface GroupsRepository extends JpaRepository<Groups, Long> {
 
     List<Groups> findByMemberOrderByCreatedAtDesc(Member member);
 
+    <T> Optional<T> findBygroupId(Long groupId);
 }

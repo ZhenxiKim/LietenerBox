@@ -1,5 +1,6 @@
 package com.example.lietenerbox.model;
 
+import com.example.lietenerbox.model.dto.request.ItemsRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,5 +32,12 @@ public class ItemInGroup {
         this.groupItemName = itemName;
         this.groupItemCreatedAt = LocalDateTime.now();
         this.groups = itemIngroup;
+    }
+
+    public ItemInGroup(ItemsRequestDto itemsRequestDto,Groups groups) {
+        this.groupItemName = itemsRequestDto.getGroupItemName();
+        this.groupItemCreatedAt = LocalDateTime.now();
+        this.groups = groups;
+
     }
 }

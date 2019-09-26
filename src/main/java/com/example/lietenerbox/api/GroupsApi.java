@@ -36,45 +36,23 @@ public class GroupsApi {
     }
 
     //Group 생성
-//    @PostMapping("/groups/{memberSn}/create")
-//    public HttpStatus createGroups(@RequestBody GroupsRequestDto requestDto, HttpSession session, @PathVariable Long memberSn) {
-//        //현재 로그인 정보
-//        Member loginMember = (Member) session.getAttribute("member");
-//
-//        //로그인한 회원의 정보와 url로 넘어오는 회원의 정보가 같은지 비교
-//        if (loginMember.getMemberSn() != memberSn) {
-//            return HttpStatus.BAD_REQUEST;
-//        }
-//
-//        groupsService.createGroups(requestDto, loginMember);
-//        return HttpStatus.OK;
-//    }
-//
-//
-//
-//    //회원이 생성한 그룹 전체 리스트 출력
-//    @GetMapping("/groups/{memberSn}")
-//    private List<Groups> groupsAll(@PathVariable Long memberSn, HttpSession httpSession) {
-//        //1. 로그인한 회원 정보 가져오기
-//        //2. 로그인한 회원에대한 그룹리스트 가져오기
-//
-//        //현재 로그인 정보
-//        Member loginMember = (Member) httpSession.getAttribute("member");
-//
-//        //로그인한 회원의 정보와 url로 넘어오는 회원의 정보가 같은지 비교
-////        if (loginMember.getMemberSn() != memberSn) {
-////            return HttpStatus.BAD_REQUEST;
-////        }
-//        //멤버객체로 받아야함.
-//        groupsService.groupsList(loginMember);
-//       // return HttpStatus.OK;
-//        return  groupsRepository.findByMemberOrderByCreatedAtDesc(loginMember);
-//    }
+    @PostMapping("/groups/{memberSn}/create")
+    public HttpStatus createGroups(@RequestBody GroupsRequestDto requestDto, HttpSession session, @PathVariable Long memberSn) {
+        //현재 로그인 정보
+        Member loginMember = (Member) session.getAttribute("member");
 
+        //로그인한 회원의 정보와 url로 넘어오는 회원의 정보가 같은지 비교
+        if (loginMember.getMemberSn() != memberSn) {
+            return HttpStatus.BAD_REQUEST;
+        }
+
+        groupsService.createGroups(requestDto, loginMember);
+        return HttpStatus.OK;
+    }
 
     //회원이 생성한 그룹 전체 리스트 출력
     @GetMapping("/groups/{memberSn}")
-    private ResponseEntity<?> groupsAll(@PathVariable Long memberSn, HttpSession httpSession) {
+    public ResponseEntity<?> groupsAll(@PathVariable Long memberSn, HttpSession httpSession) {
         //1. 로그인한 회원 정보 가져오기
         //2. 로그인한 회원에대한 그룹리스트 가져오기
 
@@ -97,7 +75,7 @@ public class GroupsApi {
 
     //회원의 정보를 전제로 가져와야하나?
 //    @PutMapping("/groups/{groupId}")
-//    private HttpStatus updateGroup(@PathVariable Long GroupId,@PathVariable Long memberSn,HttpSession httpSession,@RequestBody GroupsRequestDto requestDto){
+//    public HttpStatus updateGroup(@PathVariable Long GroupId,@PathVariable Long memberSn,HttpSession httpSession,@RequestBody GroupsRequestDto requestDto){
 //        //현재 로그인 정보
 //        Member loginMember = (Member) httpSession.getAttribute("member");
 //

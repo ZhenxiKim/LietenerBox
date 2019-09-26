@@ -5,11 +5,11 @@ import com.example.lietenerbox.model.ItemInGroup;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ItemInGroupRepository extends JpaRepository<ItemInGroup, Long> {
 
     //사용자 생성 세트
     List<ItemInGroup> findAllByGroups(Groups groups);
-
 
 }
