@@ -1,14 +1,12 @@
 package com.example.lietenerbox.model;
 
-import com.example.lietenerbox.model.dto.GroupsRequestDto;
+import com.example.lietenerbox.model.dto.request.GroupsRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Sort;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Data

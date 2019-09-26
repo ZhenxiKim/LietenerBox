@@ -2,10 +2,12 @@ package com.example.lietenerbox.service;
 
 import com.example.lietenerbox.model.Groups;
 import com.example.lietenerbox.model.Member;
-import com.example.lietenerbox.model.dto.GroupsRequestDto;
+import com.example.lietenerbox.model.dto.request.GroupsRequestDto;
 import com.example.lietenerbox.repository.GroupsRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -28,8 +30,8 @@ public class GroupsService {
     }
 
     //api read
-    public Groups groupsList(Member member) {
-        return (Groups) groupsRepository.findByMemberOrderByCreatedAtDesc(member);
+    public List<Groups> groupsList(Member member) {
+        return groupsRepository.findByMemberOrderByCreatedAtDesc(member);
     }
 
     public void updateGroup(Long groupId) {

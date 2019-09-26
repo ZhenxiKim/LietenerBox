@@ -1,11 +1,10 @@
 package com.example.lietenerbox.model;
 
-import com.example.lietenerbox.model.dto.MemberSignupRequestDto;
-import com.example.lietenerbox.model.dto.MemberUpdateRequestDto;
+import com.example.lietenerbox.model.dto.request.MemberSignupRequestDto;
+import com.example.lietenerbox.model.dto.request.MemberUpdateRequestDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

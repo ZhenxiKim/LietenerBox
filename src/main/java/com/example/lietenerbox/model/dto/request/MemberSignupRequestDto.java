@@ -1,4 +1,4 @@
-package com.example.lietenerbox.model.dto;
+package com.example.lietenerbox.model.dto.request;
 
 public class MemberSignupRequestDto {
     private String memberId;

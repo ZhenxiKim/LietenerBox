@@ -2,8 +2,8 @@ package com.example.lietenerbox.api;
 
 import com.example.lietenerbox.api.exception.DataDuplicatedException;
 import com.example.lietenerbox.model.Member;
-import com.example.lietenerbox.model.dto.MemberSignupRequestDto;
-import com.example.lietenerbox.model.dto.MemberUpdateRequestDto;
+import com.example.lietenerbox.model.dto.request.MemberSignupRequestDto;
+import com.example.lietenerbox.model.dto.request.MemberUpdateRequestDto;
 import com.example.lietenerbox.repository.MemberRepository;
 import com.example.lietenerbox.service.MemberService;
 import org.springframework.http.HttpStatus;

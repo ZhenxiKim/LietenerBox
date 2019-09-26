@@ -1,4 +1,4 @@
-package com.example.lietenerbox.model.dto;
+package com.example.lietenerbox.model.dto.request;
 
 public class MemberUpdateRequestDto {
     //회원 정보 변경 가능 컬럼
