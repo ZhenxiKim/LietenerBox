@@ -2,7 +2,7 @@ package com.example.lietenerbox.service;
 
 import com.example.lietenerbox.model.ItemInGroup;
 import com.example.lietenerbox.model.WordInGroup;
-import com.example.lietenerbox.model.dto.request.WordsRequestDto;
+import com.example.lietenerbox.model.dto.request.WordsInGroupRequestDto;
 import com.example.lietenerbox.repository.WordInGroupRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +14,7 @@ public class WordInGroupService {
     public WordInGroupService(WordInGroupRepository wordInGroupRepository){
         this.wordInGroupRepository = wordInGroupRepository;
     }
-    public void createWordInGroup(WordsRequestDto wordsRequestDto, ItemInGroup itemInGroup) {
-        wordInGroupRepository.save(new WordInGroup(wordsRequestDto,itemInGroup));
-
+    public void createWordInGroup(WordsInGroupRequestDto wordsInGroupRequestDto, ItemInGroup itemInGroup) {
+        wordInGroupRepository.save(new WordInGroup(wordsInGroupRequestDto,itemInGroup));
     }
 }

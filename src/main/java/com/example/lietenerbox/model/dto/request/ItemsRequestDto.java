@@ -1,13 +1,13 @@
 package com.example.lietenerbox.model.dto.request;
 
 public class ItemsRequestDto {
-    private String groupItemName;
+    private String itemsName;//세트 명
 
-    public String getGroupItemName() {
-        return groupItemName;
+    public String getItemsName() {
+        return itemsName;
     }
 
-    public void setGroupItemName(String groupItemName) {
-        this.groupItemName = groupItemName;
+    public void setItemsName(String itemsName) {
+        this.itemsName = itemsName;
     }
 }

@@ -1,10 +1,9 @@
 package com.example.lietenerbox.model;
 
-import com.example.lietenerbox.model.dto.request.ItemsRequestDto;
+import com.example.lietenerbox.model.dto.request.ItemsInGroupRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.cglib.core.Local;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -34,10 +33,9 @@ public class ItemInGroup {
         this.groups = itemIngroup;
     }
 
-    public ItemInGroup(ItemsRequestDto itemsRequestDto,Groups groups) {
-        this.groupItemName = itemsRequestDto.getGroupItemName();
+    public ItemInGroup(ItemsInGroupRequestDto itemsInGroupRequestDto, Groups groups) {
+        this.groupItemName = itemsInGroupRequestDto.getGroupItemName();
         this.groupItemCreatedAt = LocalDateTime.now();
         this.groups = groups;
-
     }
 }

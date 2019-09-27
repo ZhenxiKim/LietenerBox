@@ -1,6 +1,6 @@
 package com.example.lietenerbox.model;
 
-import com.example.lietenerbox.model.dto.request.WordsRequestDto;
+import com.example.lietenerbox.model.dto.request.WordsInGroupRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,11 +28,12 @@ public class WordInGroup {
     @JoinColumn(name = "itemInGroup_groupItemId")
     private ItemInGroup itemInGroup;
 
-    public WordInGroup(WordsRequestDto wordsRequestDto, ItemInGroup itemInGroup) {
-        this.groupWordName = wordsRequestDto.getGroupWordName();
-        this.groupWordMean = wordsRequestDto.getGroupWordMean();
-        this.groupWordPhoto = wordsRequestDto.getGroupWordPhoto();
-        this.groupWordPhotoLoc = wordsRequestDto.getGroupWordPhotoLoc();
+    public WordInGroup(WordsInGroupRequestDto wordsInGroupRequestDto, ItemInGroup itemInGroup) {
+        this.groupWordName = wordsInGroupRequestDto.getGroupWordName();
+        this.groupWordMean = wordsInGroupRequestDto.getGroupWordMean();
+        this.groupWordPhoto = wordsInGroupRequestDto.getGroupWordPhoto();
+        this.groupWordPhotoLoc = wordsInGroupRequestDto.getGroupWordPhotoLoc();
+        this.groupWordLevel = 1;
         this.itemInGroup = itemInGroup;
     }
 }

@@ -3,7 +3,7 @@ package com.example.lietenerbox.service;
 import com.example.lietenerbox.model.Groups;
 import com.example.lietenerbox.model.ItemInGroup;
 import com.example.lietenerbox.model.Member;
-import com.example.lietenerbox.model.dto.request.ItemsRequestDto;
+import com.example.lietenerbox.model.dto.request.ItemsInGroupRequestDto;
 import com.example.lietenerbox.repository.GroupsRepository;
 import com.example.lietenerbox.repository.ItemInGroupRepository;
 import org.springframework.stereotype.Service;
@@ -20,8 +20,8 @@ public class ItemInGroupService {
     }
 
     //api
-    public void createItemInGroup(ItemsRequestDto itemsRequestDto, Groups groups) {
-        itemInGroupRepository.save(new ItemInGroup(itemsRequestDto, groups));
+    public void createItemInGroup(ItemsInGroupRequestDto itemsInGroupRequestDto, Groups groups) {
+        itemInGroupRepository.save(new ItemInGroup(itemsInGroupRequestDto, groups));
     }
 
     public void createItemInGroup(Long groupId, String itemName, Member sessionMember, Groups groups) {

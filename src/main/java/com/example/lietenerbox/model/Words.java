@@ -1,5 +1,6 @@
 package com.example.lietenerbox.model;
 
+import com.example.lietenerbox.model.dto.request.WordsRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,4 +28,12 @@ public class Words {
     @JoinColumn(name = "item_itemId")
     private Items items;
 
+    public Words(WordsRequestDto wordsRequestDto, Items items) {
+        this.wordName = wordsRequestDto.getWordName();
+        this.wordLevel = 1;
+        this.wordMean = wordsRequestDto.getWordMean();
+        this.wordPhoto = wordsRequestDto.getWordPhoto();
+        this.wordPhotoLoc = wordsRequestDto.getWordPhotoLoc();
+        this.items = items;
+    }
 }

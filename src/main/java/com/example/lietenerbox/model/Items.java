@@ -1,12 +1,13 @@
 package com.example.lietenerbox.model;
 
+import com.example.lietenerbox.model.dto.request.ItemsRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import net.bytebuddy.asm.Advice;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-
 
 @Data
 @Entity
@@ -27,4 +28,9 @@ public class Items {
     private Member member;//Member테이블의 memberSn 참조
 
 
+    public Items(ItemsRequestDto itemsRequestDto, Member loginMember) {
+        this.itemsName = itemsRequestDto.getItemsName();
+        this.itemCreatedAt = LocalDateTime.now();
+        this.member = loginMember;
+    }
 }

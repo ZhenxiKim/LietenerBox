@@ -1,49 +1,52 @@
 package com.example.lietenerbox.model.dto.request;
 
+import javax.persistence.Column;
+
 public class WordsRequestDto {
-    private String groupWordName;
-    private String groupWordMean;
-    private Integer groupWordLevel;
-    private String groupWordPhoto;
-    private String groupWordPhotoLoc;
 
-    public String getGroupWordName() {
-        return groupWordName;
+    private String wordName;
+    private String wordMean;
+    private Integer wordLevel;
+    private String wordPhoto;
+    private String wordPhotoLoc;
+
+    public String getWordName() {
+        return wordName;
     }
 
-    public void setGroupWordName(String groupWordName) {
-        this.groupWordName = groupWordName;
+    public void setWordName(String wordName) {
+        this.wordName = wordName;
     }
 
-    public String getGroupWordMean() {
-        return groupWordMean;
+    public String getWordMean() {
+        return wordMean;
     }
 
-    public void setGroupWordMean(String groupWordMean) {
-        this.groupWordMean = groupWordMean;
+    public void setWordMean(String wordMean) {
+        this.wordMean = wordMean;
     }
 
-    public Integer getGroupWordLevel() {
-        return groupWordLevel;
+    public Integer getWordLevel() {
+        return wordLevel;
     }
 
-    public void setGroupWordLevel(Integer groupWordLevel) {
-        this.groupWordLevel = groupWordLevel;
+    public void setWordLevel(Integer wordLevel) {
+        this.wordLevel = wordLevel;
     }
 
-    public String getGroupWordPhoto() {
-        return groupWordPhoto;
+    public String getWordPhoto() {
+        return wordPhoto;
     }
 
-    public void setGroupWordPhoto(String groupWordPhoto) {
-        this.groupWordPhoto = groupWordPhoto;
+    public void setWordPhoto(String wordPhoto) {
+        this.wordPhoto = wordPhoto;
     }
 
-    public String getGroupWordPhotoLoc() {
-        return groupWordPhotoLoc;
+    public String getWordPhotoLoc() {
+        return wordPhotoLoc;
     }
 
-    public void setGroupWordPhotoLoc(String groupWordPhotoLoc) {
-        this.groupWordPhotoLoc = groupWordPhotoLoc;
+    public void setWordPhotoLoc(String wordPhotoLoc) {
+        this.wordPhotoLoc = wordPhotoLoc;
     }
 }

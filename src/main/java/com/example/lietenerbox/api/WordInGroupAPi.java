@@ -1,7 +1,7 @@
 package com.example.lietenerbox.api;
 
 import com.example.lietenerbox.model.ItemInGroup;
-import com.example.lietenerbox.model.dto.request.WordsRequestDto;
+import com.example.lietenerbox.model.dto.request.WordsInGroupRequestDto;
 import com.example.lietenerbox.repository.ItemInGroupRepository;
 import com.example.lietenerbox.repository.WordInGroupRepository;
 import com.example.lietenerbox.service.WordInGroupService;
@@ -26,13 +26,13 @@ public class WordInGroupAPi {
 
     //아이템 내 단어 생성
     @PostMapping("/words/{groupItemId}/create")
-    public HttpStatus createWords(@RequestBody WordsRequestDto wordsRequestDto, @PathVariable Long groupItemId) {
-        if (wordsRequestDto == null) {
+    public HttpStatus createWords(@RequestBody WordsInGroupRequestDto wordsInGroupRequestDto, @PathVariable Long groupItemId) {
+        if (wordsInGroupRequestDto == null) {
             return HttpStatus.BAD_REQUEST;
         }
         //단어의 리스트가 속할 아이템 객체 정보 찾아오기
         ItemInGroup itemInGroup = itemInGroupRepository.findByGroupItemId(groupItemId);
-        WordInGroupService.createWordInGroup(wordsRequestDto,itemInGroup);
+        WordInGroupService.createWordInGroup(wordsInGroupRequestDto,itemInGroup);
         return HttpStatus.OK;
     }
 }
