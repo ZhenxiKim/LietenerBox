@@ -31,7 +31,7 @@ public class ItemApi {
         this.memberRepository = memberRepository;
     }
 
-    @PostMapping("/items/{memberSn}")
+    @PostMapping("/items/{memberSn}/create")
     public HttpStatus createItems(@RequestBody ItemsRequestDto itemsRequestDto, HttpSession session, @PathVariable Long memberSn) {
         //현재 로그인 정보
         Member loginMember = (Member) session.getAttribute("member");
@@ -48,7 +48,10 @@ public class ItemApi {
     public ResponseEntity<?> itemsAll(@PathVariable Long memberSn, HttpSession httpSession) {
         //현재 로그인 정보
         Member loginMember = (Member) httpSession.getAttribute("member");
+        if(loginMember == null){
 
+        }
+        //로그인한 회원정보를 가지고 저장된 회원 정보 가져오기
         Member savedMember = memberRepository.findById(memberSn).orElseThrow(DataNotFoundException::new);
 
         List<Items> itemsList = itemsService.itemsList(savedMember);

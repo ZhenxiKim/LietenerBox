@@ -34,7 +34,4 @@ public class GroupsService {
         return groupsRepository.findByMemberOrderByCreatedAtDesc(member);
     }
 
-    public void updateGroup(Long groupId) {
-
-    }
 }

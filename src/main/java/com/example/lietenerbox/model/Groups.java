@@ -15,18 +15,16 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Table(name = "groups")
 public class Groups {
-
     @Id
     @Column(name = "groupId")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long groupId;//그룹 pk 아이디
     private String groupName;//그룹 명
-   // @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime createdAt;//그룹 생성 날짜
     private boolean groupStatus;//그룹 상태(활성/비활성)
     private String groupContents;//그룹 소개 설명
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     @JoinColumn(name = "member_sn", referencedColumnName = "member_sn", nullable = false)
     private Member member; //Member테이블의 memId컬럼 참조
 

@@ -16,10 +16,9 @@ import java.time.LocalDateTime;
 @Table(name = "item")
 public class Items {
     @Id
-    @Column(name = "setId")
+    @Column(name = "itemId")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long itemId;//세트 pk 아이디
-
     private String itemsName;//세트 명
     private LocalDateTime itemCreatedAt;//세트 생성 날짜
 

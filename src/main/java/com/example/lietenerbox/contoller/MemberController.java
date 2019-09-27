@@ -55,9 +55,7 @@ public class MemberController {
 
         //DB에 저장된 로그인 정보와 동일 시 session 객체에 로그인 정보 저장
         session.setAttribute("sessionMember",member);
-        System.out.println("*******");
-        System.out.println(member);
-        System.out.println("*******");
+
         return "redirect:/members";
     }
 

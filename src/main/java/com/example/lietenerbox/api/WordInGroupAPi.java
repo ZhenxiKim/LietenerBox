@@ -32,7 +32,7 @@ public class WordInGroupAPi {
         }
         //단어의 리스트가 속할 아이템 객체 정보 찾아오기
         ItemInGroup itemInGroup = itemInGroupRepository.findByGroupItemId(groupItemId);
-        WordInGroupService.createWordInGroup(wordsInGroupRequestDto,itemInGroup);
+        wordInGroupService.createWordInGroup(wordsInGroupRequestDto,itemInGroup);
         return HttpStatus.OK;
     }
 }
