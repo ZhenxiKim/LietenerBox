@@ -14,5 +14,5 @@ public interface GroupsRepository extends JpaRepository<Groups, Long> {
 
     List<Groups> findByMemberOrderByCreatedAtDesc(Member member);
 
-    <T> Optional<T> findBygroupId(Long groupId);
+    Groups findBygroupId(Long groupId);
 }
