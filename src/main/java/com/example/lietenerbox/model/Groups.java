@@ -13,10 +13,10 @@ import java.time.LocalDateTime;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "groups")
+@Table(name = "container")
 public class Groups {
     @Id
-    @Column(name = "groupId")
+    @Column(name = "group_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long groupId;//그룹 pk 아이디
     private String groupName;//그룹 명
@@ -25,7 +25,7 @@ public class Groups {
     private String groupContents;//그룹 소개 설명
 
     @ManyToOne
-    @JoinColumn(name = "member_sn", referencedColumnName = "member_sn", nullable = false)
+    @JoinColumn(name = "member", referencedColumnName = "member_sn", nullable = false)
     private Member member; //Member테이블의 memId컬럼 참조
 
     public Groups(GroupsRequestDto requestDto, Member sessionMember) {

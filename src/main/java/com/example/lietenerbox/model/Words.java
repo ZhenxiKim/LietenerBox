@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "words")
 public class Words {
 
     @Id
@@ -18,14 +19,12 @@ public class Words {
     private Long wordId;
     private String wordName;
     private String wordMean;
-
-    @Column(nullable = false, columnDefinition = "number(2) default 1")
-    private Integer wordLevel;
+    private Integer wordLevel = 1;
     private String wordPhoto;
     private String wordPhotoLoc;
 
     @ManyToOne
-    @JoinColumn(name = "item_itemId")
+    @JoinColumn(name = "item", referencedColumnName = "itemId", nullable = false)
     private Items items;
 
     public Words(WordsRequestDto wordsRequestDto, Items items) {

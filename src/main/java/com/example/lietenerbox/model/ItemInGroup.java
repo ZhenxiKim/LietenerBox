@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class ItemInGroup {
 
     @Id
-    @Column(name = "groupSetId")
+    @Column(name = "groupItemId")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long groupItemId;
 
@@ -24,7 +24,7 @@ public class ItemInGroup {
     private LocalDateTime groupItemCreatedAt;
 
     @ManyToOne
-    @JoinColumn(name = "groupId",referencedColumnName = "groupId",nullable = false)
+    @JoinColumn(name = "group_id",referencedColumnName = "group_id",nullable = false)
     private Groups groups; //Groups테이블의 groupId컬럼 참조
 
     public ItemInGroup(String itemName, Member sessionMember,Groups itemIngroup){

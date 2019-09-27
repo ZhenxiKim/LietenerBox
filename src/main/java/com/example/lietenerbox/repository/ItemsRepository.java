@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface ItemsRepository extends JpaRepository<Items,Long> {
 
-    List<Items> findAllByMemberOrderByCreatedAtDesc(Member member);
+    List<Items> findAllByMemberOrderByItemCreatedAtDesc(Member member);
 
 }

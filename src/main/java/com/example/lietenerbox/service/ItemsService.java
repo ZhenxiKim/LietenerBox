@@ -26,6 +26,6 @@ public class ItemsService {
 
     //회원이 생성한 아이템 리스트 출력
     public List<Items> itemsList(Member savedMember) {
-        return itemsRepository.findAllByMemberOrderByCreatedAtDesc(savedMember);
+        return itemsRepository.findAllByMemberOrderByItemCreatedAtDesc(savedMember);
     }
 }

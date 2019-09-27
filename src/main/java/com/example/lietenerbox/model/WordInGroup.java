@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "wordInGroup")
 public class WordInGroup {
 
     @Id
@@ -19,13 +20,12 @@ public class WordInGroup {
 
     private String groupWordName;
     private String groupWordMean;
-    @Column(nullable = false, columnDefinition = "number(2) default 1")
-    private Integer groupWordLevel;
+    private Integer groupWordLevel = 1;
     private String groupWordPhoto;
     private String groupWordPhotoLoc;
 
     @ManyToOne
-    @JoinColumn(name = "itemInGroup_groupItemId")
+    @JoinColumn(name = "itemInGroup", referencedColumnName = "groupItemId", nullable = false)
     private ItemInGroup itemInGroup;
 
     public WordInGroup(WordsInGroupRequestDto wordsInGroupRequestDto, ItemInGroup itemInGroup) {
