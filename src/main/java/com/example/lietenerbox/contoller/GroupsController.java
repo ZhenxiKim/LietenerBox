@@ -27,19 +27,6 @@ public class GroupsController {
     @Autowired
     private GroupsService groupsService;
 
-    @GetMapping("/groupForm")
-    private String groupForm(HttpSession session) {
-
-        //그룹 생성 시 로그인 유저 확인
-        if (!HttpSessionUtils.isLoginMember(session)) {
-            return "/members/loginForm";
-        }
-        //로그인 회원일 경우 그룹 생성 페이지로 이동
-        return "/groups/groupForm";
-
-    }
-
-
     //그룹 생성
     @PostMapping("")
     public String createGroup(String groupName, String groupContents, HttpSession session) {
@@ -55,9 +42,21 @@ public class GroupsController {
         return "redirect:/groups";
     }
 
+    @GetMapping("/groupForm")
+    private String groupForm(HttpSession session) {
+
+        //그룹 생성 시 로그인 유저 확인
+        if (!HttpSessionUtils.isLoginMember(session)) {
+            return "/members/loginForm";
+        }
+        //로그인 회원일 경우 그룹 생성 페이지로 이동
+        return "/groups/groupForm";
+
+    }
+
     //그룹 생성 후 전체 리스트 페이지로 이동
     @GetMapping("")
-    public String list(Model model, HttpSession session) {
+    public String groupList(Model model, HttpSession session) {
         //model.addAttribute("groups", groupsRepository.findAllByOrderByCreatedAtDesc());
 
         //현재 로그인 정보 가져오기

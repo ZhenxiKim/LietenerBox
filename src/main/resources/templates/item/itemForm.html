@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="kr">
 <head>
-{{> /include/header}}
+    {{> /include/header}}
 </head>
 <body>
 {{> /include/navigation}}
@@ -16,21 +16,20 @@
                     <label for="title">세트 명</label>
                     <input type="text" class="form-control" id="title" name="itemName" placeholder="클래스 제목을 입력해주세요"/>
                 </div>
-                <button type="submit" class="btn btn-success clearfix pull-right">세트 생성하기</button>
+                <!--<button type="submit" class="btn btn-success clearfix pull-right">세트 생성하기</button>-->
                 <div class="clearfix"/>
-            </form>
-            {{/groups}}
-        </div>
 
-        <div class="panel panel-default content-main">
-            <h3>세트와 함께 단어를 추가하세요~!</h3>
-            {{#groups}}
-            <form name="group" method="post" action="/items/{{groupId}}/createItem">
+                <h3>세트와 함께 단어를 추가하세요~!</h3>
+
                 <div class="form-group">
-                    <label for="title">세트 명</label>
-                    <input type="text" class="form-control" id="title" name="itemName" placeholder="클래스 제목을 입력해주세요"/>
+                    <label for="title">단어</label>
+                    <input type="text" class="form-control" id="word" name="wordName" placeholder="단어를 입력하세요"/>
                 </div>
-                <button type="submit" class="btn btn-success clearfix pull-right">세트 생성하기</button>
+                <div class="form-group">
+                    <label for="title">뜻</label>
+                    <input type="text" class="form-control" id="wordMean" name="wordMean" placeholder="단어 뜻을 입력하세"/>
+                </div>
+                <button type="submit" class="btn btn-success clearfix pull-right">생성하기</button>
                 <div class="clearfix"/>
             </form>
             {{/groups}}

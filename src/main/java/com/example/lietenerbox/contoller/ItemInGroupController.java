@@ -6,7 +6,9 @@ import com.example.lietenerbox.model.ItemInGroup;
 import com.example.lietenerbox.model.Member;
 import com.example.lietenerbox.repository.GroupsRepository;
 import com.example.lietenerbox.repository.ItemInGroupRepository;
+import com.example.lietenerbox.repository.WordInGroupRepository;
 import com.example.lietenerbox.service.ItemInGroupService;
+import com.example.lietenerbox.service.WordInGroupService;
 import com.example.lietenerbox.util.HttpSessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,27 @@ public class ItemInGroupController {
     @Autowired
     private GroupsRepository groupsRepository;
 
+    @Autowired
+    private WordInGroupService wordInGroupService;
+
+    //item 생성
+    @PostMapping("/{groupId}/createItem")
+    public String createItemInGroup(@PathVariable Long groupId, String itemName, HttpSession session, String wordName, String wordMean) {
+        if (!HttpSessionUtils.isLoginMember(session)) {
+            return "/members/loginForm";
+        }
+        Member sessionMember = HttpSessionUtils.getMemberFromSession(session);
+
+        //아이템이 속한 그룹정보 가져오기
+        Groups groups = groupsRepository.findBygroupId(groupId);
+
+        //아이템 생성 후 생성된 아이템 객체 가져오기
+        itemInGroupService.createItemInGroup(groupId, itemName, sessionMember, groups);
+        ItemInGroup itemInGroup = itemInGroupService.getItemInGroup(itemName);
+        //아이템 객체와 함께 단어 생성하기
+        wordInGroupService.createWordInGroup(itemInGroup, wordName, wordMean);
+        return "redirect:/items";
+    }
 
     //그룹에 속해진 item 리스트 출력
     @GetMapping("/{groupId}")
@@ -43,13 +66,13 @@ public class ItemInGroupController {
 
     //item 생성 form
     @GetMapping("/{groupId}/itemForm")
-    private String itemForm(@PathVariable Long groupId, HttpSession session,Model model) {
+    private String itemForm(@PathVariable Long groupId, HttpSession session, Model model) {
         //그룹 생성 시 로그인 유저 확인
         if (!HttpSessionUtils.isLoginMember(session)) {
             return "/members/loginForm";
         }
 
-       //현재 로그인 정보 가져오기
+        //현재 로그인 정보 가져오기
         Member sessionMember = HttpSessionUtils.getMemberFromSession(session);
         Long loginMember = sessionMember.getMemberSn();
 
@@ -59,26 +82,10 @@ public class ItemInGroupController {
     }
 
 
-    //item 생성
-    @PostMapping("/{groupId}/createItem")
-    public String createItemInGroup(@PathVariable Long groupId, String itemName, HttpSession session, Groups groups) {
-        //비로그인 멤버는 로그인 페이지로 이동
-        if (!HttpSessionUtils.isLoginMember(session)) {
-            return "/members/loginForm";
-        }
-        Member sessionMember = HttpSessionUtils.getMemberFromSession(session);
-
-
-        //session객체는 controller까지만
-        itemInGroupService.createItemInGroup(groupId, itemName, sessionMember, groups);
-        return "redirect:/items";
-    }
-
     //아이템 생성 후 전체 리스트 페이지로 이동
     @GetMapping("")
     public String itemList(Model model) {
-        //여기 아이디로 고쳐야함.
-        model.addAttribute("itemsInGroups", itemInGroupRepository.findAll());
+        model.addAttribute("itemInGroup", itemInGroupRepository.findAll());
         return "/index";
     }
 }

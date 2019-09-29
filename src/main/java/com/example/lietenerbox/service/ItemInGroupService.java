@@ -27,4 +27,9 @@ public class ItemInGroupService {
     public void createItemInGroup(Long groupId, String itemName, Member sessionMember, Groups groups) {
         itemInGroupRepository.save(new ItemInGroup(itemName, sessionMember, groups));
     }
+
+    public ItemInGroup getItemInGroup(String itemName){
+        ItemInGroup itemInGroup = itemInGroupRepository.findBygroupItemName(itemName);
+        return itemInGroup;
+    }
 }

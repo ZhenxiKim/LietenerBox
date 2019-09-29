@@ -36,4 +36,11 @@ public class WordInGroup {
         this.groupWordLevel = 1;
         this.itemInGroup = itemInGroup;
     }
+
+
+    public WordInGroup(ItemInGroup itemInGroup, String wordName, String wordMean) {
+        this.groupWordName = wordName;
+        this.groupWordMean = wordMean;
+        this.itemInGroup = itemInGroup;
+    }
 }

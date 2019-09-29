@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/members")
@@ -41,8 +43,9 @@ public class MemberController {
         Member member = memberRepository.findByMemberId(memberId)
                 .orElseThrow(DataNotFoundException::new);
 
-        //멤버아이디 null값 체크
-        if (memberId == null) {
+        //Member member = memberRepository.findByMemberId(memberId);
+        //멤버 null값 체크
+        if (member == null) {
             System.out.println("로그인 실패");
             return "redirect:/members/loginForm";
         }
