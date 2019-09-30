@@ -46,7 +46,7 @@ public class Person {
         this.personId = requestDto.getPersonId();
         this.personPassword = requestDto.getPersonPassword();
         this.personName = requestDto.getPersonName();
-        this.personEmail = requestDto.getEmail();
+        this.personEmail = requestDto.getPersonEmail();
     }
 
     public Person(PersonUpdateRequestDto updateDto) {

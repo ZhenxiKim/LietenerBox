@@ -26,11 +26,12 @@ public class PersonController {
     @GetMapping("")//로그인 성공 시 단어 및 아이템 목록 페이지로 이동
     public String Main(Model model) {
         model.addAttribute("Items", itemsRepository.findAll());
-        return "/index";
+        return "/main";
     }
 
     @GetMapping("/loginForm")
     public String loginForm() {
+        //로그인 요청에 로그인 페이지 리턴
         return "/person/login";
     }
 
@@ -44,12 +45,14 @@ public class PersonController {
         //멤버 null값 체크
         if (person == null) {
             System.out.println("로그인 실패");
+            //로그인한 회원이 아니라면 로그인 페이지로 이동
             return "redirect:/persons/loginForm";
         }
 
         //입력한 비밀번호값과 DB에 저장된 비밀번호 비교. matchPassword 메서드는 데이터를 가지고있는 객체에 생성
         if (!person.matchPassword(password)) {
             System.out.println("로그인 실패");
+            //로그인한 회원이 아니라면 로그인 페이지로 이동
             return "redirect:/persons/loginForm";
         }
 

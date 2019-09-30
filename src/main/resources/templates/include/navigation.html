@@ -52,11 +52,11 @@
                 <li class="active"><a href="../index.html">단어학습</a></li>
                 <li><a href="/groups/groupForm">그룹생성</a></li>
                 {{^sessionPerson}}
-                <li><a href="/Persons/loginForm" role="button">로그인</a></li>
+                <li><a href="/persons/loginForm" role="button">로그인</a></li>
                 <li><a href="" role="button">회원가입</a></li>
                 {{/sessionPerson}}
                 {{#sessionPerson}}
-                <li><a href="/Persons/logout" role="button">로그아웃</a></li>
+                <li><a href="/persons/logout" role="button">로그아웃</a></li>
                 <li><a href="" role="button">개인정보수정</a></li>
                 {{/sessionPerson}}
             </ul>

@@ -54,11 +54,12 @@ public class ItemInGroupController {
     //그룹에 속해진 item 리스트 출력
     @GetMapping("/{groupId}")
     public String itemList(@PathVariable Long groupId, Model model) {
+        //그룹에 속한 아이템을 가져오기위해 groupId로 그룹객체 정보 가져오기
         Groups groups = groupsRepository.findById(groupId)
                 .orElseThrow(DataNotFoundException::new);
 
         model.addAttribute("itemInGroup", itemInGroupRepository.findAllByGroups(groups));
-        return "/index";
+        return "/item/itemList";
         // .orElseThrow(() -> new IllegalArgumentException());
 
     }
@@ -68,7 +69,7 @@ public class ItemInGroupController {
     private String itemForm(@PathVariable Long groupId, HttpSession session, Model model) {
         //그룹 생성 시 로그인 유저 확인
         if (!HttpSessionUtils.isLoginPerson(session)) {
-            return "/Persons/loginForm";
+            return "/persons/loginForm";
         }
 
         //현재 로그인 정보 가져오기
@@ -84,7 +85,8 @@ public class ItemInGroupController {
     //아이템 생성 후 전체 리스트 페이지로 이동
     @GetMapping("")
     public String itemList(Model model) {
+
         model.addAttribute("itemInGroup", itemInGroupRepository.findAll());
-        return "/index";
+        return "/item/itemList";
     }
 }

@@ -30,7 +30,7 @@ public class GroupsController {
 
         //비로그인 멤버는 로그인 페이지로 이동
         if (!HttpSessionUtils.isLoginPerson(session)) {
-            return "/Persons/loginForm";
+            return "/persons/loginForm";
         }
         Person sessionPerson = HttpSessionUtils.getPersonFromSession(session);
 
@@ -44,7 +44,7 @@ public class GroupsController {
 
         //그룹 생성 시 로그인 유저 확인
         if (!HttpSessionUtils.isLoginPerson(session)) {
-            return "/Persons/loginForm";
+            return "/persons/loginForm";
         }
         //로그인 회원일 경우 그룹 생성 페이지로 이동
         return "/groups/groupForm";
