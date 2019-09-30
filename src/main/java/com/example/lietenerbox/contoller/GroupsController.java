@@ -1,5 +1,6 @@
 package com.example.lietenerbox.contoller;
 
+import com.example.lietenerbox.model.Groups;
 import com.example.lietenerbox.model.Person;
 import com.example.lietenerbox.repository.GroupsRepository;
 import com.example.lietenerbox.service.GroupsService;
@@ -12,6 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
+import java.util.List;
+
 
 @Controller
 @RequestMapping("/groups")
@@ -60,9 +64,13 @@ public class GroupsController {
         Person sessionPerson = HttpSessionUtils.getPersonFromSession(session);
         Long loginPerson = sessionPerson.getPersonSn();
 
+        List<Groups> groups = groupsRepository.findByPersonOrderByCreatedAtDesc(sessionPerson);
         //현재 로그인한 회원이 생성한 그룹만 가져오기
-        model.addAttribute("groups", groupsRepository.findByPersonOrderByCreatedAtDesc(sessionPerson));
-        return "/groups/groupList";
+
+
+        model.addAttribute("groups", groups);
+        return "/index";
+
 
     }
 
