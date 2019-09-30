@@ -1,9 +1,9 @@
 package com.example.lietenerbox.service;
 
-import com.example.lietenerbox.model.Member;
+import com.example.lietenerbox.model.Person;
 import com.example.lietenerbox.model.dto.request.MemberSignupRequestDto;
 import com.example.lietenerbox.model.dto.request.MemberUpdateRequestDto;
-import com.example.lietenerbox.repository.MemberRepository;
+import com.example.lietenerbox.repository.PersonRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,21 +11,21 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class MemberService {
 
-    private final MemberRepository memberRepository;
+    private final PersonRepository personRepository;
 
-    public MemberService(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
+    public MemberService(PersonRepository personRepository) {
+        this.personRepository = personRepository;
     }
 
     //회원 가입 메서드
     public void signupMember(MemberSignupRequestDto requestDto) {
-        Member member = new Member(requestDto);
-        memberRepository.save(member);
+        Person person = new Person(requestDto);
+        personRepository.save(person);
     }
 
     public void updateMember(MemberUpdateRequestDto updateDto) {
-        Member member = new Member(updateDto);
-        memberRepository.save(member);
+        Person person = new Person(updateDto);
+        personRepository.save(person);
 
     }
 

@@ -1,27 +1,24 @@
 package com.example.lietenerbox.contoller;
 
 import com.example.lietenerbox.api.exception.DataNotFoundException;
-import com.example.lietenerbox.model.Member;
+import com.example.lietenerbox.model.Person;
 import com.example.lietenerbox.repository.ItemsRepository;
-import com.example.lietenerbox.repository.MemberRepository;
+import com.example.lietenerbox.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
-@RequestMapping("/members")
-public class MemberController {
+@RequestMapping("/Persons")
+public class PersonController {
 
     @Autowired
-    private MemberRepository memberRepository;
+    private PersonRepository personRepository;
 
     @Autowired
     private ItemsRepository itemsRepository;
@@ -34,39 +31,39 @@ public class MemberController {
 
     @GetMapping("/loginForm")
     public String loginForm() {
-        return "/member/login";
+        return "/Person/login";
     }
 
     //로그인
     @PostMapping("/login")
-    private String login(String memberId, String password, HttpSession session) {
-        Member member = memberRepository.findByMemberId(memberId)
+    private String login(String PersonId, String password, HttpSession session) {
+        Person person = personRepository.findByPersonId(PersonId)
                 .orElseThrow(DataNotFoundException::new);
 
-        //Member member = memberRepository.findByMemberId(memberId);
+        //Person Person = PersonRepository.findByPersonId(PersonId);
         //멤버 null값 체크
-        if (member == null) {
+        if (person == null) {
             System.out.println("로그인 실패");
-            return "redirect:/members/loginForm";
+            return "redirect:/Persons/loginForm";
         }
 
         //입력한 비밀번호값과 DB에 저장된 비밀번호 비교. matchPassword 메서드는 데이터를 가지고있는 객체에 생성
-        if (!member.matchPassword(password)) {
+        if (!person.matchPassword(password)) {
             System.out.println("로그인 실패");
-            return "redirect:/members/loginForm";
+            return "redirect:/Persons/loginForm";
         }
 
         //DB에 저장된 로그인 정보와 동일 시 session 객체에 로그인 정보 저장
-        session.setAttribute("sessionMember",member);
+        session.setAttribute("sessionPerson", person);
 
-        return "redirect:/members";
+        return "redirect:/Persons";
     }
 
     //로그아웃 세션에 저장된 로그인 정보 제거
     @GetMapping("/logout")
     public String logout(HttpSession session) {
-        session.removeAttribute("sessionMember");
-        return "redirect:/members";
+        session.removeAttribute("sessionPerson");
+        return "redirect:/Persons";
     }
 
 

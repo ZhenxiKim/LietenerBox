@@ -5,6 +5,7 @@ import com.example.lietenerbox.model.dto.request.MemberUpdateRequestDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -12,15 +13,16 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @AllArgsConstructor
+@NoArgsConstructor
 //회원 엔티티 클래스
-@Table(name="member")
+@Table(name = "person")
 public class Member {
     @Id
-    @Column(name="member_sn")
+    @Column(name = "person_sn")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long memberSn;
 
-    @Column(nullable = false, length=20, unique = true)
+    @Column(nullable = false, length = 20, unique = true)
     private String memberId;//회원 아이디
     private String memberName;//회원 이름
 
@@ -34,27 +36,17 @@ public class Member {
     private LocalDateTime memberRegisterDate;//회원 가입 날짜
 
     public boolean matchPassword(String loginPassword) {
-        if(loginPassword == null){
+        if (loginPassword == null) {
             System.out.println("값이 제대로 안들어옴");
         }
         return loginPassword.equals(memberPassword);
     }
 
-    public Member() {
-
-    }
-
-    public Member (MemberSignupRequestDto requestDto) {
+    public Member(MemberSignupRequestDto requestDto) {
         this.memberId = requestDto.getMemberId();
         this.memberPassword = requestDto.getMemberPassword();
         this.memberName = requestDto.getMemberName();
         this.memberEmail = requestDto.getEmail();
-    }
-
-    public void login(Member loginMember){
-        this.memberId = "testmember";
-        this.memberPassword ="testpassword";
-        this.memberName = "test";
     }
 
     public Member(MemberUpdateRequestDto updateDto) {
