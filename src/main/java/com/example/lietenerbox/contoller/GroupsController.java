@@ -1,7 +1,6 @@
 package com.example.lietenerbox.contoller;
 
-import com.example.lietenerbox.model.Groups;
-import com.example.lietenerbox.model.Member;
+import com.example.lietenerbox.model.Person;
 import com.example.lietenerbox.repository.GroupsRepository;
 import com.example.lietenerbox.service.GroupsService;
 import com.example.lietenerbox.util.HttpSessionUtils;
@@ -9,12 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
-import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping("/groups")
@@ -32,13 +29,13 @@ public class GroupsController {
     public String createGroup(String groupName, String groupContents, HttpSession session) {
 
         //비로그인 멤버는 로그인 페이지로 이동
-        if (!HttpSessionUtils.isLoginMember(session)) {
-            return "/members/loginForm";
+        if (!HttpSessionUtils.isLoginPerson(session)) {
+            return "/Persons/loginForm";
         }
-        Member sessionMember = HttpSessionUtils.getMemberFromSession(session);
+        Person sessionPerson = HttpSessionUtils.getPersonFromSession(session);
 
         //session 객체는 controller까지만
-        groupsService.createGroup(groupName, groupContents, sessionMember);
+        groupsService.createGroup(groupName, groupContents, sessionPerson);
         return "redirect:/groups";
     }
 
@@ -46,8 +43,8 @@ public class GroupsController {
     private String groupForm(HttpSession session) {
 
         //그룹 생성 시 로그인 유저 확인
-        if (!HttpSessionUtils.isLoginMember(session)) {
-            return "/members/loginForm";
+        if (!HttpSessionUtils.isLoginPerson(session)) {
+            return "/Persons/loginForm";
         }
         //로그인 회원일 경우 그룹 생성 페이지로 이동
         return "/groups/groupForm";
@@ -60,12 +57,12 @@ public class GroupsController {
         //model.addAttribute("groups", groupsRepository.findAllByOrderByCreatedAtDesc());
 
         //현재 로그인 정보 가져오기
-        Member sessionMember = HttpSessionUtils.getMemberFromSession(session);
-        Long loginMember = sessionMember.getMemberSn();
+        Person sessionPerson = HttpSessionUtils.getPersonFromSession(session);
+        Long loginPerson = sessionPerson.getPersonSn();
 
         //현재 로그인한 회원이 생성한 그룹만 가져오기
-        model.addAttribute("groups", groupsRepository.findByMemberOrderByCreatedAtDesc(sessionMember));
-        return "/index";
+        model.addAttribute("groups", groupsRepository.findByPersonOrderByCreatedAtDesc(sessionPerson));
+        return "/groups/groupList";
 
     }
 

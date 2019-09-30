@@ -1,8 +1,6 @@
 package com.example.lietenerbox.service;
 
 import com.example.lietenerbox.model.ItemInGroup;
-import com.example.lietenerbox.model.Items;
-import com.example.lietenerbox.model.Member;
 import com.example.lietenerbox.model.WordInGroup;
 import com.example.lietenerbox.model.dto.request.WordsInGroupRequestDto;
 import com.example.lietenerbox.repository.ItemInGroupRepository;

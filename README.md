@@ -13,7 +13,7 @@
 1. 엔티티 생성
 2. 엔티티 별 repository 생성
 3. 엔티티 다이어그램 작성
-4. Member테이블 read API 생성 및 테스트
+4. Person테이블 read API 생성 및 테스트
 
 #### 19.09.19 (목)
 1. import.sql파일에 실제 퀴즐렛 데이터 추가 
@@ -30,7 +30,8 @@
     - createGroups 날짜 형식 오류
     - Group Api get 구현
 
-
+#### 19.09.30 (월)
+1. Member테이블 -> Person으로 명칭 변경
 
 [추후 시나리오]
 * 회원 정보 입력, 수정 api controller 구현
@@ -40,7 +41,7 @@
 * 서비스 클래스에 비즈니스 로직 추가
 
 [Api]
-* MemberApi
+* PersonApi
     * 회원리스트 read
     * 회원 정보 read
     * 회원 정보 update

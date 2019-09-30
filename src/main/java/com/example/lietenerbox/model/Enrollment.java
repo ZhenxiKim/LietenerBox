@@ -20,8 +20,8 @@ public class Enrollment implements Serializable {
     private Long enrollmentId;
 
     @OneToOne
-    @JoinColumn(name = "member_memId")
-    private Member member; //Member테이블의 memId컬럼 참조
+    @JoinColumn(name = "Person_memId")
+    private Person person; //Person테이블의 memId컬럼 참조
 
     @OneToOne
     @JoinColumn(name = "groups_groupId")

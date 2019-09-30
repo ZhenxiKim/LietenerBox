@@ -1,7 +1,7 @@
 package com.example.lietenerbox.service;
 
 import com.example.lietenerbox.model.Groups;
-import com.example.lietenerbox.model.Member;
+import com.example.lietenerbox.model.Person;
 import com.example.lietenerbox.model.dto.request.GroupsRequestDto;
 import com.example.lietenerbox.repository.GroupsRepository;
 import org.springframework.stereotype.Service;
@@ -19,19 +19,19 @@ public class GroupsService {
         this.groupsRepository = groupsRepository;
     }
 
-    public void createGroup(String groupName, String groupContents, Member sessionMember) {
-        groupsRepository.save(new Groups(groupName, groupContents, sessionMember));
+    public void createGroup(String groupName, String groupContents, Person sessionPerson) {
+        groupsRepository.save(new Groups(groupName, groupContents, sessionPerson));
     }
 
     //api용 createGroups메서드
-    public void createGroups(GroupsRequestDto requestDto, Member sessionMember) {
-        Groups groups = new Groups(requestDto, sessionMember);
+    public void createGroups(GroupsRequestDto requestDto, Person sessionPerson) {
+        Groups groups = new Groups(requestDto, sessionPerson);
         groupsRepository.save(groups);
     }
 
     //api read
-    public List<Groups> groupsList(Member member) {
-        return groupsRepository.findByMemberOrderByCreatedAtDesc(member);
+    public List<Groups> groupsList(Person person) {
+        return groupsRepository.findByPersonOrderByCreatedAtDesc(person);
     }
 
 }

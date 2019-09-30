@@ -24,7 +24,7 @@ public class Words {
     private String wordPhotoLoc;
 
     @ManyToOne
-    @JoinColumn(name = "item", referencedColumnName = "itemId", nullable = false)
+    @JoinColumn(name = "itemId", referencedColumnName = "itemId", nullable = false)
     private Items items;
 
     public Words(WordsRequestDto wordsRequestDto, Items items) {

@@ -1,8 +1,6 @@
 package com.example.lietenerbox.contoller;
 
-import com.example.lietenerbox.model.ItemInGroup;
-import com.example.lietenerbox.model.Items;
-import com.example.lietenerbox.model.Member;
+import com.example.lietenerbox.model.Person;
 import com.example.lietenerbox.repository.ItemInGroupRepository;
 import com.example.lietenerbox.repository.WordInGroupRepository;
 import com.example.lietenerbox.service.WordInGroupService;
@@ -12,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
@@ -34,13 +31,13 @@ public class WordInGroupController {
 //    public String createWordInGroup(@PathVariable Long itemId, String wordName, String wordMean, HttpSession session, ItemInGroup itemInGroup) {
 //
 //        //비로그인 멤버는 로그인 페이지로 이동
-//        if (!HttpSessionUtils.isLoginMember(session)) {
-//            return "/members/loginForm";
+//        if (!HttpSessionUtils.isLoginPerson(session)) {
+//            return "/Persons/loginForm";
 //        }
-//        Member sessionMember = HttpSessionUtils.getMemberFromSession(session);
+//        Person sessionPerson = HttpSessionUtils.getPersonFromSession(session);
 //
 //        if(itemId != null) {
-//            wordInGroupService.createWordInGroup(itemId, wordName, wordMean, sessionMember, itemInGroup);
+//            wordInGroupService.createWordInGroup(itemId, wordName, wordMean, sessionPerson, itemInGroup);
 //        }
 //        return "redirect:/items";
 //
@@ -49,13 +46,13 @@ public class WordInGroupController {
     @GetMapping("/{itemId}/itemForm")
     private String itemForm(@PathVariable Long itemId, HttpSession session, Model model){
         //그룹 생성 시 로그인 유저 확인
-        if (!HttpSessionUtils.isLoginMember(session)) {
-            return "/members/loginForm";
+        if (!HttpSessionUtils.isLoginPerson(session)) {
+            return "/Persons/loginForm";
         }
 
         //현재 로그인 정보 가져오기
-        Member sessionMember = HttpSessionUtils.getMemberFromSession(session);
-        Long loginMember = sessionMember.getMemberSn();
+        Person sessionPerson = HttpSessionUtils.getPersonFromSession(session);
+        Long loginPerson = sessionPerson.getPersonSn();
 
         //단어 리스트가 속할 아이템 정보 가져오기
         model.addAttribute("items",itemInGroupRepository.findById(itemId));

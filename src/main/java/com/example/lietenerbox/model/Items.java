@@ -4,7 +4,6 @@ import com.example.lietenerbox.model.dto.request.ItemsRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import net.bytebuddy.asm.Advice;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -23,12 +22,12 @@ public class Items {
     private LocalDateTime itemCreatedAt;//세트 생성 날짜
 
     @ManyToOne
-    @JoinColumn(name = "member", referencedColumnName = "member_sn", nullable = false)
-    private Member member;//Member테이블의 memberSn 참조
+    @JoinColumn(name = "Person_sn", referencedColumnName = "Person_sn", nullable = false)
+    private Person person;//Person테이블의 PersonSn 참조
 
-    public Items(ItemsRequestDto itemsRequestDto, Member loginMember) {
+    public Items(ItemsRequestDto itemsRequestDto, Person loginPerson) {
         this.itemsName = itemsRequestDto.getItemsName();
         this.itemCreatedAt = LocalDateTime.now();
-        this.member = loginMember;
+        this.person = loginPerson;
     }
 }
