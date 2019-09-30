@@ -45,7 +45,7 @@ public class WordInGroupController {
 //    }
 
     @GetMapping("/{itemInGroupId}/itemForm")
-    private String itemForm(@PathVariable Long itemInGroupId, HttpSession session, Model model){
+    private String itemForm(@PathVariable Long itemInGroupId, HttpSession session, Model model) {
         //그룹 생성 시 로그인 유저 확인
         if (!HttpSessionUtils.isLoginPerson(session)) {
             return "/Persons/loginForm";
@@ -56,11 +56,12 @@ public class WordInGroupController {
         Long loginPerson = sessionPerson.getPersonSn();
 
         //단어 리스트가 속할 아이템 정보 가져오기
-        model.addAttribute("items",itemInGroupRepository.findById(itemInGroupId));
+        model.addAttribute("items", itemInGroupRepository.findById(itemInGroupId));
         return "/item/itemForm";
     }
+
     @GetMapping("/{itemInGroupId}/itemList")
-    private String wordList(@PathVariable Long itemInGroupId, HttpSession session, Model model){
+    private String wordList(@PathVariable Long itemInGroupId, HttpSession session, Model model) {
         //그룹 생성 시 로그인 유저 확인
         if (!HttpSessionUtils.isLoginPerson(session)) {
             return "/persons/loginForm";
@@ -72,8 +73,8 @@ public class WordInGroupController {
         ItemInGroup itemInGroup = itemInGroupRepository.findByGroupItemId(itemInGroupId);
 
         //아이템에 속한 단어리스트 가져오기
-        model.addAttribute("wordsInGroup",wordInGroupRepository.findByItemInGroup(itemInGroup));
-        return "/word/wordsList";
+        model.addAttribute("wordsInGroup", wordInGroupRepository.findByItemInGroup(itemInGroup));
+        return "/word/wordList";
     }
 
 }

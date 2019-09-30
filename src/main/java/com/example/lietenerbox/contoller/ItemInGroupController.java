@@ -84,9 +84,18 @@ public class ItemInGroupController {
 
     //아이템 생성 후 전체 리스트 페이지로 이동
     @GetMapping("")
-    public String itemList(Model model) {
+    public String itemList() {
+        //단어가 속한
 
-        model.addAttribute("itemInGroup", itemInGroupRepository.findAll());
+        return "/item/itemList";
+    }
+
+    //아이템 생성 후 전체 리스트 페이지로 이동
+    @GetMapping("/{groupId}/itemList")
+    public String itemInGroupList(@PathVariable Long groupId, HttpSession session, Model model) {
+        //단어가 속한
+        Groups groups = groupsRepository.findBygroupId(groupId);
+        model.addAttribute("itemInGroup", itemInGroupRepository.findByGroups(groups));
         return "/item/itemList";
     }
 }

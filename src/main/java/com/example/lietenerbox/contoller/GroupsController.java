@@ -69,7 +69,7 @@ public class GroupsController {
 
 
         model.addAttribute("groups", groups);
-        return "/index";
+        return "/groups/groupList";
 
 
     }
