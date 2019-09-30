@@ -2,7 +2,7 @@ package com.example.lietenerbox.service;
 
 import com.example.lietenerbox.model.Groups;
 import com.example.lietenerbox.model.ItemInGroup;
-import com.example.lietenerbox.model.Member;
+import com.example.lietenerbox.model.Person;
 import com.example.lietenerbox.model.dto.request.ItemsInGroupRequestDto;
 import com.example.lietenerbox.repository.GroupsRepository;
 import com.example.lietenerbox.repository.ItemInGroupRepository;
@@ -24,8 +24,8 @@ public class ItemInGroupService {
         itemInGroupRepository.save(new ItemInGroup(itemsInGroupRequestDto, groups));
     }
 
-    public void createItemInGroup(Long groupId, String itemName, Member sessionMember, Groups groups) {
-        itemInGroupRepository.save(new ItemInGroup(itemName, sessionMember, groups));
+    public void createItemInGroup(Long groupId, String itemName, Person sessionPerson, Groups groups) {
+        itemInGroupRepository.save(new ItemInGroup(itemName, sessionPerson, groups));
     }
 
     public ItemInGroup getItemInGroup(String itemName){

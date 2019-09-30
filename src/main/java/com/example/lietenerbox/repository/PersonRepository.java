@@ -5,10 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface MemberRepository extends JpaRepository<Person, Long> {
-    Person findByMemberSn(Long memberSn);
+public interface PersonRepository extends JpaRepository<Person, Long> {
+    Person findByPersonSn(Long PersonSn);
 
-    Optional<Person> findByMemberId(String memberId);
-    //Member findByMemberId(String memberId);
+    Optional<Person> findByPersonId(String PersonId);
+    //Person findByPersonId(String PersonId);
     //기본조회는 pk값으로 조회
 }

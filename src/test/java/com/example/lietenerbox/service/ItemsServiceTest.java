@@ -2,8 +2,8 @@
 //
 //import com.example.lietenerbox.TestConfiguration;
 //import com.example.lietenerbox.model.Items;
-//import com.example.lietenerbox.model.member;
-//import com.example.lietenerbox.repository.MemberRepository;
+//import com.example.lietenerbox.model.Person;
+//import com.example.lietenerbox.repository.PersonRepository;
 //import com.example.lietenerbox.repository.ItemsRepository;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
@@ -19,7 +19,7 @@
 //public class ItemsServiceTest {
 //
 //    @Autowired
-//    private MemberRepository memberRepository;
+//    private PersonRepository PersonRepository;
 //
 //    @Autowired
 //    private ItemsRepository itemsRepository;
@@ -29,13 +29,13 @@
 //
 //    @Test
 //    public void createSet() {
-//        member member = new member();
-//        member.setMemberId("test");
+//        Person Person = new Person();
+//        Person.setPersonId("test");
 //
-//        member save = memberRepository.save(member);
+//        Person save = PersonRepository.save(Person);
 //
 //        Items items = new Items();
-//        items.setMember(save);
+//        items.setPerson(save);
 //        items.setSetCreatedAt(LocalDateTime.now());
 //
 //        setService.createSet(items);

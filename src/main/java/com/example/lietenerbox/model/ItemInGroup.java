@@ -27,7 +27,7 @@ public class ItemInGroup {
     @JoinColumn(name = "group_id",referencedColumnName = "group_id",nullable = false)
     private Groups groups; //Groups테이블의 groupId컬럼 참조
 
-    public ItemInGroup(String itemName, Member sessionMember,Groups itemIngroup){
+    public ItemInGroup(String itemName, Person sessionPerson, Groups itemIngroup){
         this.groupItemName = itemName;
         this.groupItemCreatedAt = LocalDateTime.now();
         this.groups = itemIngroup;

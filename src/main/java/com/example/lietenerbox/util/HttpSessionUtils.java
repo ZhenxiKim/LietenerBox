@@ -1,18 +1,18 @@
 package com.example.lietenerbox.util;
 
-import com.example.lietenerbox.model.Member;
+import com.example.lietenerbox.model.Person;
 
 import javax.servlet.http.HttpSession;
 
 public class HttpSessionUtils {
 
-    public static final String MEMBER_SESSION_KEY = "sessionMember";
+    public static final String Person_SESSION_KEY = "sessionPerson";
 
-    public static boolean isLoginMember(HttpSession session) {
+    public static boolean isLoginPerson(HttpSession session) {
 
-        Object sessionMember = session.getAttribute(MEMBER_SESSION_KEY);
+        Object sessionPerson = session.getAttribute(Person_SESSION_KEY);
 
-        if (sessionMember == null) {
+        if (sessionPerson == null) {
             return false;
         }
         return true;
@@ -20,11 +20,11 @@ public class HttpSessionUtils {
 
 
     //로그인한 회원의 정보 가져오는 메서드
-    public static Member getMemberFromSession(HttpSession session) {
+    public static Person getPersonFromSession(HttpSession session) {
 
-        if(!isLoginMember(session)){
+        if(!isLoginPerson(session)){
             return null;
         }
-        return (Member) session.getAttribute(MEMBER_SESSION_KEY);
+        return (Person) session.getAttribute(Person_SESSION_KEY);
     }
 }

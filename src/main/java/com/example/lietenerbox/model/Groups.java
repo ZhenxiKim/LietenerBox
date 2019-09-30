@@ -25,31 +25,31 @@ public class Groups {
     private String groupContents;//그룹 소개 설명
 
     @ManyToOne
-    @JoinColumn(name = "member", referencedColumnName = "member_sn", nullable = false)
-    private Member member; //Member테이블의 memId컬럼 참조
+    @JoinColumn(name = "person_sn", referencedColumnName = "person_sn", nullable = false)
+    private Person person; //Person테이블의 memId컬럼 참조
 
-    public Groups(GroupsRequestDto requestDto, Member sessionMember) {
+    public Groups(GroupsRequestDto requestDto, Person sessionPerson) {
         this.groupName = requestDto.getGroupName();
         this.createdAt = LocalDateTime.now();
         this.groupStatus = true;
         this.groupContents = requestDto.getGroupContents();
-        this.member = sessionMember;
+        this.person = sessionPerson;
     }
 
-    public Member getMember() {
-        return member;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setMember(Member member) {
-        this.member = member;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
-    public Groups(String groupName, String groupContents, Member sessionMember) {
+    public Groups(String groupName, String groupContents, Person sessionPerson) {
         this.groupName = groupName;
         this.createdAt = LocalDateTime.now();
         this.groupStatus = true;
         this.groupContents = groupContents;
-        this.member = sessionMember;
+        this.person = sessionPerson;
     }
 
     private Sort orderByCreatedAtDesc() {
