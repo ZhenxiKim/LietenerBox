@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -34,6 +35,11 @@ public class Person {
     private String personProfile;//회원 프로필 사진 파일명
     private String personProfileLoc;//회원 프로필 사진 파일 경로
     private LocalDateTime PersonRegisterDate;//회원 가입 날짜
+
+    //영속관계 처리,즉시 로딩
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "person")
+    private List<PersonRole> roles;
 
     public boolean matchPassword(String loginPassword) {
         if (loginPassword == null) {
