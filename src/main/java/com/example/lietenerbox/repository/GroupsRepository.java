@@ -9,7 +9,7 @@ import java.util.List;
 public interface GroupsRepository extends JpaRepository<Groups, Long> {
     //List<Groups> findAllByOrderByCreatedAtDesc();
 
-    List<Groups> findByPerson(Long PersonSn);
+    List<Groups> findByPerson(Person person);
 
     List<Groups> findByPersonOrderByCreatedAtDesc(Person person);
 

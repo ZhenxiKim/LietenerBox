@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/words")
+@RequestMapping("/wordsInGroup")
 public class WordInGroupController {
 
     @Autowired

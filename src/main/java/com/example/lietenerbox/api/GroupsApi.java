@@ -35,13 +35,13 @@ public class GroupsApi {
     }
 
     //Group 생성
-    @PostMapping("/groups/{PersonSn}/create")
-    public HttpStatus createGroups(@RequestBody GroupsRequestDto requestDto, HttpSession session, @PathVariable Long PersonSn) {
+    @PostMapping("/groups/{personSn}/create")
+    public HttpStatus createGroups(@RequestBody GroupsRequestDto requestDto, HttpSession session, @PathVariable Long personSn) {
         //현재 로그인 정보
-        Person loginPerson = (Person) session.getAttribute("Person");
+        Person loginPerson = (Person) session.getAttribute("person");
 
         //로그인한 회원의 정보와 url로 넘어오는 회원의 정보가 같은지 비교
-        if (loginPerson.getPersonSn() != PersonSn) {
+        if (loginPerson.getPersonSn() != personSn) {
             return HttpStatus.BAD_REQUEST;
         }
 
@@ -50,15 +50,15 @@ public class GroupsApi {
     }
 
     //회원이 생성한 그룹 전체 리스트 출력
-    @GetMapping("/groups/{PersonSn}")
-    public ResponseEntity<?> groupsAll(@PathVariable Long PersonSn, HttpSession httpSession) {
+    @GetMapping("/groups/{personSn}")
+    public ResponseEntity<?> groupsAll(@PathVariable Long personSn, HttpSession httpSession) {
         //1. 로그인한 회원 정보 가져오기
         //2. 로그인한 회원에대한 그룹리스트 가져오기
 
         //현재 로그인 정보
-        Person loginPerson = (Person) httpSession.getAttribute("Person");
+        Person loginPerson = (Person) httpSession.getAttribute("person");
 
-        Person savedPerson = personRepository.findById(PersonSn).orElseThrow(DataNotFoundException::new);
+        Person savedPerson = personRepository.findById(personSn).orElseThrow(DataNotFoundException::new);
 
         //로그인한 회원의 정보와 url로 넘어오는 회원의 정보가 같은지 비교
 //        if (loginPerson.getPersonSn() != PersonSn) {

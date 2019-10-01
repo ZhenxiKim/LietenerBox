@@ -12,21 +12,28 @@ import java.time.LocalDateTime;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "item")
+@Table(name = "items")
 public class Items {
     @Id
     @Column(name = "itemId")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long itemId;//세트 pk 아이디
-    private String itemsName;//세트 명
+    private String itemName;//세트 명
     private LocalDateTime itemCreatedAt;//세트 생성 날짜
 
     @ManyToOne
-    @JoinColumn(name = "Person_sn", referencedColumnName = "Person_sn", nullable = false)
+    @JoinColumn(name = "person_sn", referencedColumnName = "person_sn", nullable = false)
     private Person person;//Person테이블의 PersonSn 참조
 
+    //api
     public Items(ItemsRequestDto itemsRequestDto, Person loginPerson) {
-        this.itemsName = itemsRequestDto.getItemsName();
+        this.itemName = itemsRequestDto.getItemsName();
+        this.itemCreatedAt = LocalDateTime.now();
+        this.person = loginPerson;
+    }
+
+    public Items(String itemsName,Person loginPerson){
+        this.itemName = itemsName;
         this.itemCreatedAt = LocalDateTime.now();
         this.person = loginPerson;
     }

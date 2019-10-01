@@ -9,5 +9,6 @@ import java.util.List;
 public interface ItemsRepository extends JpaRepository<Items,Long> {
 
     List<Items> findAllByPersonOrderByItemCreatedAtDesc(Person person);
+    Items findByItemName(String itemName);
 
 }

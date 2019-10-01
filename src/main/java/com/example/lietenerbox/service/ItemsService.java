@@ -19,7 +19,7 @@ public class ItemsService {
         this.personRepository = personRepository;
     }
 
-    //회원 소속 아이템 생성
+    //api 회원 소속 아이템 생성
     public void createItems(ItemsRequestDto itemsRequestDto, Person loginPerson) {
         itemsRepository.save(new Items(itemsRequestDto, loginPerson));
     }
@@ -27,5 +27,14 @@ public class ItemsService {
     //회원이 생성한 아이템 리스트 출력
     public List<Items> itemsList(Person savedPerson) {
         return itemsRepository.findAllByPersonOrderByItemCreatedAtDesc(savedPerson);
+    }
+
+    public void createItems(String itemName,Person loginPerson){
+        itemsRepository.save(new Items(itemName,loginPerson));
+
+    }
+
+    public Items getItems(String itemName) {
+        return itemsRepository.findByItemName(itemName);
     }
 }

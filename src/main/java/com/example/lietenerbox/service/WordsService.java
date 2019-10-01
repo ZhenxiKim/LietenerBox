@@ -27,4 +27,8 @@ public class WordsService {
     public List<Items> wordsList(Long itemId) {
         return itemsRepository.findAll();
     }
+
+    public void createWords(String wordName, String wordMean, Items items) {
+        wordsRepository.save(new Words(wordName,wordMean,items));
+    }
 }

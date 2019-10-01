@@ -11,7 +11,7 @@
         <div class="panel panel-default content-main">
             <h3>클래스에 당신의 단어 세트를 추가해보세요~!</h3>
             {{#groups}}
-            <form name="group" method="post" action="/items/{{groupId}}/createItem">
+            <form name="group" method="post" action="/wordsInGroup/{{groupId}}/createItem">
                 <div class="form-group">
                     <label for="title">세트 명</label>
                     <input type="text" class="form-control" id="title" name="itemName" placeholder="클래스 제목을 입력해주세요"/>

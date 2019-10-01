@@ -35,4 +35,10 @@ public class Words {
         this.wordPhotoLoc = wordsRequestDto.getWordPhotoLoc();
         this.items = items;
     }
+
+    public Words(String wordName, String wordMean, Items items) {
+        this.wordName = wordName;
+        this.wordMean = wordMean;
+        this.items = items;
+    }
 }

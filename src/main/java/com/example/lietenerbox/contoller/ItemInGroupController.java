@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/items")
+@RequestMapping("/itemsInGroup")
 public class ItemInGroupController {
 
     @Autowired
@@ -36,7 +36,7 @@ public class ItemInGroupController {
     @PostMapping("/{groupId}/createItem")
     public String createItemInGroup(@PathVariable Long groupId, String itemName, HttpSession session, String wordName, String wordMean) {
         if (!HttpSessionUtils.isLoginPerson(session)) {
-            return "/Persons/loginForm";
+            return "/persons/loginForm";
         }
         Person sessionPerson = HttpSessionUtils.getPersonFromSession(session);
 
@@ -48,7 +48,7 @@ public class ItemInGroupController {
         ItemInGroup itemInGroup = itemInGroupService.getItemInGroup(itemName);
         //아이템 객체와 함께 단어 생성하기
         wordInGroupService.createWordInGroup(itemInGroup, wordName, wordMean);
-        return "redirect:/items";
+        return "redirect:/itemsInGroup";
     }
 
     //그룹에 속해진 item 리스트 출력
