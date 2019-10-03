@@ -57,6 +57,7 @@ public class PersonController {
         }
 
         //DB에 저장된 로그인 정보와 동일 시 session 객체에 로그인 정보 저장
+        session.setAttribute("role", person.getRoleCode());
         session.setAttribute("sessionPerson", person);
 
         return "redirect:/persons";

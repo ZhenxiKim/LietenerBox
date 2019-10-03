@@ -29,12 +29,13 @@ dependencies {
     compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
 
 
-    compile group: 'org.springframework.security', name: 'spring-security-web', version: '4.2.3.RELEASE'
-    compile group: 'org.springframework.security', name: 'spring-security-config', version: '4.0.3.RELEASE'
-    compile group: 'org.springframework.security', name: 'spring-security-core', version: '5.1.2.RELEASE'
+//    compile group: 'org.springframework.security', name: 'spring-security-web', version: '4.2.3.RELEASE'
+//    compile group: 'org.springframework.security', name: 'spring-security-config', version: '4.0.3.RELEASE'
+//    compile group: 'org.springframework.security', name: 'spring-security-core', version: '5.1.2.RELEASE'
     
     annotationProcessor('org.projectlombok:lombok:1.18.8')
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testCompile group: 'org.hamcrest', name: 'hamcrest-core', version: '1.3'
 

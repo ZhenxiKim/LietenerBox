@@ -26,6 +26,7 @@ public class Person {
     @Column(nullable = false, length = 20, unique = true)
     private String personId;//회원 아이디
     private String personName;//회원 이름
+    private Enum roleCode;
 
     @JsonIgnore //json 리턴값에서 무시됨
     private String personPassword;//회원 비밀번호
@@ -35,11 +36,6 @@ public class Person {
     private String personProfile;//회원 프로필 사진 파일명
     private String personProfileLoc;//회원 프로필 사진 파일 경로
     private LocalDateTime PersonRegisterDate;//회원 가입 날짜
-
-    //영속관계 처리,즉시 로딩
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(name = "person")
-    private List<PersonRole> roles;
 
     public boolean matchPassword(String loginPassword) {
         if (loginPassword == null) {
