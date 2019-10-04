@@ -21,6 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/itemInGroup/**").hasRole("NORMAL")
                 .antMatchers("/items/**").hasRole("NORMAL")
                 .antMatchers("/words/**").hasRole("NORMAL")
+                .antMatchers("/study/**").permitAll()
                 .antMatchers("/persons/loginForm").permitAll()
 //                .antMatchers("/persons/**").hasRole("NORMAL")
                 .antMatchers("/admin/**").hasRole("ADMIN");

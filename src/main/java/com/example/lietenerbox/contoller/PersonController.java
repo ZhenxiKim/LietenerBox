@@ -4,6 +4,7 @@ import com.example.lietenerbox.api.exception.DataNotFoundException;
 import com.example.lietenerbox.model.Person;
 import com.example.lietenerbox.repository.ItemsRepository;
 import com.example.lietenerbox.repository.PersonRepository;
+import com.example.lietenerbox.util.StudyLevelUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,7 +38,7 @@ public class PersonController {
 
     //로그인
     @PostMapping("/login")
-    private String login(String personId, String password, HttpSession session) {
+    public String login(String personId, String password, HttpSession session) {
         Person person = personRepository.findByPersonId(personId)
                 .orElseThrow(DataNotFoundException::new);
 
