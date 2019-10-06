@@ -14,7 +14,8 @@ repositories {
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-mustache')
-    compile('org.webjars:jquery-ui:1.11.4')
+    compile group: 'org.webjars.bower', name: 'jquery', version: '1.12.1'
+    compile('org.webjars:jquery-ui:1.12.1')
     compile group: 'org.webjars', name: 'bootstrap', version: '3.3.5'
     compile('org.springframework.boot:spring-boot-starter-webflux')
 

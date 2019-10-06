@@ -2,7 +2,6 @@
 $(".answer-write input[type=submit]").click(addAnswer);
 
 function addAnswer(e) {
-  console.log("나여깄다");
 
   var queryString = $(".answer-write").serialize();
   console.log("query : " + queryString);

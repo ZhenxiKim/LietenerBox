@@ -15,18 +15,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         log.info("security config.....");
 
-        http.authorizeRequests().antMatchers("/persons/**").permitAll()
-                .antMatchers("/groups/**").hasRole("NORMAL")
-                .antMatchers("/wordInGroup/**").hasRole("NORMAL")
-                .antMatchers("/itemInGroup/**").hasRole("NORMAL")
-                .antMatchers("/items/**").hasRole("NORMAL")
-                .antMatchers("/words/**").hasRole("NORMAL")
-                .antMatchers("/study/**").permitAll()
-                .antMatchers("/persons/loginForm").permitAll()
-//                .antMatchers("/persons/**").hasRole("NORMAL")
-                .antMatchers("/admin/**").hasRole("ADMIN");
+//        http.authorizeRequests().antMatchers("/persons/**").permitAll()
+//                .antMatchers("/groups/**").permitAll()
+//                .antMatchers("/wordInGroup/**").hasRole("NORMAL")
+//                .antMatchers("/itemInGroup/**").hasRole("NORMAL")
+//                .antMatchers("/items/**").hasRole("NORMAL")
+//                .antMatchers("/words/**").hasRole("NORMAL")
+//                .antMatchers("/study/**").permitAll()
+//                .antMatchers("/persons/loginForm").permitAll()
+////                .antMatchers("/persons/**").hasRole("NORMAL")
+//                .antMatchers("/admin/**").hasRole("ADMIN");
 
-
+        http.csrf().disable();
         http.formLogin().disable();//security에서 제공하는 로그인 페이지 사용 안함
 
     }

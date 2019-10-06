@@ -4,7 +4,6 @@ import com.example.lietenerbox.api.exception.DataNotFoundException;
 import com.example.lietenerbox.model.Person;
 import com.example.lietenerbox.repository.ItemsRepository;
 import com.example.lietenerbox.repository.PersonRepository;
-import com.example.lietenerbox.util.StudyLevelUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,14 +44,12 @@ public class PersonController {
         //Person Person = PersonRepository.findByPersonId(PersonId);
         //멤버 null값 체크
         if (person == null) {
-            System.out.println("로그인 실패");
             //로그인한 회원이 아니라면 로그인 페이지로 이동
             return "redirect:/persons/loginForm";
         }
 
         //입력한 비밀번호값과 DB에 저장된 비밀번호 비교. matchPassword 메서드는 데이터를 가지고있는 객체에 생성
         if (!person.matchPassword(password)) {
-            System.out.println("로그인 실패");
             //로그인한 회원이 아니라면 로그인 페이지로 이동
             return "redirect:/persons/loginForm";
         }

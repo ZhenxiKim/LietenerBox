@@ -26,7 +26,7 @@ public class Groups {
 
     @ManyToOne
     @JoinColumn(name = "person_sn", referencedColumnName = "person_sn", nullable = false)
-    private Person person; //Person테이블의 memId컬럼 참조
+    private Person person; //Person테이블의 personSn 컬럼 참조
 
     public Groups(GroupsRequestDto requestDto, Person sessionPerson) {
         this.groupName = requestDto.getGroupName();
