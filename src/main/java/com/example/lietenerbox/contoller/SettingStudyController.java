@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+import java.text.ParseException;
+import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping("/setting")
@@ -53,8 +55,9 @@ public class SettingStudyController {
         settingStudyService.setStudyDate(loginPerson, studySetDate);
         return "/study/studyMain";
     }
+
     @GetMapping("/studyMain")
-    public String getLevel(HttpSession session,Model model){
+    public String getLevel(HttpSession session,Model model) throws ParseException {
         if (!HttpSessionUtils.isLoginPerson(session)) {
             return "/persons/loginForm";
         }

@@ -11,6 +11,9 @@ import com.example.lietenerbox.util.StudyLevelUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.ParseException;
+import java.time.LocalDateTime;
+
 @Service
 @Transactional
 public class SettingStudyService {
@@ -33,10 +36,10 @@ public class SettingStudyService {
     }
 
     //설정한 학습날짜를 기반으로 오늘 공부해야할 단계 가져오기
-    public String[] gettingDate(Person loginPerson) {
+    public String[] gettingDate(Person loginPerson) throws ParseException {
 
         //로그인한 회원 정보를 토대로 회원이 셋팅한 학습 시작 날짜 가져오기
-        Records records = recordsRepository.findByPerson(loginPerson);
+        Records records = recordsRepository.findAllByPerson(loginPerson);
 
         //오늘 학습 차수 = 오늘 날짜 - 회원가입 날짜
         Long stepDay = DateUtils.calDate(records);

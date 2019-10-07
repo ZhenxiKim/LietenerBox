@@ -1,9 +1,14 @@
 package com.example.lietenerbox.contoller;
 
 import com.example.lietenerbox.model.Person;
+import com.example.lietenerbox.model.Records;
 import com.example.lietenerbox.repository.PersonRepository;
+import com.example.lietenerbox.repository.RecordsRepository;
+import com.example.lietenerbox.repository.WordsRepository;
 import com.example.lietenerbox.service.StudyWordsService;
+import com.example.lietenerbox.util.DateUtils;
 import com.example.lietenerbox.util.HttpSessionUtils;
+import com.example.lietenerbox.util.StudyLevelUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.text.ParseException;
 
 @Controller
 @RequestMapping("/studyWords")
@@ -18,52 +24,33 @@ public class StudyWordsController {
 
     private final PersonRepository personRepository;
     private final StudyWordsService studyService;
+    private final WordsRepository wordsRepository;
+    private final RecordsRepository recordsRepository;
 
-    public StudyWordsController(PersonRepository personRepository, StudyWordsService studyService) {
+    public StudyWordsController(PersonRepository personRepository, StudyWordsService studyService, WordsRepository wordsRepository,RecordsRepository recordsRepository) {
         this.personRepository = personRepository;
         this.studyService = studyService;
+        this.wordsRepository = wordsRepository;
+        this.recordsRepository = recordsRepository;
     }
-
-//       //학습할 날짜 회원 직접 설정 후 학습 페이지로 이동
-//    @GetMapping()
-//    public String study(HttpSession session, Model model) {
-//
-//        if (!HttpSessionUtils.isLoginPerson(session)) {
-//            return "/persons/loginForm";
-//        }
-//
-//        return "/study/studySetting";
-//    }
-//
-//    //회원이설정한 학습모드일자 입력
-//    @PostMapping("")
-//    public String setStudyDate(HttpSession session, String studySetDate) {
-//
-//        if (!HttpSessionUtils.isLoginPerson(session)) {
-//            return "/persons/loginForm";
-//        }
-//
-//        //로그인 회원 정보
-//        Person loginPerson = HttpSessionUtils.getPersonFromSession(session);
-//        studyService.setStudyDate(loginPerson, studySetDate);
-//        return "/study/studyMain";
-//    }
 
     //회원의 학습 단계와 학습해야할 단어 출력
     @GetMapping("/studyMain")
-    public String studyMode(HttpSession session,Model model) {
-        if (!HttpSessionUtils.isLoginPerson(session)) {
-            return "/persons/loginForm";
-        }
+    public String gettingDate(Person loginPerson,Model model) throws ParseException {
 
-        //로그인 회원 정보
-        Person loginPerson = HttpSessionUtils.getPersonFromSession(session);
+        //로그인한 회원 정보를 토대로 회원이 셋팅한 학습 시작 날짜 가져오기
+        Records records = recordsRepository.findAllByPerson(loginPerson);
 
-        if (loginPerson != null) {
-            //날짜 계산
-            //model.addAttribute("studyLevel",.settingDatee(loginPerson));
-        }
-        return "a";
+        //오늘 학습 차수 = 오늘 날짜 - 회원가입 날짜
+        Long stepDay = DateUtils.calDate(records);
+
+        //오늘 공부해야할 단계 string[]로 반환
+        String[] todayStep = StudyLevelUtils.wordLevel(stepDay);
+
+        model.addAttribute("studyWords",studyService.wordLevelList(todayStep));
+
+        return "study/wordsStudy";
+
     }
 
 }

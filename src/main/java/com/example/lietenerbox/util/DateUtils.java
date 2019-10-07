@@ -3,6 +3,7 @@ package com.example.lietenerbox.util;
 import com.example.lietenerbox.model.Person;
 import com.example.lietenerbox.model.Records;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -11,10 +12,17 @@ import java.util.Date;
 
 public class DateUtils {
 
-    public static Long calDate(Records records) {
+    public static Long calDate(Records records) throws ParseException {
+
+        //입력 string "yyyy-MM-dd" date형식으로 변경
+        String inputDate = records.getStudyDay();
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = (Date)formatter.parse(inputDate);
+        SimpleDateFormat newFormat = new SimpleDateFormat("yyyyMMdd");
 
         //회원가입한 날짜
-        String regDate = records.getStudyDay().format(String.valueOf(DateTimeFormatter.ofPattern("yyyyMMdd")));
+        String regDate = newFormat.format(date);
+
         //오늘 날짜
         String nowDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
 
