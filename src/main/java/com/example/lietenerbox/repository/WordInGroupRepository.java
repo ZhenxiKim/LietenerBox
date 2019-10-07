@@ -4,6 +4,10 @@ import com.example.lietenerbox.model.ItemInGroup;
 import com.example.lietenerbox.model.WordInGroup;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 public interface WordInGroupRepository extends JpaRepository<WordInGroup,Long> {
     WordInGroup findByItemInGroup(ItemInGroup itemInGroup);
+
+    List<WordInGroup> findByGroupWordLevel(int level1);
 }
