@@ -9,5 +9,5 @@ import java.util.List;
 public interface WordInGroupRepository extends JpaRepository<WordInGroup,Long> {
     WordInGroup findByItemInGroup(ItemInGroup itemInGroup);
 
-    List<WordInGroup> findByGroupWordLevel(int level1);
+    List<WordInGroup> findByGroupWordLevel(int level);
 }

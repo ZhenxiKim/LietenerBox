@@ -41,4 +41,13 @@ public class Words {
         this.wordMean = wordMean;
         this.items = items;
     }
+
+    public Words(String right, String wrong) {
+        if(right != null){
+            this.wordLevel++;
+        }
+        if(wrong != null){
+            this.wordLevel = 1;
+        }
+    }
 }

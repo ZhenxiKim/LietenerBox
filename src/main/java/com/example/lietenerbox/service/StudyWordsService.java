@@ -2,6 +2,7 @@ package com.example.lietenerbox.service;
 
 import com.example.lietenerbox.model.Person;
 import com.example.lietenerbox.model.Records;
+import com.example.lietenerbox.model.Words;
 import com.example.lietenerbox.repository.PersonRepository;
 import com.example.lietenerbox.repository.RecordsRepository;
 import com.example.lietenerbox.repository.WordInGroupRepository;
@@ -24,13 +25,11 @@ import java.util.List;
 public class StudyWordsService {
     private final PersonRepository personRepository;
     private final WordsRepository wordsRepository;
-    private final WordInGroupRepository wordInGroupRepository;
     private final RecordsRepository recordsRepository;
 
     public StudyWordsService(PersonRepository personRepository, WordsRepository wordsRepository, WordInGroupRepository wordInGroupRepository, RecordsRepository recordsRepository) {
         this.personRepository = personRepository;
         this.wordsRepository = wordsRepository;
-        this.wordInGroupRepository = wordInGroupRepository;
         this.recordsRepository = recordsRepository;
     }
 
@@ -67,4 +66,7 @@ public class StudyWordsService {
     }
 
 
+    public void checkLevel(String right, String wrong) {
+        wordsRepository.save(new Words(right, wrong));
+    }
 }

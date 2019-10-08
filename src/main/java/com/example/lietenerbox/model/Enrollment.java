@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "enrollment")
 public class Enrollment implements Serializable {
 
     //복합키로 사용할 컬럼 선언
@@ -19,17 +20,16 @@ public class Enrollment implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long enrollmentId;
 
-    @OneToOne
-    @JoinColumn(name = "Person_memId")
+    @ManyToOne
+    @JoinColumn(name = "person_sn", referencedColumnName = "person_sn")
     private Person person; //Person테이블의 memId컬럼 참조
 
-    @OneToOne
-    @JoinColumn(name = "groups_groupId")
+    @ManyToOne
+    @JoinColumn(name = "group_id",referencedColumnName = "group_id")
     private Groups groups; //goups테이블과 1:1 단방향 연결
 
-
-    private LocalDateTime subscribeAt;
-    private boolean subscribeStatus;
+    private LocalDateTime subscribeAt;//구독 시작 날짜
+    private boolean subscribeStatus;//구독 상태
 
 
 }

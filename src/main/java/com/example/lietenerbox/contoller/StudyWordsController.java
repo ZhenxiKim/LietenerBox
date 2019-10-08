@@ -23,20 +23,20 @@ import java.text.ParseException;
 public class StudyWordsController {
 
     private final PersonRepository personRepository;
-    private final StudyWordsService studyService;
+    private final StudyWordsService studyWordsService;
     private final WordsRepository wordsRepository;
     private final RecordsRepository recordsRepository;
 
-    public StudyWordsController(PersonRepository personRepository, StudyWordsService studyService, WordsRepository wordsRepository,RecordsRepository recordsRepository) {
+    public StudyWordsController(PersonRepository personRepository, StudyWordsService studyWordsService, WordsRepository wordsRepository, RecordsRepository recordsRepository) {
         this.personRepository = personRepository;
-        this.studyService = studyService;
+        this.studyWordsService = studyWordsService;
         this.wordsRepository = wordsRepository;
         this.recordsRepository = recordsRepository;
     }
 
     //회원의 학습 단계와 학습해야할 단어 출력
     @GetMapping("/studyMain")
-    public String gettingDate(Person loginPerson,Model model) throws ParseException {
+    public String gettingDate(Person loginPerson, Model model) throws ParseException {
 
         //로그인한 회원 정보를 토대로 회원이 셋팅한 학습 시작 날짜 가져오기
         Records records = recordsRepository.findAllByPerson(loginPerson);
@@ -47,10 +47,15 @@ public class StudyWordsController {
         //오늘 공부해야할 단계 string[]로 반환
         String[] todayStep = StudyLevelUtils.wordLevel(stepDay);
 
-        model.addAttribute("studyWords",studyService.wordLevelList(todayStep));
+        model.addAttribute("studyWords", studyWordsService.wordLevelList(todayStep));
 
         return "study/wordsStudy";
 
+    }
+
+    @PostMapping("")
+    public void levelTest(String right, String wrong) {
+        studyWordsService.checkLevel(right,wrong);
     }
 
 }

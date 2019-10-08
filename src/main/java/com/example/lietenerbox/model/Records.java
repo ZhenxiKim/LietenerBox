@@ -21,7 +21,7 @@ public class Records {
     private Long recordsId;
     private String studyDay;//학습모드 시작 날짜 입력 스트링으로 받고 dateutil클래스에서 날짜 형식 변경
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "person_sn", referencedColumnName = "person_sn", nullable = false)
     private Person person;//Person 테이블의 personSn 컬럼 참조
 

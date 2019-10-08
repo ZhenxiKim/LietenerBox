@@ -43,4 +43,13 @@ public class WordInGroup {
         this.groupWordMean = wordMean;
         this.itemInGroup = itemInGroup;
     }
+
+    public WordInGroup(String right, String wrong) {
+        if(right != null){
+            this.groupWordLevel++;
+        }
+        if(wrong != null){
+            this.groupWordLevel = 1;
+        }
+    }
 }
