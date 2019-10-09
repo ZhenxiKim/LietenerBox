@@ -29,7 +29,7 @@ public class PersonApi {
 
 
     //회원 가입
-    @PostMapping("/Persons/create")
+    @PostMapping("/persons/create")
     public HttpStatus createPerson(@RequestBody PersonSignupRequestDto requestDto) {
 
         personRepository.findByPersonId(requestDto.getPersonId())
@@ -43,20 +43,20 @@ public class PersonApi {
     }
 
     //회원 전체 리스트 출력
-    @GetMapping("/Persons")
+    @GetMapping("/persons")
     public Iterable<Person> PersonAll() {
         return personRepository.findAll();
     }
 
     //회원 id 정보 출력
-    @GetMapping("/Persons/{id}")
+    @GetMapping("/persons/{id}")
     public Person PersonInfo(@PathVariable Long id) {
 
         return personRepository.findByPersonSn(id);
     }
 
     //회원정보수정
-    @PutMapping("/{PersonSn}/update")
+    @PutMapping("/{personSn}/update")
     public HttpStatus update(@PathVariable Long PersonSn, Person updateMem, HttpSession httpSession, @RequestBody PersonUpdateRequestDto updateDto) {
 
         //현재 로그인 정보

@@ -41,7 +41,7 @@ public class ItemInGroupController {
         Person sessionPerson = HttpSessionUtils.getPersonFromSession(session);
 
         //아이템이 속한 그룹정보 가져오기
-        Groups groups = groupsRepository.findBygroupId(groupId);
+        Groups groups = groupsRepository.findByGroupId(groupId);
 
         //아이템 생성 후 생성된 아이템 객체 가져오기
         itemInGroupService.createItemInGroup(groupId, itemName, sessionPerson, groups);
@@ -94,7 +94,7 @@ public class ItemInGroupController {
     @GetMapping("/{groupId}/itemList")
     public String itemInGroupList(@PathVariable Long groupId, HttpSession session, Model model) {
         //단어가 속한
-        Groups groups = groupsRepository.findBygroupId(groupId);
+        Groups groups = groupsRepository.findByGroupId(groupId);
         model.addAttribute("itemInGroup", itemInGroupRepository.findByGroups(groups));
         return "/item/itemList";
     }

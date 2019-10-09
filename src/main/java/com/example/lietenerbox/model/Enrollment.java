@@ -32,4 +32,10 @@ public class Enrollment implements Serializable {
     private boolean subscribeStatus;//구독 상태
 
 
+    public Enrollment(Person sessionPerson,Groups groups) {
+        this.person = sessionPerson;
+        this.groups = groups;
+        this.subscribeAt = LocalDateTime.now();
+        this.subscribeStatus = true;
+    }
 }

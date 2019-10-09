@@ -35,7 +35,7 @@ public class ItemInGroupApi {
             return HttpStatus.BAD_REQUEST;
         }
 
-        Groups groups = groupsRepository.findBygroupId(groupId);
+        Groups groups = groupsRepository.findByGroupId(groupId);
 
         //requestbody값과 그룹의 정보를가지고 그룹에 속한 아이템 생성
         itemInGroupService.createItemInGroup(itemsInGroupRequestDto, groups);
@@ -45,7 +45,7 @@ public class ItemInGroupApi {
     //그룹내 아이템 리스트 가져오기
     @GetMapping("/items/{groupId}")
     public List<ItemInGroup> ItemInGroupAll(@PathVariable Long groupId) {
-        Groups groups = groupsRepository.findBygroupId(groupId);
+        Groups groups = groupsRepository.findByGroupId(groupId);
         return itemInGroupRepository.findAllByGroups(groups);
     }
 }
