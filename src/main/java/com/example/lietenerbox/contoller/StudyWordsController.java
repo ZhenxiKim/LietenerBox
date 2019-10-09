@@ -7,7 +7,6 @@ import com.example.lietenerbox.repository.RecordsRepository;
 import com.example.lietenerbox.repository.WordsRepository;
 import com.example.lietenerbox.service.StudyWordsService;
 import com.example.lietenerbox.util.DateUtils;
-import com.example.lietenerbox.util.HttpSessionUtils;
 import com.example.lietenerbox.util.StudyLevelUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,22 +14,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 
 @Controller
 @RequestMapping("/studyWords")
 public class StudyWordsController {
 
-    private final PersonRepository personRepository;
+
     private final StudyWordsService studyWordsService;
-    private final WordsRepository wordsRepository;
     private final RecordsRepository recordsRepository;
 
-    public StudyWordsController(PersonRepository personRepository, StudyWordsService studyWordsService, WordsRepository wordsRepository, RecordsRepository recordsRepository) {
-        this.personRepository = personRepository;
+    public StudyWordsController(StudyWordsService studyWordsService, RecordsRepository recordsRepository) {
+
         this.studyWordsService = studyWordsService;
-        this.wordsRepository = wordsRepository;
+
         this.recordsRepository = recordsRepository;
     }
 
@@ -55,7 +52,7 @@ public class StudyWordsController {
 
     @PostMapping("")
     public void levelTest(String right, String wrong) {
-        studyWordsService.checkLevel(right,wrong);
+        studyWordsService.checkLevel(right, wrong);
     }
 
 }

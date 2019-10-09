@@ -37,6 +37,9 @@ public class Person {
     private String personProfileLoc;//회원 프로필 사진 파일 경로
     private LocalDateTime PersonRegisterDate;//회원 가입 날짜
 
+    @OneToMany
+    @JoinColumn(name="records")
+    private List<Records> records;
 
     public boolean matchPassword(String loginPassword) {
         if (loginPassword == null) {
