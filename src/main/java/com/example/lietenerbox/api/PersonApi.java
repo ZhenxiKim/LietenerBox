@@ -11,6 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -44,15 +45,17 @@ public class PersonApi {
 
     //회원 전체 리스트 출력
     @GetMapping("/persons")
-    public Iterable<Person> PersonAll() {
-        return personRepository.findAll();
+    public List<Person> PersonAll() {
+        List<Person> persons = personRepository.findAll();
+
+        return persons;
     }
 
     //회원 id 정보 출력
     @GetMapping("/persons/{id}")
     public Person PersonInfo(@PathVariable Long id) {
-
-        return personRepository.findByPersonSn(id);
+        Person person =personRepository.findByPersonSn(id);
+        return person;
     }
 
     //회원정보수정

@@ -16,17 +16,17 @@
                 </tr>
                 </thead>
                 <tbody>
-                {{#groups}}
+                {{#container}}
                 <tr>
-                    <th scope="row">{{groupId}}</th>
-                    <td>{{groupName}}</td>
+                    <th scope="row">{{containerId}}</th>
+                    <td>{{containerName}}</td>
                     <td>{{person.PersonId}}</td>
-                    <td>{{groupContents}}</td>
+                    <td>{{containerContents}}</td>
                     <td>{{createdAt}}</td>
-                    <td><a href="/items/{{groupId}}/itemForm" class="btn btn-success" role="button">세트 생성하기</a></td>
-                    <td><a href="/items/{groupId}" class="btn btn-success" role="button">세트 목록보기</a></td>
+                    <td><a href="/items/{{containerId}}/itemForm" class="btn btn-success" role="button">세트 생성하기</a></td>
+                    <td><a href="/items/{{containerId}}}" class="btn btn-success" role="button">세트 목록보기</a></td>
                 </tr>
-                {{/groups}}
+                {{/container}}
             </table>
                 <!--아이템 목록-->
                 <hr>
@@ -38,14 +38,14 @@
                     <th>#</th> <th>세트 이름</th> <th>만든 날짜</th><th></th>
                 </tr>
                 </thead>
-                {{#itemInGroup}}
+                {{#itemInContainer}}
                 <tr>
-                    <th scope="row">{{groupItemName}}</th>
-                    <td>{{groupItemCreatedAt}}</td>
+                    <th scope="row">{{containerItemName}}</th>
+                    <td>{{containerItemCreatedAt}}</td>
                     <td><a href="" class="btn btn-success" role="button">단어 생성하기</a></td>
                     <td><a href="" class="btn btn-success" role="button">단어 목록보기</a></td>
                 </tr>
-                {{/itemInGroup}}
+                {{/itemInContainer}}
                 </tbody>
             </table>
         </div>

@@ -25,16 +25,16 @@ public class Enrollment implements Serializable {
     private Person person; //Person 테이블의 memId컬럼 참조
 
     @ManyToOne
-    @JoinColumn(name = "group_id",referencedColumnName = "group_id")
-    private Groups groups; //goups 테이블과 1:1 단방향 연결
+    @JoinColumn(name = "container_id",referencedColumnName = "container_id")
+    private Container container; //goups 테이블과 1:1 단방향 연결
 
     private LocalDateTime subscribeAt;//구독 시작 날짜
     private boolean subscribeStatus;//구독 상태
 
 
-    public Enrollment(Person sessionPerson,Groups groups) {
+    public Enrollment(Person sessionPerson, Container container) {
         this.person = sessionPerson;
-        this.groups = groups;
+        this.container = container;
         this.subscribeAt = LocalDateTime.now();
         this.subscribeStatus = true;
     }

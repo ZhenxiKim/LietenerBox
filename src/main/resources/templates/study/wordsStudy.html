@@ -17,11 +17,15 @@
                 </tr>
                 </thead>
                 {{#studyWords}}
+                {{#studyWords}}
+                {{#Words}}
                 <tr>
                     <th scope="row">{{wordName}}</th>
                     <td>{{wordMean}}</td>
                     <td>{{wordLevel}}</td>
                 </tr>
+                {{/Words}}
+                {{/studyWords}}
                 {{/studyWords}}
                 </tbody>
                 <form name="wordStudy" method="post" action="/studyWords/">

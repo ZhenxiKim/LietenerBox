@@ -2,7 +2,7 @@ package com.example.lietenerbox.contoller;
 
 
 import com.example.lietenerbox.model.Person;
-import com.example.lietenerbox.repository.GroupsRepository;
+import com.example.lietenerbox.repository.ContainerRepository;
 import com.example.lietenerbox.service.EnrollmentService;
 import com.example.lietenerbox.util.HttpSessionUtils;
 import org.springframework.stereotype.Controller;
@@ -20,11 +20,11 @@ public class EnrollmentController {
     //구독
 
     private final EnrollmentService enrollmentService;
-    private final GroupsRepository groupsRepository;
+    private final ContainerRepository containerRepository;
 
-    public EnrollmentController(EnrollmentService enrollmentService,GroupsRepository groupsRepository) {
+    public EnrollmentController(EnrollmentService enrollmentService, ContainerRepository containerRepository) {
         this.enrollmentService = enrollmentService;
-        this.groupsRepository = groupsRepository;
+        this.containerRepository = containerRepository;
     }
 
     @GetMapping()

@@ -16,9 +16,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         log.info("security config.....");
 
 //        http.authorizeRequests().antMatchers("/persons/**").permitAll()
-//                .antMatchers("/groups/**").permitAll()
-//                .antMatchers("/wordInGroup/**").hasRole("NORMAL")
-//                .antMatchers("/itemInGroup/**").hasRole("NORMAL")
+//                .antMatchers("/container/**").permitAll()
+//                .antMatchers("/wordInContainer/**").hasRole("NORMAL")
+//                .antMatchers("/itemInContainer/**").hasRole("NORMAL")
 //                .antMatchers("/items/**").hasRole("NORMAL")
 //                .antMatchers("/words/**").hasRole("NORMAL")
 //                .antMatchers("/study/**").permitAll()

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="kr">
 <head>
-    {{> /include/header}}
+ {{> /include/header}}
 </head>
 <body>
 {{> /include/navigation}}
@@ -22,25 +22,25 @@
                 </tr>
                 </thead>
                 <tbody>
-                {{#groups}}
+                {{#container}}
                 <tr>
-                    <th scope="row">{{groupId}}</th>
-                    <td>{{groupName}}</td>
+                    <th scope="row">{{containerId}}</th>
+                    <td>{{containerName}}</td>
                     <td>{{person.personId}}</td>
-                    <td>{{groupContents}}</td>
+                    <td>{{containerContents}}</td>
                     <td>{{createdAt}}</td>
 
-                    <form class="answer-write" method="get" action="/items/{{groupId}}">
+                    <form class="answer-write" method="get" action="/itemsInContainer/{{containerId}}">
                         <input type="submit" class="btn btn-success pull-right" value="답변하기">
                         <div class="clearfix"/>
                     </form>
 
 
-                    <td><a href="/items/{{groupId}}/itemForm" class="btn btn-success" role="button">세트 생성하기</a></td>
-                    <td><a href="/items/{{groupId}}/itemList" class="btn btn-success" role="button">세트 목록보기</a></td>
+                    <td><a href="/itemsInContainer/{{containerId}}/itemForm" class="btn btn-success" role="button">세트 생성하기</a></td>
+                    <td><a href="/itemsInContainer/{{containerId}}/itemList" class="btn btn-success" role="button">세트 목록보기</a></td>
                 </tr>
 
-                {{/groups}}
+                {{/container}}
             </table>
 
         </div>

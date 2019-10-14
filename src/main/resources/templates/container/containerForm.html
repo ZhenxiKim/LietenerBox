@@ -11,14 +11,14 @@
         <div class="panel panel-default content-main">
             <h3>친구들과 함께 외국어 문장을 공부를 해봐요!</h3>
 
-            <form name="group" method="post" action="/groups">
+            <form name="container" method="post" action="/container">
                 <div class="form-group">
                     <label for="title">클래스 명</label>
-                    <input type="text" class="form-control" id="title" name="groupName" placeholder="클래스 제목을 입력해주세요"/>
+                    <input type="text" class="form-control" id="title" name="containerName" placeholder="클래스 제목을 입력해주세요"/>
                 </div>
                 <div class="form-group">
                     <label for="contents">클래스 소개</label>
-                    <textarea name="groupContents" id="contents" rows="5" class="form-control" placeholder="클래스 소개를 적어주세요"></textarea>
+                    <textarea name="containerContents" id="contents" rows="5" class="form-control" placeholder="클래스 소개를 적어주세요"></textarea>
                 </div>
                 <button type="submit" class="btn btn-success clearfix pull-right">클래스 등록하기</button>
                 <div class="clearfix"/>

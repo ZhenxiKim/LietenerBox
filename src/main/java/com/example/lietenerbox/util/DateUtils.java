@@ -30,10 +30,10 @@ public class DateUtils {
         try {
             //simple date format을 통해 date 타입으로 변경
             //date 타입으로 캐스팅 하면서 생기는 예외로 인해 여기서 예외처리 하지 않으면 컴파일 오류가 남.
-            SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+            //SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
 
-            Date regDate1 = format.parse(regDate);
-            Date nowDate1 = format.parse(nowDate);
+            Date regDate1 = newFormat.parse(regDate);
+            Date nowDate1 = newFormat.parse(nowDate);
 
             //날짜사이 차수 구하기
             calDate = (nowDate1.getTime()- regDate1.getTime()) / (24 * 60 * 60 * 1000);

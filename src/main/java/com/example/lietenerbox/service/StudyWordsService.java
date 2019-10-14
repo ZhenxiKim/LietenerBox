@@ -1,23 +1,14 @@
 package com.example.lietenerbox.service;
 
-import com.example.lietenerbox.model.Person;
-import com.example.lietenerbox.model.Records;
 import com.example.lietenerbox.model.Words;
 import com.example.lietenerbox.repository.PersonRepository;
 import com.example.lietenerbox.repository.RecordsRepository;
-import com.example.lietenerbox.repository.WordInGroupRepository;
+import com.example.lietenerbox.repository.WordInContainerRepository;
 import com.example.lietenerbox.repository.WordsRepository;
-import com.example.lietenerbox.util.DateUtils;
-import com.example.lietenerbox.util.StudyLevelUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.lang.reflect.Array;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -27,7 +18,7 @@ public class StudyWordsService {
     private final WordsRepository wordsRepository;
     private final RecordsRepository recordsRepository;
 
-    public StudyWordsService(PersonRepository personRepository, WordsRepository wordsRepository, WordInGroupRepository wordInGroupRepository, RecordsRepository recordsRepository) {
+    public StudyWordsService(PersonRepository personRepository, WordsRepository wordsRepository, WordInContainerRepository wordInContainerRepository, RecordsRepository recordsRepository) {
         this.personRepository = personRepository;
         this.wordsRepository = wordsRepository;
         this.recordsRepository = recordsRepository;

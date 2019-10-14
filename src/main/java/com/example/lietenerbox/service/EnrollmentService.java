@@ -1,10 +1,10 @@
 package com.example.lietenerbox.service;
 
+import com.example.lietenerbox.model.Container;
 import com.example.lietenerbox.model.Enrollment;
-import com.example.lietenerbox.model.Groups;
 import com.example.lietenerbox.model.Person;
+import com.example.lietenerbox.repository.ContainerRepository;
 import com.example.lietenerbox.repository.EnrollmentRepository;
-import com.example.lietenerbox.repository.GroupsRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,18 +12,18 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class EnrollmentService {
 
-    private final GroupsRepository groupsRepository;
+    private final ContainerRepository containerRepository;
     private final EnrollmentRepository enrollmentRepository;
 
-    public EnrollmentService(GroupsRepository groupsRepository,EnrollmentRepository enrollmentRepository) {
-        this.groupsRepository = groupsRepository;
+    public EnrollmentService(ContainerRepository containerRepository, EnrollmentRepository enrollmentRepository) {
+        this.containerRepository = containerRepository;
         this.enrollmentRepository = enrollmentRepository;
     }
 
     public void apply(Person sessionPerson, Long groupId) {
 
-        Groups groups = groupsRepository.findByGroupId(groupId);
-        enrollmentRepository.save(new Enrollment(sessionPerson,groups));
+        Container container = containerRepository.findByContainerId(groupId);
+        enrollmentRepository.save(new Enrollment(sessionPerson, container));
 
 
 

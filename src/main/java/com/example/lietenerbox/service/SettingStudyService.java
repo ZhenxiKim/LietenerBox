@@ -4,7 +4,7 @@ import com.example.lietenerbox.model.Person;
 import com.example.lietenerbox.model.Records;
 import com.example.lietenerbox.repository.PersonRepository;
 import com.example.lietenerbox.repository.RecordsRepository;
-import com.example.lietenerbox.repository.WordInGroupRepository;
+import com.example.lietenerbox.repository.WordInContainerRepository;
 import com.example.lietenerbox.repository.WordsRepository;
 import com.example.lietenerbox.util.DateUtils;
 import com.example.lietenerbox.util.StudyLevelUtils;
@@ -12,21 +12,20 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
-import java.time.LocalDateTime;
 
 @Service
 @Transactional
 public class SettingStudyService {
     private final PersonRepository personRepository;
     private final WordsRepository wordsRepository;
-    private final WordInGroupRepository wordInGroupRepository;
+    private final WordInContainerRepository wordInContainerRepository;
     private final RecordsRepository recordsRepository;
 
 
-    public SettingStudyService(PersonRepository personRepository, WordsRepository wordsRepository, WordInGroupRepository wordInGroupRepository, RecordsRepository recordsRepository) {
+    public SettingStudyService(PersonRepository personRepository, WordsRepository wordsRepository, WordInContainerRepository wordInContainerRepository, RecordsRepository recordsRepository) {
         this.personRepository = personRepository;
         this.wordsRepository = wordsRepository;
-        this.wordInGroupRepository = wordInGroupRepository;
+        this.wordInContainerRepository = wordInContainerRepository;
         this.recordsRepository = recordsRepository;
     }
 

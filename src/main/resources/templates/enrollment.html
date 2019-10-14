@@ -22,21 +22,20 @@
                 </tr>
                 </thead>
                 <tbody>
-                {{#groups}}
+                {{#container}}
                 <tr>
                     <th scope="row">{{groupId}}</th>
-                    <td>{{groupName}}</td>
+                    <td>{{containerName}}</td>
                     <td>{{person.personId}}</td>
-                    <td>{{groupContents}}</td>
+                    <td>{{containerContents}}</td>
                     <td>{{createdAt}}</td>
 
-                    <form class="enrollment" method="post" action="/enrollment/{{groupId}}">
+                    <form class="enrollment" method="post" action="/enrollment/{{containerId}}">
                         <input type="submit" class="btn btn-success pull-right" value="구독하기">
                         <div class="clearfix"/>
                     </form>
                 </tr>
-
-                {{/groups}}
+                {{/container}}
             </table>
 
         </div>

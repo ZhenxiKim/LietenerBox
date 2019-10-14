@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="kr">
 <head>
-    {{> /include/header}}
+{{> /include/header}}
 </head>
 <body>
 {{> /include/navigation}}
@@ -18,9 +18,11 @@
                 </thead>
                 {{#studyContainer}}
                 <tr>
-                    <th scope="row">{{wordName}}</th>
-                    <td>{{wordMean}}</td>
-                    <td>{{wordLevel}}</td>
+
+                    <th scope="row">{{containerWordName}}</th>
+                    <td>{{containerWordMean}}</td>
+                    <td>{{containerWordLevel}}</td>
+
                 </tr>
                 {{/studyContainer}}
                 </tbody>

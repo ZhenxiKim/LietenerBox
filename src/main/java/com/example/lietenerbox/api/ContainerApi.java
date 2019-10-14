@@ -1,12 +1,12 @@
 package com.example.lietenerbox.api;
 
 import com.example.lietenerbox.api.exception.DataNotFoundException;
-import com.example.lietenerbox.model.Groups;
+import com.example.lietenerbox.model.Container;
 import com.example.lietenerbox.model.Person;
-import com.example.lietenerbox.model.dto.request.GroupsRequestDto;
-import com.example.lietenerbox.repository.GroupsRepository;
+import com.example.lietenerbox.model.dto.request.ContainerRequestDto;
+import com.example.lietenerbox.repository.ContainerRepository;
 import com.example.lietenerbox.repository.PersonRepository;
-import com.example.lietenerbox.service.GroupsService;
+import com.example.lietenerbox.service.ContainerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -18,25 +18,25 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 @Validated
-public class GroupsApi {
+public class ContainerApi {
     //내가 생성한 그룹 리스트 Api
 
     private final PersonRepository personRepository;
-    private final GroupsRepository groupsRepository;
-    private final GroupsService groupsService;
+    private final ContainerRepository containerRepository;
+    private final ContainerService containerService;
 
 
-    public GroupsApi(PersonRepository personRepository,
-                     GroupsRepository groupsRepository,
-                     GroupsService groupsService) {
+    public ContainerApi(PersonRepository personRepository,
+                        ContainerRepository containerRepository,
+                        ContainerService containerService) {
         this.personRepository = personRepository;
-        this.groupsRepository = groupsRepository;
-        this.groupsService = groupsService;
+        this.containerRepository = containerRepository;
+        this.containerService = containerService;
     }
 
     //Group 생성
-    @PostMapping("/groups/{personSn}/create")
-    public HttpStatus createGroups(@RequestBody GroupsRequestDto requestDto, HttpSession session, @PathVariable Long personSn) {
+    @PostMapping("/containers/{personSn}/create")
+    public HttpStatus createGroups(@RequestBody ContainerRequestDto requestDto, HttpSession session, @PathVariable Long personSn) {
         //현재 로그인 정보
         Person loginPerson = (Person) session.getAttribute("person");
 
@@ -45,12 +45,12 @@ public class GroupsApi {
             return HttpStatus.BAD_REQUEST;
         }
 
-        groupsService.createGroups(requestDto, loginPerson);
+        containerService.createContainers(requestDto, loginPerson);
         return HttpStatus.OK;
     }
 
     //회원이 생성한 그룹 전체 리스트 출력
-    @GetMapping("/groups/{personSn}")
+    @GetMapping("/containers/{personSn}")
     public ResponseEntity<?> groupsAll(@PathVariable Long personSn, HttpSession httpSession) {
         //1. 로그인한 회원 정보 가져오기
         //2. 로그인한 회원에대한 그룹리스트 가져오기
@@ -67,14 +67,14 @@ public class GroupsApi {
         //멤버객체로 받아야함.
 
         // return HttpStatus.OK;
-        List<Groups> groupsList = groupsService.groupsList(savedPerson);
+        List<Container> containerList = containerService.ContainersList(savedPerson);
 
-        return ResponseEntity.ok(groupsList);
+        return ResponseEntity.ok(containerList);
     }
 
     //회원의 정보를 전제로 가져와야하나?
-//    @PutMapping("/groups/{groupId}")
-//    public HttpStatus updateGroup(@PathVariable Long GroupId,@PathVariable Long PersonSn,HttpSession httpSession,@RequestBody GroupsRequestDto requestDto){
+//    @PutMapping("/container/{groupId}")
+//    public HttpStatus updateGroup(@PathVariable Long GroupId,@PathVariable Long PersonSn,HttpSession httpSession,@RequestBody ContainerRequestDto requestDto){
 //        //현재 로그인 정보
 //        Person loginPerson = (Person) httpSession.getAttribute("Person");
 //

@@ -17,14 +17,14 @@
                     <th>#</th> <th>세트 이름</th> <th>만든 날짜</th><th></th>
                 </tr>
                 </thead>
-                {{#itemInGroup}}
+                {{#itemInContainer}}
                 <tr>
-                    <th scope="row">{{groupItemId}}</th>
-                    <td>{{groupItemName}}</td>
-                    <td>{{groupItemCreatedAt}}</td>
-                    <td><a href="/words/{{groupItemId}}/itemList" class="btn btn-success" role="button">단어 보기</a></td>
+                    <th scope="row">{{containerItemId}}</th>
+                    <td>{{containerItemName}}</td>
+                    <td>{{containerItemCreatedAt}}</td>
+                    <td><a href="/wordsInContainer/{{containerItemId}}/itemList" class="btn btn-success" role="button">단어 보기</a></td>
                 </tr>
-                {{/itemInGroup}}
+                {{/itemInContainer}}
                 </tbody>
             </table>
         </div>
