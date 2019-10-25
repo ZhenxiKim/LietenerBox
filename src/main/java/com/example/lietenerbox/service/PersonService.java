@@ -26,7 +26,6 @@ public class PersonService {
     public void updatePerson(PersonUpdateRequestDto updateDto) {
         Person person = new Person(updateDto);
         personRepository.save(person);
-
     }
 
 

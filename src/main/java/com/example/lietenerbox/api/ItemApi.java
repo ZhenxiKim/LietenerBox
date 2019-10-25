@@ -47,7 +47,7 @@ public class ItemApi {
     public ResponseEntity<?> itemsAll(@PathVariable Long PersonSn, HttpSession httpSession) {
         //현재 로그인 정보
         Person loginPerson = (Person) httpSession.getAttribute("Person");
-        if(loginPerson == null){
+        if (loginPerson == null) {
 
         }
         //로그인한 회원정보를 가지고 저장된 회원 정보 가져오기

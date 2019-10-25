@@ -68,5 +68,4 @@ public class SettingStudyController {
         model.addAttribute("setDate",settingStudyService.gettingDate(loginPerson));
         return "/study/studyMain";
     }
-
 }

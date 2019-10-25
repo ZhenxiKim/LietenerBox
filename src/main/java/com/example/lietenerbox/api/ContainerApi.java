@@ -7,6 +7,7 @@ import com.example.lietenerbox.model.dto.request.ContainerRequestDto;
 import com.example.lietenerbox.repository.ContainerRepository;
 import com.example.lietenerbox.repository.PersonRepository;
 import com.example.lietenerbox.service.ContainerService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -34,8 +35,8 @@ public class ContainerApi {
         this.containerService = containerService;
     }
 
-    //Group 생성
-    @PostMapping("/containers/{personSn}/create")
+    @ApiOperation("클래스 생성")
+    @PostMapping("/containers/{personSn}")
     public HttpStatus createGroups(@RequestBody ContainerRequestDto requestDto, HttpSession session, @PathVariable Long personSn) {
         //현재 로그인 정보
         Person loginPerson = (Person) session.getAttribute("person");
@@ -49,24 +50,16 @@ public class ContainerApi {
         return HttpStatus.OK;
     }
 
-    //회원이 생성한 그룹 전체 리스트 출력
+
+    @ApiOperation("회원생성 클래스 리스트")
     @GetMapping("/containers/{personSn}")
     public ResponseEntity<?> groupsAll(@PathVariable Long personSn, HttpSession httpSession) {
         //1. 로그인한 회원 정보 가져오기
         //2. 로그인한 회원에대한 그룹리스트 가져오기
 
-        //현재 로그인 정보
-        Person loginPerson = (Person) httpSession.getAttribute("person");
-
+        //url에 담긴 회원sn로 기존 저정된 회원 정보 찾아오기
         Person savedPerson = personRepository.findById(personSn).orElseThrow(DataNotFoundException::new);
 
-        //로그인한 회원의 정보와 url로 넘어오는 회원의 정보가 같은지 비교
-//        if (loginPerson.getPersonSn() != PersonSn) {
-//            return HttpStatus.BAD_REQUEST;
-//        }
-        //멤버객체로 받아야함.
-
-        // return HttpStatus.OK;
         List<Container> containerList = containerService.ContainersList(savedPerson);
 
         return ResponseEntity.ok(containerList);

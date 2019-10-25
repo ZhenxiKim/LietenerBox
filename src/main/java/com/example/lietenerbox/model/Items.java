@@ -1,5 +1,4 @@
 package com.example.lietenerbox.model;
-
 import com.example.lietenerbox.model.dto.request.ItemsRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
