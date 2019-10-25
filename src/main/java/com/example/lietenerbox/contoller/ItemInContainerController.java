@@ -1,6 +1,6 @@
 package com.example.lietenerbox.contoller;
 
-import com.example.lietenerbox.api.exception.DataNotFoundException;
+import com.example.lietenerbox.exception.DataNotFoundException;
 import com.example.lietenerbox.model.Container;
 import com.example.lietenerbox.model.ItemInContainer;
 import com.example.lietenerbox.model.Person;

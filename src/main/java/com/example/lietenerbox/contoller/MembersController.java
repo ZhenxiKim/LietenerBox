@@ -1,6 +1,6 @@
 package com.example.lietenerbox.contoller;
 
-import com.example.lietenerbox.api.exception.DataNotFoundException;
+import com.example.lietenerbox.exception.DataNotFoundException;
 import com.example.lietenerbox.model.Person;
 import com.example.lietenerbox.repository.ItemsRepository;
 import com.example.lietenerbox.repository.PersonRepository;
@@ -10,12 +10,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 
-@Controller
-@RequestMapping("/persons")
-public class PersonController {
+@RestController
+@RequestMapping("/members")
+public class MembersController {
 
     @Autowired
     private PersonRepository personRepository;
@@ -23,7 +24,7 @@ public class PersonController {
     @Autowired
     private ItemsRepository itemsRepository;
 
-    @GetMapping("")//로그인 성공 시 단어 및 아이템 목록 페이지로 이동
+    @GetMapping("")
     public String Main(Model model) {
         model.addAttribute("Items", itemsRepository.findAll());
         return "/main";
