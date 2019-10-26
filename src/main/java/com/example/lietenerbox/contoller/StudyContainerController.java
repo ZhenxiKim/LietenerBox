@@ -2,7 +2,7 @@ package com.example.lietenerbox.contoller;
 
 import com.example.lietenerbox.model.Person;
 import com.example.lietenerbox.model.Records;
-import com.example.lietenerbox.repository.PersonRepository;
+import com.example.lietenerbox.repository.MembersRepository;
 import com.example.lietenerbox.repository.RecordsRepository;
 import com.example.lietenerbox.repository.WordInContainerRepository;
 import com.example.lietenerbox.service.StudyContainerService;
@@ -21,16 +21,16 @@ import java.text.ParseException;
 @Controller
 @RequestMapping("/containerWords")
 public class StudyContainerController {
-    private final PersonRepository personRepository;
+    private final MembersRepository membersRepository;
     private final RecordsRepository recordsRepository;
     private final StudyContainerService studyContainerService;
     private final WordInContainerRepository wordInContainerRepository;
 
-    public StudyContainerController(PersonRepository personRepository, RecordsRepository recordsRepository,
+    public StudyContainerController(MembersRepository membersRepository, RecordsRepository recordsRepository,
                                     WordInContainerRepository wordInContainerRepository,
                                     StudyContainerService studyContainerService) {
 
-        this.personRepository = personRepository;
+        this.membersRepository = membersRepository;
         this.recordsRepository = recordsRepository;
         this.studyContainerService = studyContainerService;
         this.wordInContainerRepository = wordInContainerRepository;

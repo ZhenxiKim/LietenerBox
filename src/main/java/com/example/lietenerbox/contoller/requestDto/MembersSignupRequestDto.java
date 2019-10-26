@@ -1,6 +1,6 @@
-package com.example.lietenerbox.model.dto.request;
+package com.example.lietenerbox.contoller.requestDto;
 
-public class PersonSignupRequestDto {
+public class MembersSignupRequestDto {
     private String personId;
     private String personPassword;
     private String personName;

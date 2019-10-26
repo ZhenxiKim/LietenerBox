@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface PersonRepository extends JpaRepository<Person, Long> {
+public interface MembersRepository extends JpaRepository<Person, Long> {
     Person findByPersonSn(Long personSn);
 
     Optional<Person> findByPersonId(String PersonId);

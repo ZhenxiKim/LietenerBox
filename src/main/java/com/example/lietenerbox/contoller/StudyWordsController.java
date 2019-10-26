@@ -2,9 +2,7 @@ package com.example.lietenerbox.contoller;
 
 import com.example.lietenerbox.model.Person;
 import com.example.lietenerbox.model.Records;
-import com.example.lietenerbox.repository.PersonRepository;
 import com.example.lietenerbox.repository.RecordsRepository;
-import com.example.lietenerbox.repository.WordsRepository;
 import com.example.lietenerbox.service.StudyWordsService;
 import com.example.lietenerbox.util.DateUtils;
 import com.example.lietenerbox.util.HttpSessionUtils;

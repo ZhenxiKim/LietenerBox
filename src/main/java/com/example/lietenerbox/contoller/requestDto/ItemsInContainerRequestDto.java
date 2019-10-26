@@ -1,4 +1,4 @@
-package com.example.lietenerbox.model.dto.request;
+package com.example.lietenerbox.contoller.requestDto;
 
 public class ItemsInContainerRequestDto {
     private String containerItemName;

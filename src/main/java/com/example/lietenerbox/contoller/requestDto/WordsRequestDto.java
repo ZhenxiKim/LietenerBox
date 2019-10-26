@@ -1,6 +1,4 @@
-package com.example.lietenerbox.model.dto.request;
-
-import javax.persistence.Column;
+package com.example.lietenerbox.contoller.requestDto;
 
 public class WordsRequestDto {
 

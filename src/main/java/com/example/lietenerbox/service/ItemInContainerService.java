@@ -3,7 +3,7 @@ package com.example.lietenerbox.service;
 import com.example.lietenerbox.model.Container;
 import com.example.lietenerbox.model.ItemInContainer;
 import com.example.lietenerbox.model.Person;
-import com.example.lietenerbox.model.dto.request.ItemsInContainerRequestDto;
+import com.example.lietenerbox.contoller.requestDto.ItemsInContainerRequestDto;
 import com.example.lietenerbox.repository.ContainerRepository;
 import com.example.lietenerbox.repository.ItemInContainerRepository;
 import org.springframework.stereotype.Service;

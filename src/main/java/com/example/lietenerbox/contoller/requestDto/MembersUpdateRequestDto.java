@@ -1,6 +1,6 @@
-package com.example.lietenerbox.model.dto.request;
+package com.example.lietenerbox.contoller.requestDto;
 
-public class PersonUpdateRequestDto {
+public class MembersUpdateRequestDto {
     //회원 정보 변경 가능 컬럼
     private String personPassword;
 

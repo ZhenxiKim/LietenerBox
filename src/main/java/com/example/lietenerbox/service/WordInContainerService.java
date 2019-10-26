@@ -2,7 +2,7 @@ package com.example.lietenerbox.service;
 
 import com.example.lietenerbox.model.ItemInContainer;
 import com.example.lietenerbox.model.WordInContainer;
-import com.example.lietenerbox.model.dto.request.WordsInContainerRequestDto;
+import com.example.lietenerbox.contoller.requestDto.WordsInContainerRequestDto;
 import com.example.lietenerbox.repository.ItemInContainerRepository;
 import com.example.lietenerbox.repository.WordInContainerRepository;
 import org.springframework.stereotype.Service;

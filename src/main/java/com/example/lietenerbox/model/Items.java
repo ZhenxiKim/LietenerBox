@@ -1,5 +1,5 @@
 package com.example.lietenerbox.model;
-import com.example.lietenerbox.model.dto.request.ItemsRequestDto;
+import com.example.lietenerbox.contoller.requestDto.ItemsRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

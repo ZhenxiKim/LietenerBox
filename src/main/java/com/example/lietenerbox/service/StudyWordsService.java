@@ -1,7 +1,7 @@
 package com.example.lietenerbox.service;
 
 import com.example.lietenerbox.model.Words;
-import com.example.lietenerbox.repository.PersonRepository;
+import com.example.lietenerbox.repository.MembersRepository;
 import com.example.lietenerbox.repository.RecordsRepository;
 import com.example.lietenerbox.repository.WordInContainerRepository;
 import com.example.lietenerbox.repository.WordsRepository;
@@ -14,12 +14,12 @@ import java.util.List;
 @Service
 @Transactional
 public class StudyWordsService {
-    private final PersonRepository personRepository;
+    private final MembersRepository membersRepository;
     private final WordsRepository wordsRepository;
     private final RecordsRepository recordsRepository;
 
-    public StudyWordsService(PersonRepository personRepository, WordsRepository wordsRepository, WordInContainerRepository wordInContainerRepository, RecordsRepository recordsRepository) {
-        this.personRepository = personRepository;
+    public StudyWordsService(MembersRepository membersRepository, WordsRepository wordsRepository, WordInContainerRepository wordInContainerRepository, RecordsRepository recordsRepository) {
+        this.membersRepository = membersRepository;
         this.wordsRepository = wordsRepository;
         this.recordsRepository = recordsRepository;
     }

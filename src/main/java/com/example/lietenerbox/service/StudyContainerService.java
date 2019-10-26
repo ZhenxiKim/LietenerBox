@@ -1,10 +1,9 @@
 package com.example.lietenerbox.service;
 
 import com.example.lietenerbox.model.WordInContainer;
-import com.example.lietenerbox.repository.PersonRepository;
+import com.example.lietenerbox.repository.MembersRepository;
 import com.example.lietenerbox.repository.RecordsRepository;
 import com.example.lietenerbox.repository.WordInContainerRepository;
-import com.example.lietenerbox.repository.WordsRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,12 +12,12 @@ import java.util.List;
 @Service
 @Transactional
 public class StudyContainerService {
-    private final PersonRepository personRepository;
+    private final MembersRepository membersRepository;
     private final WordInContainerRepository wordInContainerRepository;
     private final RecordsRepository recordsRepository;
 
-    public StudyContainerService(PersonRepository personRepository, WordInContainerRepository wordInContainerRepository, RecordsRepository recordsRepository) {
-        this.personRepository = personRepository;
+    public StudyContainerService(MembersRepository membersRepository, WordInContainerRepository wordInContainerRepository, RecordsRepository recordsRepository) {
+        this.membersRepository = membersRepository;
         this.wordInContainerRepository = wordInContainerRepository;
         this.recordsRepository = recordsRepository;
     }

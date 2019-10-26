@@ -1,7 +1,7 @@
 package com.example.lietenerbox.contoller;
 
 import com.example.lietenerbox.model.Person;
-import com.example.lietenerbox.repository.PersonRepository;
+import com.example.lietenerbox.repository.MembersRepository;
 import com.example.lietenerbox.service.SettingStudyService;
 import com.example.lietenerbox.service.StudyWordsService;
 import com.example.lietenerbox.util.HttpSessionUtils;
@@ -10,22 +10,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
-import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping("/setting")
 public class SettingStudyController {
     //스터디 설정 controller
-    private final PersonRepository personRepository;
+    private final MembersRepository membersRepository;
     private final StudyWordsService studyService;
     private final SettingStudyService settingStudyService;
 
-    public SettingStudyController(PersonRepository personRepository, StudyWordsService studyService,SettingStudyService settingStudyService) {
-        this.personRepository = personRepository;
+    public SettingStudyController(MembersRepository membersRepository, StudyWordsService studyService, SettingStudyService settingStudyService) {
+        this.membersRepository = membersRepository;
         this.studyService = studyService;
         this.settingStudyService = settingStudyService;
     }

@@ -2,7 +2,7 @@ package com.example.lietenerbox.service;
 
 import com.example.lietenerbox.model.Container;
 import com.example.lietenerbox.model.Person;
-import com.example.lietenerbox.model.dto.request.ContainerRequestDto;
+import com.example.lietenerbox.contoller.requestDto.ContainerRequestDto;
 import com.example.lietenerbox.repository.ContainerRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,7 +1,7 @@
 package com.example.lietenerbox.model;
 
-import com.example.lietenerbox.model.dto.request.PersonSignupRequestDto;
-import com.example.lietenerbox.model.dto.request.PersonUpdateRequestDto;
+import com.example.lietenerbox.contoller.requestDto.MembersSignupRequestDto;
+import com.example.lietenerbox.contoller.requestDto.MembersUpdateRequestDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -48,14 +48,14 @@ public class Person {
         return loginPassword.equals(personPassword);
     }
 
-    public Person(PersonSignupRequestDto requestDto) {
+    public Person(MembersSignupRequestDto requestDto) {
         this.personId = requestDto.getPersonId();
         this.personPassword = requestDto.getPersonPassword();
         this.personName = requestDto.getPersonName();
         this.personEmail = requestDto.getPersonEmail();
     }
 
-    public Person(PersonUpdateRequestDto updateDto) {
+    public Person(MembersUpdateRequestDto updateDto) {
         this.personPassword = personPassword;
     }
 }

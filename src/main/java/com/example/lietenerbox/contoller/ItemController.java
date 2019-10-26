@@ -3,7 +3,7 @@ package com.example.lietenerbox.contoller;
 import com.example.lietenerbox.model.Items;
 import com.example.lietenerbox.model.Person;
 import com.example.lietenerbox.repository.ItemsRepository;
-import com.example.lietenerbox.repository.PersonRepository;
+import com.example.lietenerbox.repository.MembersRepository;
 import com.example.lietenerbox.repository.WordsRepository;
 import com.example.lietenerbox.service.ItemsService;
 import com.example.lietenerbox.service.WordsService;
@@ -14,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 
@@ -28,7 +27,7 @@ public class ItemController {
 
     //회원이 생성한 폴더
     @Autowired
-    private PersonRepository personRepository;
+    private MembersRepository membersRepository;
     @Autowired
     private ItemsService itemsService;
 
@@ -48,7 +47,7 @@ public class ItemController {
         Person sessionPerson = HttpSessionUtils.getPersonFromSession(session);
 
         //현재 로그인한 회원의 정보 db에서 찾아오기
-        Person loginPerson = personRepository.findByPersonSn(sessionPerson.getPersonSn());
+        Person loginPerson = membersRepository.findByPersonSn(sessionPerson.getPersonSn());
         if(loginPerson == null){
             System.out.println("예외처리");
         }
@@ -79,7 +78,7 @@ public class ItemController {
         Person sessionPerson = HttpSessionUtils.getPersonFromSession(session);
 
         //현재 로그인한 회원의 정보 db에서 찾아오기
-        Person loginPerson = personRepository.findByPersonSn(sessionPerson.getPersonSn());
+        Person loginPerson = membersRepository.findByPersonSn(sessionPerson.getPersonSn());
 
         //회원이 생성한 아이템 찾아오기
         model.addAttribute("items",itemsRepository.findAllByPersonOrderByItemCreatedAtDesc(loginPerson));
