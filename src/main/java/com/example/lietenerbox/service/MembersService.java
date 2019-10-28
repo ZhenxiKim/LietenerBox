@@ -1,11 +1,14 @@
 package com.example.lietenerbox.service;
 
-import com.example.lietenerbox.model.Person;
-import com.example.lietenerbox.contoller.requestDto.MembersSignupRequestDto;
-import com.example.lietenerbox.contoller.requestDto.MembersUpdateRequestDto;
+import com.example.lietenerbox.contoller.requestDto.MembersCreateRequestDto;
+import com.example.lietenerbox.contoller.requestDto.UpdateMemberInfoRequestDto;
+import com.example.lietenerbox.exception.DataDuplicatedException;
+import com.example.lietenerbox.model.Members;
 import com.example.lietenerbox.repository.MembersRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.validation.constraints.NotBlank;
 
 @Service
 @Transactional
@@ -17,16 +20,26 @@ public class MembersService {
         this.membersRepository = membersRepository;
     }
 
-    //회원 가입 메서드
-    public void signupPerson(MembersSignupRequestDto requestDto) {
-        Person person = new Person(requestDto);
-        membersRepository.save(person);
+    public Members isExist(String memId) throws DataDuplicatedException {
+        Members members = membersRepository.findByMembersId(memId).orElseThrow(DataDuplicatedException::new);
+        return members;
     }
 
-    public void updatePerson(MembersUpdateRequestDto updateDto) {
-        Person person = new Person(updateDto);
-        membersRepository.save(person);
+    public Members createMembers(MembersCreateRequestDto requestDto) throws DataDuplicatedException {
+        String memId = requestDto.getMembersId();
+        Members members = membersRepository.findByMembersId(memId).orElseThrow(DataDuplicatedException::new);
+        return membersRepository.save(members);
     }
 
+    public Members getMembersInfo(@NotBlank Long membersSn) {
+        Members members = membersRepository.findByMembersSn(membersSn);
+        return members;
+    }
 
+    public void updateMemInfo(UpdateMemberInfoRequestDto updateDto, Long membersSn) {
+
+        Members members = membersRepository.findByMembersSn(membersSn);
+        members.setMembersPassword(updateDto.getMemPwd());
+        membersRepository.save(members);
+    }
 }

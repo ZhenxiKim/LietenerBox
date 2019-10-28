@@ -1,6 +1,6 @@
 
   $.ajax({
-        url: "http://localhost:8080/api/persons",
+        url: "http://localhost:8080/api/memberss",
         dataType: 'json',
         success: success,
 

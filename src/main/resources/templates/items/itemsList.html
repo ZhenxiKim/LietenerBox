@@ -17,14 +17,14 @@
                     <th>#</th> <th>세트 이름</th> <th>만든 날짜</th><th></th>
                 </tr>
                 </thead>
-                {{#items}}
+                {{#folders}}
                 <tr>
                     <th scope="row">{{itemId}}</th>
                     <td>{{itemName}}</td>
                     <td>{{itemCreatedAt}}</td>
                     <td><a href="/words/{{itemId}}/wordList" class="btn btn-success" role="button">단어 보기</a></td>
                 </tr>
-                {{/items}}
+                {{/folders}}
                 </tbody>
             </table>
         </div>

@@ -25,31 +25,31 @@ public class Container {
     private String containerContents;//그룹 소개 설명
 
     @ManyToOne
-    @JoinColumn(name = "person_sn", referencedColumnName = "person_sn", nullable = false)
-    private Person person; //Person테이블의 personSn 컬럼 참조
+    @JoinColumn(name = "members_sn", referencedColumnName = "members_sn", nullable = false)
+    private Members members; //members테이블의 membersSn 컬럼 참조
 
-    public Container(ContainerRequestDto requestDto, Person sessionPerson) {
+    public Container(ContainerRequestDto requestDto, Members sessionMembers) {
         this.containerName = requestDto.getcontainerName();
         this.createdAt = LocalDateTime.now();
         this.containerStatus = true;
         this.containerContents = requestDto.getcontainerContents();
-        this.person = sessionPerson;
+        this.members = sessionMembers;
     }
 
-    public Person getPerson() {
-        return person;
+    public Members getMembers() {
+        return members;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setMembers(Members members) {
+        this.members = members;
     }
 
-    public Container(String containerName, String containerContents, Person sessionPerson) {
+    public Container(String containerName, String containerContents, Members sessionMembers) {
         this.containerName = containerName;
         this.createdAt = LocalDateTime.now();
         this.containerStatus = true;
         this.containerContents = containerContents;
-        this.person = sessionPerson;
+        this.members = sessionMembers;
     }
 
     private Sort orderByCreatedAtDesc() {

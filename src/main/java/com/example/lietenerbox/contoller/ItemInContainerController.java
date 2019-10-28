@@ -3,7 +3,7 @@ package com.example.lietenerbox.contoller;
 import com.example.lietenerbox.exception.DataNotFoundException;
 import com.example.lietenerbox.model.Container;
 import com.example.lietenerbox.model.ItemInContainer;
-import com.example.lietenerbox.model.Person;
+import com.example.lietenerbox.model.Members;
 import com.example.lietenerbox.repository.ContainerRepository;
 import com.example.lietenerbox.repository.ItemInContainerRepository;
 import com.example.lietenerbox.service.ItemInContainerService;
@@ -38,16 +38,16 @@ public class ItemInContainerController {
     //item 생성
     @PostMapping("/{containerId}/createItem")
     public String createItemInContainer(@PathVariable Long containerId, String itemName, HttpSession session, String wordName, String wordMean) {
-        if (!HttpSessionUtils.isLoginPerson(session)) {
-            return "/persons/loginForm";
+        if (!HttpSessionUtils.isLoginmembers(session)) {
+            return "/memberss/loginForm";
         }
-        Person sessionPerson = HttpSessionUtils.getPersonFromSession(session);
+        Members sessionMembers = HttpSessionUtils.getmembersFromSession(session);
 
         //아이템이 속한 그룹정보 가져오기
         Container container = containerRepository.findByContainerId(containerId);
 
         //아이템 생성 후 생성된 아이템 객체 가져오기
-        itemInContainerService.createItemInContainer(containerId, itemName, sessionPerson, container);
+        itemInContainerService.createItemInContainer(containerId, itemName, sessionMembers, container);
         ItemInContainer itemInContainer = itemInContainerService.getItemInContainer(itemName);
         //아이템 객체와 함께 단어 생성하기
         wordInContainerService.createWordInContainer(itemInContainer, wordName, wordMean);
@@ -71,13 +71,13 @@ public class ItemInContainerController {
     @GetMapping("/{containerId}/itemForm")
     private String itemForm(@PathVariable Long containerId, HttpSession session, Model model) {
         //그룹 생성 시 로그인 유저 확인
-        if (!HttpSessionUtils.isLoginPerson(session)) {
-            return "/persons/loginForm";
+        if (!HttpSessionUtils.isLoginmembers(session)) {
+            return "/memberss/loginForm";
         }
 
         //현재 로그인 정보 가져오기
-        Person sessionPerson = HttpSessionUtils.getPersonFromSession(session);
-        Long loginPerson = sessionPerson.getPersonSn();
+        Members sessionMembers = HttpSessionUtils.getmembersFromSession(session);
+        Long loginmembers = sessionMembers.getmembersSn();
 
         model.addAttribute("containers", containerRepository.findById(containerId));
         //로그인 회원일 경우 아이템 생성 페이지로 이동

@@ -1,6 +1,6 @@
 package com.example.lietenerbox.contoller;
 
-import com.example.lietenerbox.model.Person;
+import com.example.lietenerbox.model.Members;
 import com.example.lietenerbox.repository.MembersRepository;
 import com.example.lietenerbox.service.SettingStudyService;
 import com.example.lietenerbox.service.StudyWordsService;
@@ -32,8 +32,8 @@ public class SettingStudyController {
     @GetMapping()
     public String setting(HttpSession session, Model model) {
 
-        if (!HttpSessionUtils.isLoginPerson(session)) {
-            return "/persons/loginForm";
+        if (!HttpSessionUtils.isLoginmembers(session)) {
+            return "/memberss/loginForm";
         }
         //날짜를 설정할 studySetting 페이지로 이동
         return "/study/studySetting";
@@ -43,27 +43,27 @@ public class SettingStudyController {
     @PostMapping("")
     public String setStudyDate(HttpSession session, String studySetDate) {
 
-        if (!HttpSessionUtils.isLoginPerson(session)) {
-            return "/persons/loginForm";
+        if (!HttpSessionUtils.isLoginmembers(session)) {
+            return "/memberss/loginForm";
         }
 
         //로그인 회원 정보
-        Person loginPerson = HttpSessionUtils.getPersonFromSession(session);
+        Members loginMembers = HttpSessionUtils.getmembersFromSession(session);
         //사용자가 입력한 날짜 설정
-        settingStudyService.setStudyDate(loginPerson, studySetDate);
+        settingStudyService.setStudyDate(loginMembers, studySetDate);
         return "/study/studyMain";
     }
 
     @GetMapping("/studyMain")
     public String getLevel(HttpSession session,Model model) throws ParseException {
-        if (!HttpSessionUtils.isLoginPerson(session)) {
-            return "/persons/loginForm";
+        if (!HttpSessionUtils.isLoginmembers(session)) {
+            return "/memberss/loginForm";
         }
 
         //로그인 회원 정보
-        Person loginPerson = HttpSessionUtils.getPersonFromSession(session);
+        Members loginMembers = HttpSessionUtils.getmembersFromSession(session);
         //사용자가 입력한 날짜 설정
-        model.addAttribute("setDate",settingStudyService.gettingDate(loginPerson));
+        model.addAttribute("setDate",settingStudyService.gettingDate(loginMembers));
         return "/study/studyMain";
     }
 }

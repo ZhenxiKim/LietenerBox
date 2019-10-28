@@ -2,7 +2,7 @@ package com.example.lietenerbox.service;
 
 import com.example.lietenerbox.model.Container;
 import com.example.lietenerbox.model.ItemInContainer;
-import com.example.lietenerbox.model.Person;
+import com.example.lietenerbox.model.Members;
 import com.example.lietenerbox.contoller.requestDto.ItemsInContainerRequestDto;
 import com.example.lietenerbox.repository.ContainerRepository;
 import com.example.lietenerbox.repository.ItemInContainerRepository;
@@ -24,8 +24,8 @@ public class ItemInContainerService {
         itemInContainerRepository.save(new ItemInContainer(itemsInContainerRequestDto, container));
     }
 
-    public void createItemInContainer(Long groupId, String itemName, Person sessionPerson, Container container) {
-        itemInContainerRepository.save(new ItemInContainer(itemName, sessionPerson, container));
+    public void createItemInContainer(Long groupId, String itemName, Members sessionMembers, Container container) {
+        itemInContainerRepository.save(new ItemInContainer(itemName, sessionMembers, container));
     }
 
     public ItemInContainer getItemInContainer(String itemName){

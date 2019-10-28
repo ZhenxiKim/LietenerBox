@@ -1,6 +1,6 @@
 package com.example.lietenerbox.contoller;
 
-import com.example.lietenerbox.model.Person;
+import com.example.lietenerbox.model.Members;
 import com.example.lietenerbox.model.Records;
 import com.example.lietenerbox.repository.MembersRepository;
 import com.example.lietenerbox.repository.RecordsRepository;
@@ -40,14 +40,14 @@ public class StudyContainerController {
     @GetMapping("/studyMain")
     public String gettingDate(HttpSession session, Model model) throws ParseException {
         //그룹 생성 시 로그인 유저 확인
-        if (!HttpSessionUtils.isLoginPerson(session)) {
-            return "/persons/loginForm";
+        if (!HttpSessionUtils.isLoginmembers(session)) {
+            return "/memberss/loginForm";
         }
 
         //현재 로그인 정보 가져오기
-        Person sessionPerson = HttpSessionUtils.getPersonFromSession(session);
+        Members sessionMembers = HttpSessionUtils.getmembersFromSession(session);
         //로그인한 회원 정보를 토대로 회원이 셋팅한 학습 시작 날짜 가져오기
-        Records records = recordsRepository.findAllByPerson(sessionPerson);
+        Records records = recordsRepository.findAllBymembers(sessionMembers);
 
         //오늘 학습 차수 = 오늘 날짜 - 회원가입 날짜
         Long stepDay = DateUtils.calDate(records);

@@ -1,9 +1,14 @@
 package com.example.lietenerbox.service;
 
-import com.example.lietenerbox.model.Items;
-import com.example.lietenerbox.model.Words;
+import com.example.lietenerbox.contoller.requestDto.ChangeWordsListForm;
+import com.example.lietenerbox.contoller.requestDto.Words;
+import com.example.lietenerbox.contoller.requestDto.ChangeWordsListReqDto;
+import com.example.lietenerbox.contoller.requestDto.WordsListForm;
 import com.example.lietenerbox.contoller.requestDto.WordsRequestDto;
-import com.example.lietenerbox.repository.ItemsRepository;
+import com.example.lietenerbox.exception.DataNotFoundException;
+import com.example.lietenerbox.model.Folders;
+import com.example.lietenerbox.model.Words;
+import com.example.lietenerbox.repository.FoldersRepository;
 import com.example.lietenerbox.repository.WordsRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,23 +17,40 @@ import java.util.List;
 @Service
 public class WordsService {
     private final WordsRepository wordsRepository;
-    private final ItemsRepository itemsRepository;
+    private final FoldersRepository foldersRepository;
 
     public WordsService(WordsRepository wordsRepository,
-                           ItemsRepository itemsRepository){
+                           FoldersRepository foldersRepository){
         this.wordsRepository = wordsRepository;
-        this.itemsRepository = itemsRepository;
+        this.foldersRepository = foldersRepository;
     }
 
-    public void createWords(WordsRequestDto wordsRequestDto, Items items) {
-        wordsRepository.save(new Words(wordsRequestDto,items));
+    public void createWords(WordsRequestDto reqDto) {
+        Long folderSn = reqDto.getFolderSn();
+        Folders folders = foldersRepository.findById(folderSn).orElseThrow(DataNotFoundException::new);
+
+        List<WordsListForm> wordsList = reqDto.getWordsList();
+        for(WordsListForm newWords : wordsList){
+            wordsRepository.save(new Words(folders,newWords));
+        }
     }
 
-    public List<Items> wordsList(Long itemId) {
-        return itemsRepository.findAll();
+    public List<Words> changeWordsList(ChangeWordsListReqDto reqDto) {
+        Long folderSn = reqDto.getFolderSn();
+        Folders folders = foldersRepository.findById(folderSn).orElseThrow(DataNotFoundException::new);
+
+        List<ChangeWordsListForm> wordsList = reqDto.getWordsList();
+
+        for(ChangeWordsListForm words : wordsList){
+            wordsRepository.save(new Words(folders,words));
+        }
+        List<Words> result = wordsRepository.findAllByFolders(folders);
+        return result;
     }
 
-    public void createWords(String wordName, String wordMean, Items items) {
-        wordsRepository.save(new Words(wordName,wordMean,items));
+
+    public List<Folders> wordsList(Long itemId) {
+        return foldersRepository.findAll();
     }
+
 }

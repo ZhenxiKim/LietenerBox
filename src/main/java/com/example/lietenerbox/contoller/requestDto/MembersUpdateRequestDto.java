@@ -2,13 +2,13 @@ package com.example.lietenerbox.contoller.requestDto;
 
 public class MembersUpdateRequestDto {
     //회원 정보 변경 가능 컬럼
-    private String personPassword;
+    private String membersPassword;
 
-    public String getPersonPassword() {
-        return personPassword;
+    public String getmembersPassword() {
+        return membersPassword;
     }
 
-    public void setPersonPassword(String personPassword) {
-        this.personPassword = personPassword;
+    public void setmembersPassword(String membersPassword) {
+        this.membersPassword = membersPassword;
     }
 }

@@ -15,15 +15,15 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
     protected void configure(HttpSecurity http) throws Exception {
         log.info("security config.....");
 
-//        http.authorizeRequests().antMatchers("/persons/**").permitAll()
+//        http.authorizeRequests().antMatchers("/memberss/**").permitAll()
 //                .antMatchers("/container/**").permitAll()
 //                .antMatchers("/wordInContainer/**").hasRole("NORMAL")
 //                .antMatchers("/itemInContainer/**").hasRole("NORMAL")
 //                .antMatchers("/items/**").hasRole("NORMAL")
 //                .antMatchers("/words/**").hasRole("NORMAL")
 //                .antMatchers("/study/**").permitAll()
-//                .antMatchers("/persons/loginForm").permitAll()
-////                .antMatchers("/persons/**").hasRole("NORMAL")
+//                .antMatchers("/memberss/loginForm").permitAll()
+////                .antMatchers("/memberss/**").hasRole("NORMAL")
 //                .antMatchers("/admin/**").hasRole("ADMIN");
 
         http.csrf().disable();

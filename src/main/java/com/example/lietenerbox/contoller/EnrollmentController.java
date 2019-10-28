@@ -1,7 +1,7 @@
 package com.example.lietenerbox.contoller;
 
 
-import com.example.lietenerbox.model.Person;
+import com.example.lietenerbox.model.Members;
 import com.example.lietenerbox.repository.ContainerRepository;
 import com.example.lietenerbox.service.EnrollmentService;
 import com.example.lietenerbox.util.HttpSessionUtils;
@@ -30,8 +30,8 @@ public class EnrollmentController {
     @GetMapping()
     public String apply(HttpSession session){
         //그룹 생성 시 로그인 유저 확인
-        if (!HttpSessionUtils.isLoginPerson(session)) {
-            return "/persons/loginForm";
+        if (!HttpSessionUtils.isLoginmembers(session)) {
+            return "/memberss/loginForm";
         }
         return "/enrollment";
     }
@@ -40,16 +40,16 @@ public class EnrollmentController {
     public String enrollment(@PathVariable Long groupId,HttpSession session){
 
         //그룹 생성 시 로그인 유저 확인
-        if (!HttpSessionUtils.isLoginPerson(session)) {
-            return "/persons/loginForm";
+        if (!HttpSessionUtils.isLoginmembers(session)) {
+            return "/memberss/loginForm";
         }
 
         //로그인한 회원의 정보
-        Person sessionPerson = HttpSessionUtils.getPersonFromSession(session);
+        Members sessionMembers = HttpSessionUtils.getmembersFromSession(session);
 
 
 
-        enrollmentService.apply(sessionPerson,groupId);
+        enrollmentService.apply(sessionMembers,groupId);
         return "a";
     }
 

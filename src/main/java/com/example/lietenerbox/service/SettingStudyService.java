@@ -1,6 +1,6 @@
 package com.example.lietenerbox.service;
 
-import com.example.lietenerbox.model.Person;
+import com.example.lietenerbox.model.Members;
 import com.example.lietenerbox.model.Records;
 import com.example.lietenerbox.repository.MembersRepository;
 import com.example.lietenerbox.repository.RecordsRepository;
@@ -30,15 +30,15 @@ public class SettingStudyService {
     }
 
     //회원이 입력한 학습 모드날짜 db 입력
-    public void setStudyDate(Person loginPerson, String studySetDate) {
-        recordsRepository.save(new Records(loginPerson, studySetDate));
+    public void setStudyDate(Members loginMembers, String studySetDate) {
+        recordsRepository.save(new Records(loginMembers, studySetDate));
     }
 
     //설정한 학습날짜를 기반으로 오늘 공부해야할 단계 가져오기
-    public String[] gettingDate(Person loginPerson) throws ParseException {
+    public String[] gettingDate(Members loginMembers) throws ParseException {
 
         //로그인한 회원 정보를 토대로 회원이 셋팅한 학습 시작 날짜 가져오기
-        Records records = recordsRepository.findAllByPerson(loginPerson);
+        Records records = recordsRepository.findAllBymembers(loginMembers);
 
         //오늘 학습 차수 = 오늘 날짜 - 회원가입 날짜
         Long stepDay = DateUtils.calDate(records);

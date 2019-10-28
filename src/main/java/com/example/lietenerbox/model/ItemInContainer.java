@@ -27,7 +27,7 @@ public class ItemInContainer {
     @JoinColumn(name = "container_id",referencedColumnName = "container_id",nullable = false)
     private Container container; //containers테이블의 containerId컬럼 참조
 
-    public ItemInContainer(String itemName, Person sessionPerson, Container itemInContainer){
+    public ItemInContainer(String itemName, Members sessionMembers, Container itemInContainer){
         this.containerItemName = itemName;
         this.containerItemCreatedAt = LocalDateTime.now();
         this.container = itemInContainer;

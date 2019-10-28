@@ -20,11 +20,11 @@
                 <tr>
                     <th scope="row">{{containerId}}</th>
                     <td>{{containerName}}</td>
-                    <td>{{person.PersonId}}</td>
+                    <td>{{members.membersId}}</td>
                     <td>{{containerContents}}</td>
                     <td>{{createdAt}}</td>
-                    <td><a href="/items/{{containerId}}/itemForm" class="btn btn-success" role="button">세트 생성하기</a></td>
-                    <td><a href="/items/{{containerId}}}" class="btn btn-success" role="button">세트 목록보기</a></td>
+                    <td><a href="/folders/{{containerId}}/itemForm" class="btn btn-success" role="button">세트 생성하기</a></td>
+                    <td><a href="/folders/{{containerId}}}" class="btn btn-success" role="button">세트 목록보기</a></td>
                 </tr>
                 {{/container}}
             </table>

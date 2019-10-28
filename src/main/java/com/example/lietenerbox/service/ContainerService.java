@@ -1,7 +1,7 @@
 package com.example.lietenerbox.service;
 
 import com.example.lietenerbox.model.Container;
-import com.example.lietenerbox.model.Person;
+import com.example.lietenerbox.model.Members;
 import com.example.lietenerbox.contoller.requestDto.ContainerRequestDto;
 import com.example.lietenerbox.repository.ContainerRepository;
 import org.springframework.stereotype.Service;
@@ -19,19 +19,19 @@ public class ContainerService {
         this.containerRepository = containerRepository;
     }
 
-    public void createContainer(String ContainerName, String ContainerContents, Person sessionPerson) {
-        containerRepository.save(new Container(ContainerName, ContainerContents, sessionPerson));
+    public void createContainer(String ContainerName, String ContainerContents, Members sessionMembers) {
+        containerRepository.save(new Container(ContainerName, ContainerContents, sessionMembers));
     }
 
     //api용 createContainers메서드
-    public void createContainers(ContainerRequestDto requestDto, Person sessionPerson) {
-        Container container = new Container(requestDto, sessionPerson);
+    public void createContainers(ContainerRequestDto requestDto, Members sessionMembers) {
+        Container container = new Container(requestDto, sessionMembers);
         containerRepository.save(container);
     }
 
     //api read
-    public List<Container> ContainersList(Person person) {
-        return containerRepository.findByPersonOrderByCreatedAtDesc(person);
+    public List<Container> ContainersList(Members members) {
+        return containerRepository.findBymembersOrderByCreatedAtDesc(members);
     }
 
 }

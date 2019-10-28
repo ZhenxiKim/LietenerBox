@@ -2,7 +2,7 @@ package com.example.lietenerbox.service;
 
 import com.example.lietenerbox.model.Container;
 import com.example.lietenerbox.model.Enrollment;
-import com.example.lietenerbox.model.Person;
+import com.example.lietenerbox.model.Members;
 import com.example.lietenerbox.repository.ContainerRepository;
 import com.example.lietenerbox.repository.EnrollmentRepository;
 import org.springframework.stereotype.Service;
@@ -20,10 +20,10 @@ public class EnrollmentService {
         this.enrollmentRepository = enrollmentRepository;
     }
 
-    public void apply(Person sessionPerson, Long groupId) {
+    public void apply(Members sessionMembers, Long groupId) {
 
         Container container = containerRepository.findByContainerId(groupId);
-        enrollmentRepository.save(new Enrollment(sessionPerson, container));
+        enrollmentRepository.save(new Enrollment(sessionMembers, container));
 
 
 
