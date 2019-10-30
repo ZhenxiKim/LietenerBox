@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Log
 public class AdminController {
 
-    @GetMapping("/")
-    public String index() {
-        return "index";
-    }
-
-
-    @GetMapping("/admin")
-    public String forAdmin() {
-
-        log.info("admin");
-        return "/admin";
-    }
+//    @GetMapping("/")
+//    public String index() {
+//        return "index";
+//    }
+//
+//
+//    @GetMapping("/admin")
+//    public String forAdmin() {
+//
+//        log.info("admin");
+//        return "/admin";
+//    }
 }

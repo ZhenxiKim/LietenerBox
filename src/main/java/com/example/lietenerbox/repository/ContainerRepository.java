@@ -9,7 +9,7 @@ import java.util.List;
 public interface ContainerRepository extends JpaRepository<Container, Long> {
     //List<Container> findAllByOrderByCreatedAtDesc();
 
-    List<Container> findBymembers(Members members);
+    List<Container> findAllByMembersOrderByCreatedAtDesc(Members members);
 
     List<Container> findBymembersOrderByCreatedAtDesc(Members members);
 

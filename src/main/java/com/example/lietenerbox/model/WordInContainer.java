@@ -28,15 +28,6 @@ public class WordInContainer {
     @JoinColumn(name = "itemInContainer", referencedColumnName = "containerItemId", nullable = false)
     private ItemInContainer itemInContainer;
 
-    public WordInContainer(WordsInContainerRequestDto wordsIncontainerRequestDto, ItemInContainer itemInContainer) {
-        this.containerWordName = wordsIncontainerRequestDto.getContainerWordName();
-        this.containerWordMean = wordsIncontainerRequestDto.getContainerWordMean();
-        this.containerWordPhoto = wordsIncontainerRequestDto.getContainerWordPhoto();
-        this.containerWordPhotoLoc = wordsIncontainerRequestDto.getContainerWordPhotoLoc();
-        this.containerWordLevel = 1;
-        this.itemInContainer = itemInContainer;
-    }
-
 
     public WordInContainer(ItemInContainer itemInContainer, String wordName, String wordMean) {
         this.containerWordName = wordName;
@@ -51,5 +42,15 @@ public class WordInContainer {
         if(wrong != null){
             this.containerWordLevel = 1;
         }
+    }
+
+
+    public WordInContainer(ItemInContainer itemInContainer, String wordName, String wordMean, String wordPhoto, String wordLoc) {
+        this.containerWordName = wordName;
+        this.containerWordMean = wordMean;
+        this.containerWordPhoto = wordPhoto;
+        this.containerWordPhotoLoc = wordLoc;
+        this.containerWordLevel = 1;
+        this.itemInContainer = itemInContainer;
     }
 }

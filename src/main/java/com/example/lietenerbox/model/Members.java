@@ -42,6 +42,8 @@ public class Members {
     @JoinColumn(name="records")
     private List<Records> records;
 
+
+
     public boolean matchPassword(String loginPassword) {
         if (loginPassword == null) {
             System.out.println("값이 제대로 안들어옴");

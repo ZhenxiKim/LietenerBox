@@ -4,14 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class WordsInContainerRequestDto {
-
-    private Long itemSn;//소속된 세트 아이디
-    private List<WordsListForm> listWords;
-
+@Data
+public class SettingDateReqDto {
+    private Long memSn;
+    private LocalDateTime date;
 }

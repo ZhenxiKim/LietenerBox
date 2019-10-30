@@ -1,17 +1,21 @@
 package com.example.lietenerbox.contoller;
 
+import com.example.lietenerbox.contoller.requestDto.WordsInContainerRequestDto;
 import com.example.lietenerbox.model.ItemInContainer;
 import com.example.lietenerbox.model.Members;
+import com.example.lietenerbox.model.dto.response.WordsInItemResDto;
 import com.example.lietenerbox.repository.ItemInContainerRepository;
 import com.example.lietenerbox.repository.WordInContainerRepository;
 import com.example.lietenerbox.service.WordInContainerService;
 import com.example.lietenerbox.util.HttpSessionUtils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -28,53 +32,25 @@ public class WordInContainerController {
     @Autowired
     private ItemInContainerRepository itemInContainerRepository;
 
-//    @PostMapping("/{itemId}/createWord")
-//    public String createWordInGroup(@PathVariable Long itemId, String wordName, String wordMean, HttpSession session, ItemInContainer itemInContainer) {
-//
-//        //비로그인 멤버는 로그인 페이지로 이동
-//        if (!HttpSessionUtils.isLoginmembers(session)) {
-//            return "/memberss/loginForm";
-//        }
-//        members sessionmembers = HttpSessionUtils.getmembersFromSession(session);
-//
-//        if(itemId != null) {
-//            wordInGroupService.createWordInGroup(itemId, wordName, wordMean, sessionmembers, itemInContainer);
-//        }
-//        return "redirect:/items";
-//
-//    }
-
-    @GetMapping("/{itemInContainerId}/itemForm")
-    private String itemForm(@PathVariable Long itemInContainerId, HttpSession session, Model model) {
-        //그룹 생성 시 로그인 유저 확인
-        if (!HttpSessionUtils.isLoginmembers(session)) {
-            return "/memberss/loginForm";
-        }
-
-        //현재 로그인 정보 가져오기
-        Members sessionMembers = HttpSessionUtils.getmembersFromSession(session);
-        Long loginmembers = sessionMembers.getmembersSn();
-
-        //단어 리스트가 속할 아이템 정보 가져오기
-        model.addAttribute("items", itemInContainerRepository.findById(itemInContainerId));
-        return "/item/itemForm";
+    @ApiOperation("클래스 소속 단어 리스트 생성")
+    @PostMapping()
+    public ResponseEntity<?> createWordsList(@RequestBody WordsInContainerRequestDto reqDto) {
+        HttpStatus httpStatus = wordInContainerService.createWordInContainer(reqDto);
+        return ResponseEntity.ok(httpStatus);
     }
 
-    @GetMapping("/{containerItemId}/itemList")
-    private String wordList(@PathVariable Long containerItemId, HttpSession session, Model model) {
-        //그룹 생성 시 로그인 유저 확인
-        if (!HttpSessionUtils.isLoginmembers(session)) {
-            return "/memberss/loginForm";
-        }
+    @ApiOperation("클래스 소속 단어 리스트 수정")
+    @PutMapping()
+    public ResponseEntity<?> changeWordsList(@RequestBody WordsInContainerRequestDto reqDto) {
+        //TODO 바뀐 내용을 리턴해줘야하나? 아님 페이지에서 다시 요청?
+        HttpStatus httpStatus = wordInContainerService.changeWordsInContainer(reqDto);
+        return ResponseEntity.ok(httpStatus);
 
-        //현재 로그인 정보 가져오기
-        Members sessionMembers = HttpSessionUtils.getmembersFromSession(session);
-        Long loginmembers = sessionMembers.getmembersSn();
-        ItemInContainer itemInContainer = itemInContainerRepository.findByContainerItemId(containerItemId);
-
-        //아이템에 속한 단어리스트 가져오기
-        model.addAttribute("wordsInContainer", wordInContainerRepository.findByItemInContainer(itemInContainer));
-        return "/wordInContainer/wordList";
     }
 
+    @ApiOperation("클래스 소속 단어 리스트 출력")
+    @GetMapping("/{itemSn}")
+    public ResponseEntity<?> getWordsList(@PathVariable Long itemSn) {
+        return wordInContainerService.getWordsList(itemSn);
+    }
 }

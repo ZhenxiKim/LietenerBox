@@ -7,16 +7,18 @@ import com.example.lietenerbox.service.StudyWordsService;
 import com.example.lietenerbox.util.DateUtils;
 import com.example.lietenerbox.util.HttpSessionUtils;
 import com.example.lietenerbox.util.StudyLevelUtils;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 
-@Controller
+@RestController
 @RequestMapping("/studyWords")
 public class StudyWordsController {
 
@@ -25,15 +27,13 @@ public class StudyWordsController {
     private final RecordsRepository recordsRepository;
 
     public StudyWordsController(StudyWordsService studyWordsService, RecordsRepository recordsRepository) {
-
         this.studyWordsService = studyWordsService;
-
         this.recordsRepository = recordsRepository;
     }
 
     //회원의 학습 단계와 학습해야할 단어 출력
-    @GetMapping("/studyMain")
-    public String gettingDate(Members loginMembers, HttpSession session, Model model) throws ParseException {
+    @GetMapping()
+    public ResponseEntity<?> gettingDate(Members loginMembers, HttpSession session, Model model) throws ParseException {
 
         //그룹 생성 시 로그인 유저 확인
         if (!HttpSessionUtils.isLoginmembers(session)) {

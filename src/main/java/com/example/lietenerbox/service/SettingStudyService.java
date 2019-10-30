@@ -1,5 +1,6 @@
 package com.example.lietenerbox.service;
 
+import com.example.lietenerbox.contoller.requestDto.SettingDateReqDto;
 import com.example.lietenerbox.model.Members;
 import com.example.lietenerbox.model.Records;
 import com.example.lietenerbox.repository.MembersRepository;
@@ -51,4 +52,10 @@ public class SettingStudyService {
     }
 
 
+    public Records setStudyDate(SettingDateReqDto reqDto) {
+        Members members = membersRepository.findByMembersSn(reqDto.getMemSn());
+        String studyDate = String.valueOf(reqDto.getDate());
+        Records records = recordsRepository.save(new Records(members,studyDate));
+        return records;
+    }
 }

@@ -28,12 +28,12 @@ public class Container {
     @JoinColumn(name = "members_sn", referencedColumnName = "members_sn", nullable = false)
     private Members members; //members테이블의 membersSn 컬럼 참조
 
-    public Container(ContainerRequestDto requestDto, Members sessionMembers) {
-        this.containerName = requestDto.getcontainerName();
+    public Container(Members members, String containerName, String containerContents) {
+        this.containerName = containerName;
         this.createdAt = LocalDateTime.now();
         this.containerStatus = true;
-        this.containerContents = requestDto.getcontainerContents();
-        this.members = sessionMembers;
+        this.containerContents = containerContents;
+        this.members = members;
     }
 
     public Members getMembers() {
@@ -44,13 +44,7 @@ public class Container {
         this.members = members;
     }
 
-    public Container(String containerName, String containerContents, Members sessionMembers) {
-        this.containerName = containerName;
-        this.createdAt = LocalDateTime.now();
-        this.containerStatus = true;
-        this.containerContents = containerContents;
-        this.members = sessionMembers;
-    }
+
 
     private Sort orderByCreatedAtDesc() {
         return new Sort(Sort.Direction.DESC, "createdAt");

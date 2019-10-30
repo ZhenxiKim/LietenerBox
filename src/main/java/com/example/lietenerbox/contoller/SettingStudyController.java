@@ -1,23 +1,22 @@
 package com.example.lietenerbox.contoller;
 
+import com.example.lietenerbox.contoller.requestDto.SettingDateReqDto;
 import com.example.lietenerbox.model.Members;
+import com.example.lietenerbox.model.Records;
 import com.example.lietenerbox.repository.MembersRepository;
 import com.example.lietenerbox.service.SettingStudyService;
 import com.example.lietenerbox.service.StudyWordsService;
 import com.example.lietenerbox.util.HttpSessionUtils;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 
-@Controller
-@RequestMapping("/setting")
+@RestController
+@RequestMapping("/settings")
 public class SettingStudyController {
-    //스터디 설정 controller
     private final MembersRepository membersRepository;
     private final StudyWordsService studyService;
     private final SettingStudyService settingStudyService;
@@ -28,42 +27,14 @@ public class SettingStudyController {
         this.settingStudyService = settingStudyService;
     }
 
-    //학습할 날짜 회원 직접 설정 후 학습 페이지로 이동
-    @GetMapping()
-    public String setting(HttpSession session, Model model) {
-
-        if (!HttpSessionUtils.isLoginmembers(session)) {
-            return "/memberss/loginForm";
-        }
-        //날짜를 설정할 studySetting 페이지로 이동
-        return "/study/studySetting";
-    }
 
     //studySetting 페이지에서 회원이설정한 학습모드일자 입력
     @PostMapping("")
-    public String setStudyDate(HttpSession session, String studySetDate) {
+    public ResponseEntity<?> setStudyDate(@RequestBody SettingDateReqDto reqDto) {
 
-        if (!HttpSessionUtils.isLoginmembers(session)) {
-            return "/memberss/loginForm";
-        }
-
-        //로그인 회원 정보
-        Members loginMembers = HttpSessionUtils.getmembersFromSession(session);
         //사용자가 입력한 날짜 설정
-        settingStudyService.setStudyDate(loginMembers, studySetDate);
-        return "/study/studyMain";
+        Records records = settingStudyService.setStudyDate(reqDto);
+        return ResponseEntity.ok(records);
     }
 
-    @GetMapping("/studyMain")
-    public String getLevel(HttpSession session,Model model) throws ParseException {
-        if (!HttpSessionUtils.isLoginmembers(session)) {
-            return "/memberss/loginForm";
-        }
-
-        //로그인 회원 정보
-        Members loginMembers = HttpSessionUtils.getmembersFromSession(session);
-        //사용자가 입력한 날짜 설정
-        model.addAttribute("setDate",settingStudyService.gettingDate(loginMembers));
-        return "/study/studyMain";
-    }
-}
+ }

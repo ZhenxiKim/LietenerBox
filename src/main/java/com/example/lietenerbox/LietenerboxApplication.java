@@ -2,8 +2,10 @@ package com.example.lietenerbox;
 
 //import com.apple.eawt.Application;
 
+import feign.Feign;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -17,6 +19,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
+@EnableFeignClients
 public class LietenerboxApplication {
 
     /*
@@ -26,7 +29,17 @@ public class LietenerboxApplication {
 
     public static void main(String[] args) {
 
+//        FeignClient feignClient = Feign.builder()
+//                .decoder(new GsonDecoder())
+//                .target(FeignClient.class, "http://localhost:/8080");
+//
+//        feignClient.testFeign("")
+
         SpringApplication.run(LietenerboxApplication.class, args);
+
+
+
+
     }
 
     @Bean
@@ -36,7 +49,7 @@ public class LietenerboxApplication {
                 .apiInfo(apiInfo())
                 .select()
                 //.apis(RequestHandlerSelectors.basePackage("com.example.lietnerox.api"))
-                .paths(PathSelectors.ant("/api/**"))//api로 선언된 부분만 api 문서
+                .paths(PathSelectors.any())
                 .build();
     }
 

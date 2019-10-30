@@ -10,7 +10,7 @@ public interface ItemInContainerRepository extends JpaRepository<ItemInContainer
 
     //사용자 생성 세트
     List<ItemInContainer> findAllByContainer(Container container);
-    ItemInContainer findByContainerItemId(Long containerItemId);
+    List<ItemInContainer> findByContainerItemId(Long containerItemId);
     ItemInContainer findByContainer(Container container);
     ItemInContainer findByContainerItemName(String containerItemName);
 

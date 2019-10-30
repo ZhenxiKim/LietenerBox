@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -22,8 +23,9 @@ public class Records {
     @JoinColumn(name = "members_sn", referencedColumnName = "members_sn", nullable = false)
     private Members members;//members 테이블의 membersSn 컬럼 참조
 
-    public Records(Members loginMembers, String studySetDate) {
-        this.studyDay = studySetDate;
-        this.members = loginMembers;
+
+    public Records(Members members, String date) {
+        this.studyDay = date;
+        this.members = members;
     }
 }
