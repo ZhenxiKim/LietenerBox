@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RecordsRepository extends JpaRepository<Records, Long> {
 
-    Records findAllBymembers(Members members);
+
+
+    Records findByMembers(Members sessionMembers);
 }
 

@@ -1,4 +1,4 @@
-INSERT INTO members (members_SN, members_ID, members_EMAIL, members_INFO_AGREE,members_NAME, members_PASSWORD, members_PROFILE, members_PROFILE_LOC,members_REGISTER_DATE, members_STATUS) VALUES (1,'id1234','ijd1234@gmail.com',true,'쩐시','1234','temp','temp','2019-10-03 03:33:08',true);
+--INSERT INTO members (members_SN, members_ID, members_EMAIL, members_INFO_AGREE,members_NAME, members_PASSWORD, members_PROFILE, members_PROFILE_LOC,members_REGISTER_DATE, members_STATUS) VALUES (1,'id1234','ijd1234@gmail.com',true,'쩐시','1234','temp','temp','2019-10-03 03:33:08',true);
 -- -- -- INSERT INTO members (members_SN, members_ID, members_EMAIL, members_INFO_AGREE,members_NAME, members_PASSWORD, members_PROFILE, members_PROFILE_LOC,members_REGISTER_DATE, members_STATUS) VALUES (2,'sfssfs','zzc34@gmail.com',true,'튜브','1234','temp','temp',CURRENT_TIMESTAMP(),true);
 -- -- -- -- --INSERT INTO WORD_IN_GROUP(GROUP_WORD_ID,GROUP_WORD_NAME,GROUP_WORD_MEAN,GROUP_WORD_PHOTO,GROUP_WORD_PHOTO_LOC)VALUES(1,'So you''re here for a checkup? Tell me, do you have any allergies?','013. 네, 여러분들 건강검진 받으러 온건 가요? /// 제게 말씀해주세요 / 알레르기 있는 분?','temp','temp');
 -- -- --

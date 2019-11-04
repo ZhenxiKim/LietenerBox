@@ -39,7 +39,7 @@ public class SettingStudyService {
     public String[] gettingDate(Members loginMembers) throws ParseException {
 
         //로그인한 회원 정보를 토대로 회원이 셋팅한 학습 시작 날짜 가져오기
-        Records records = recordsRepository.findAllBymembers(loginMembers);
+        Records records = recordsRepository.findByMembers(loginMembers);
 
         //오늘 학습 차수 = 오늘 날짜 - 회원가입 날짜
         Long stepDay = DateUtils.calDate(records);

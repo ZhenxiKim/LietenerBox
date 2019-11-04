@@ -2,11 +2,12 @@ package com.example.lietenerbox.model;
 
 import com.example.lietenerbox.contoller.requestDto.WordsInContainerRequestDto;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-
+@Builder
 @Data
 @Entity
 @AllArgsConstructor
@@ -35,14 +36,7 @@ public class WordInContainer {
         this.itemInContainer = itemInContainer;
     }
 
-    public WordInContainer(String right, String wrong) {
-        if(right != null){
-            this.containerWordLevel++;
-        }
-        if(wrong != null){
-            this.containerWordLevel = 1;
-        }
-    }
+
 
 
     public WordInContainer(ItemInContainer itemInContainer, String wordName, String wordMean, String wordPhoto, String wordLoc) {
@@ -52,5 +46,16 @@ public class WordInContainer {
         this.containerWordPhotoLoc = wordLoc;
         this.containerWordLevel = 1;
         this.itemInContainer = itemInContainer;
+    }
+
+    public WordInContainer(WordInContainer wordInContainer, boolean answer) {
+        if(answer) {
+            this.containerWordId = wordInContainer.getContainerWordId();
+            this.containerWordLevel++;
+        }else{
+            this.containerWordId = wordInContainer.getContainerWordId();
+            this.containerWordLevel = 1;
+        }
+
     }
 }

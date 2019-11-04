@@ -5,6 +5,7 @@ import com.example.lietenerbox.contoller.requestDto.MembersUpdateRequestDto;
 import com.example.lietenerbox.contoller.requestDto.UpdateMemberInfoRequestDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +15,7 @@ import java.util.List;
 
 @Data
 @Entity
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 //회원 엔티티 클래스
@@ -39,8 +41,16 @@ public class Members {
     private LocalDateTime membersRegisterDate;//회원 가입 날짜
 
     @OneToMany
-    @JoinColumn(name="records")
+    @JoinColumn(name = "records")
     private List<Records> records;
+
+    public Members(String memEmail, String memId, String memName, String memPwd) {
+        this.membersEmail = memEmail;
+        this.membersId = memId;
+        this.membersInfoAgree = true;
+        this.membersName = memName;
+        this.membersPassword = memPwd;
+    }
 
 
 

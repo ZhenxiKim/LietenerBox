@@ -1,9 +1,15 @@
 package com.example.lietenerbox.contoller.requestDto;
 
+import javax.validation.constraints.NotBlank;
+
 public class MembersCreateRequestDto {
+    @NotBlank
     private String membersId;
+    @NotBlank
     private String membersPassword;
+    @NotBlank
     private String membersName;
+    @NotBlank
     private String membersEmail;
 
     public String getMembersId() {

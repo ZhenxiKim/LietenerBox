@@ -1,25 +1,21 @@
 package com.example.lietenerbox.contoller;
 
-import com.example.lietenerbox.model.Members;
-import com.example.lietenerbox.model.Records;
+import com.example.lietenerbox.contoller.requestDto.ResultContainerRequestDto;
 import com.example.lietenerbox.repository.MembersRepository;
 import com.example.lietenerbox.repository.RecordsRepository;
 import com.example.lietenerbox.repository.WordInContainerRepository;
 import com.example.lietenerbox.service.StudyContainerService;
-import com.example.lietenerbox.util.DateUtils;
-import com.example.lietenerbox.util.HttpSessionUtils;
-import com.example.lietenerbox.util.StudyLevelUtils;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
+import java.util.zip.DataFormatException;
 
-@Controller
-@RequestMapping("/containerWords")
+@RestController
 public class StudyContainerController {
     private final MembersRepository membersRepository;
     private final RecordsRepository recordsRepository;
@@ -37,34 +33,20 @@ public class StudyContainerController {
     }
 
     //회원의 학습 단계와 학습해야할 단어 출력
-    @GetMapping("/studyMain")
-    public String gettingDate(HttpSession session, Model model) throws ParseException {
-        //그룹 생성 시 로그인 유저 확인
-        if (!HttpSessionUtils.isLoginmembers(session)) {
-            return "/memberss/loginForm";
-        }
+    @ApiOperation("날짜별 학습 단어 가져오기")
+    @RequestMapping(method = RequestMethod.GET, value = "/study/containers")
+    public ResponseEntity<?> getStudyWordsInContainers(HttpSession session) throws ParseException {
 
-        //현재 로그인 정보 가져오기
-        Members sessionMembers = HttpSessionUtils.getmembersFromSession(session);
-        //로그인한 회원 정보를 토대로 회원이 셋팅한 학습 시작 날짜 가져오기
-        Records records = recordsRepository.findAllBymembers(sessionMembers);
-
-        //오늘 학습 차수 = 오늘 날짜 - 회원가입 날짜
-        Long stepDay = DateUtils.calDate(records);
-
-        //오늘 공부해야할 단계 string[]로 반환
-        String[] todayStep = StudyLevelUtils.wordLevel(stepDay);
-
-        model.addAttribute("studyContainer", studyContainerService.containerWordLevelList(todayStep));
-
-        return "/study/containerStudy";
+        return ResponseEntity.ok(studyContainerService.getStudyWordsInContainers(session));
 
     }
 
-    //학습한 단어 학습 확인
-    @PostMapping()
-    public void levelTest(String right, String wrong) {
-        studyContainerService.checkLevel(right, wrong);
+    @ApiOperation("학습한 단어 학습 체크")
+    @RequestMapping(method = RequestMethod.POST, value="/study/containers")
+    public ResponseEntity.BodyBuilder levelTestResult(@RequestBody ResultContainerRequestDto reqDto) throws DataFormatException {
+        //TODO 리턴값 확인
+        studyContainerService.checkLevel(reqDto);
+        return ResponseEntity.ok();
     }
 
 

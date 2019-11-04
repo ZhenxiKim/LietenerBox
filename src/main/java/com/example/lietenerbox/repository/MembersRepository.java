@@ -9,6 +9,9 @@ public interface MembersRepository extends JpaRepository<Members, Long> {
     Members findByMembersSn(Long membersSn);
 
     Optional<Members> findByMembersId(String memId);
+
+    boolean existsByMembersId(String memberId);
+
     //members findBymembersId(String membersId);
     //기본조회는 pk값으로 조회
 }

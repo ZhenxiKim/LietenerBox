@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.constraints.NotBlank;
 
 @RestController//TODO mediatype둘다 필요한지 확인필요
-@RequestMapping(value = "/members")
+
 public class MembersController {
 
     private final MembersRepository membersRepository;
@@ -25,42 +25,47 @@ public class MembersController {
         this.membersService = membersService;
     }
 
-
     @ApiOperation(value = "회원가입")
-    @PostMapping("")
+    @RequestMapping(method = RequestMethod.POST, value = "/members")
     public ResponseEntity<?> createMembers(@RequestBody MembersCreateRequestDto requestDto) throws DataDuplicatedException {
 
-        //TODO try-catch 대안? 오류 질문
-        //membersRepository.findByMembersId(requestDto.getMembersId())
-//                .ifPresent(v -> {
-//                    throw new DataDuplicatedException();
-//                });
+        return ResponseEntity.ok(membersService.createMembers(requestDto));
+    }
 
-        HttpStatus httpStatus = membersService.createMembers(requestDto);
-        return ResponseEntity.ok(httpStatus);
+    @ApiOperation("회원중복확인")
+    @RequestMapping(method = RequestMethod.HEAD, path = "members/{memId}")
+    public ResponseEntity<?> isExistMember(@PathVariable String memId) throws Exception {
+
+        if (membersService.isExistMember(memId)) {
+            return ResponseEntity.badRequest().build();
+        } else {
+            return ResponseEntity.ok().build();
+        }
+
     }
 
     @ApiOperation(value = "특정회원정보 조회")
-    @GetMapping("/{membersSn}")
+    @RequestMapping(method = RequestMethod.GET, value = "/members/{membersSn}")
     public ResponseEntity<?> getMembersInfo(@PathVariable @NotBlank Long membersSn) {
         Members memInfo = membersService.getMembersInfo(membersSn);
         return ResponseEntity.ok(memInfo);
     }
 
 
-    @ApiOperation("회원정보 수정")
-    @PatchMapping("/{membersSn}")
-    public ResponseEntity<?> updateMemInfo(@PathVariable Long membersSn, @RequestBody UpdateMemberInfoRequestDto updateDto) {
-        membersService.updateMemInfo(updateDto, membersSn);
-        return ResponseEntity.ok().build();
-    }
-
-    @ApiOperation("회원프로필 사진 등록")
-    @PostMapping("/{membersSn}")
-    public ResponseEntity<?> enrollProfile() {
-        //TODO 회원프로필 사진 등록 api
-        return null;
-    }
+//    @ApiOperation("회원정보 수정")
+//    @RequestMapping(method=RequestMethod.PATCH,value = "/{membersSn")
+//    public ResponseEntity<?> updateMemInfo(@PathVariable Long membersSn, @RequestBody UpdateMemberInfoRequestDto updateDto) {
+//        membersService.updateMemInfo(updateDto, membersSn);
+//        return ResponseEntity.ok().build();
+//    }
+//
+//    @ApiOperation("회원프로필 사진 등록")
+//    @RequestMapping(method = RequestMethod.POST,value = "/{membersSn}")
+//
+//    public ResponseEntity<?> enrollProfile(@PathVariable Long membersSn) {
+//        //TODO 회원프로필 사진 등록 api
+//        return null;
+//    }
 
 
 }

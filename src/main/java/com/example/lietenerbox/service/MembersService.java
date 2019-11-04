@@ -1,26 +1,21 @@
 package com.example.lietenerbox.service;
 
-import com.example.lietenerbox.FeignClient;
 import com.example.lietenerbox.contoller.requestDto.MembersCreateRequestDto;
 import com.example.lietenerbox.contoller.requestDto.UpdateMemberInfoRequestDto;
-import com.example.lietenerbox.exception.DataDuplicatedException;
 import com.example.lietenerbox.model.Members;
 import com.example.lietenerbox.repository.MembersRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.constraints.NotBlank;
-import java.util.Optional;
 
 @Service
 @Transactional
 public class MembersService {
 
-    @Autowired
-    FeignClient feignClient;
-
+//    @Autowired
+//    FeignClient feignClient;
 
 
     private final MembersRepository membersRepository;
@@ -30,22 +25,20 @@ public class MembersService {
     }
 
 
-    public HttpStatus createMembers(MembersCreateRequestDto requestDto) throws DataDuplicatedException {
-        String memId = requestDto.getMembersId();
+    public Members createMembers(MembersCreateRequestDto requestDto) {
 
-        // TODO. trycatch 처리
-        membersRepository.findByMembersId(requestDto.getMembersId());
-/*
+        Members members = Members.builder()
+                .membersEmail(requestDto.getMembersEmail())
+                .membersId(requestDto.getMembersId())
+                .membersInfoAgree(true)
+                .membersName(requestDto.getMembersName())
+                .membersPassword(requestDto.getMembersPassword())
+                .build();
 
-                        .ifPresent(v -> !membersRepository.save(new Members(requestDto));
-    try {
 
-                } catch (Exception e) {
-        e.printStackTrace();
-    }*/
-        //존재하면 에러, 존재하지 않으면 가입
-        return HttpStatus.CONFLICT;
+        //TODO http에 모든것은 api단까지
 
+        return membersRepository.save(members);
 
     }
 
@@ -59,5 +52,9 @@ public class MembersService {
         Members members = membersRepository.findByMembersSn(membersSn);
         members.setMembersPassword(updateDto.getMemPwd());
         membersRepository.save(members);
+    }
+
+    public boolean isExistMember(String memId) {
+        return membersRepository.existsByMembersId(memId);
     }
 }
