@@ -8,6 +8,7 @@ import com.example.lietenerbox.repository.MembersRepository;
 import com.example.lietenerbox.service.MembersService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,7 +46,7 @@ public class MembersController {
     }
 
     @ApiOperation(value = "특정회원정보 조회")
-    @RequestMapping(method = RequestMethod.GET, value = "/members/{membersSn}")
+    @RequestMapping(method = RequestMethod.GET, value = "/members/{membersSn}",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getMembersInfo(@PathVariable @NotBlank Long membersSn) {
         Members memInfo = membersService.getMembersInfo(membersSn);
         return ResponseEntity.ok(memInfo);

@@ -17,17 +17,20 @@
 //         }
 //     });
 // }
+//
+(async () => {
+    const url ='http://localhost:8080/members/1';
 
-(async () =>{
     const response = await fetch(url);
+    console.log(response);
     const result = await response.json();
 
-    const element - document.getElementById('app');
+
+    const element = document.getElementById('app');
     element.innerHTML = `
-    ${result.map(memberInfo => `
-        ${memberInfo.
+            ${result.members_id}
+
+
     
-    
-    `)}
-    `
-}
+    `;
+})();

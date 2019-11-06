@@ -43,7 +43,9 @@ public class MembersService {
     }
 
     public Members getMembersInfo(@NotBlank Long membersSn) {
-        Members members = membersRepository.findByMembersSn(membersSn);
+
+        Members members = membersRepository.findByMembersSn(1L);
+        System.out.println(members);
         return members;
     }
 
