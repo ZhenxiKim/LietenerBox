@@ -22,10 +22,10 @@
     const response = await fetch(url);
     const result = await response.json();
 
-    const element - document.getElementById('app');
+    const element = document.getElementById('app');
     element.innerHTML = `
     ${result.map(memberInfo => `
-        ${memberInfo.
+
     
     
     `)}
