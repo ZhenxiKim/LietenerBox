@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDateTime;
 
 @Service
 @Transactional
@@ -33,6 +34,7 @@ public class MembersService {
                 .membersInfoAgree(true)
                 .membersName(requestDto.getMembersName())
                 .membersPassword(requestDto.getMembersPassword())
+                .membersRegisterDate(LocalDateTime.now())
                 .build();
 
 
@@ -43,7 +45,9 @@ public class MembersService {
     }
 
     public Members getMembersInfo(@NotBlank Long membersSn) {
-        Members members = membersRepository.findByMembersSn(membersSn);
+
+        Members members = membersRepository.findByMembersSn(1L);
+        System.out.println(members);
         return members;
     }
 
