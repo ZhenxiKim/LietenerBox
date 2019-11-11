@@ -25,20 +25,10 @@
     console.log(response);
     const result = await response.json();
 
-<<<<<<< HEAD
-    const element = document.getElementById('app');
-    element.innerHTML = `
-    ${result.map(memberInfo => `
-
-    
-=======
 
     const element = document.getElementById('app');
     element.innerHTML = `
             ${result.members_id}
 
-
->>>>>>> origin/master
-    
     `;
 })();

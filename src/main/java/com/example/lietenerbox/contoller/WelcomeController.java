@@ -8,6 +8,7 @@ public class WelcomeController {
 
     @GetMapping("/")
     public String home(){
+        System.out.println("여기까지");
         return "index";
     }
 
