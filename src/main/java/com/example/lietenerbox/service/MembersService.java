@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDateTime;
 
 @Service
 @Transactional
@@ -33,6 +34,7 @@ public class MembersService {
                 .membersInfoAgree(true)
                 .membersName(requestDto.getMembersName())
                 .membersPassword(requestDto.getMembersPassword())
+                .membersRegisterDate(LocalDateTime.now())
                 .build();
 
 

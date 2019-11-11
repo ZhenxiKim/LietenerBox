@@ -29,7 +29,6 @@ public class MembersController {
     @ApiOperation(value = "회원가입")
     @RequestMapping(method = RequestMethod.POST, value = "/members")
     public ResponseEntity<?> createMembers(@RequestBody MembersCreateRequestDto requestDto) throws DataDuplicatedException {
-
         return ResponseEntity.ok(membersService.createMembers(requestDto));
     }
 

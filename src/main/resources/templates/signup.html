@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+<div id="app">hello</div>
+<form id="testForm" name="testForm">
+    <input type="text" name="members_id" placeholder="membersId">
+    <input type="text" name="members_password" placeholder="membersPassword">
+    <input type="text" name="members_name" placeholder="membersName">
+    <input type="text" name="members_email" placeholder="membersEmail">
+    <input type="submit" value="제출" onclick="send()">
+</form>
+</body>
+<script>
+    var formData = null;
+    function send(){
+         formData = $("#testForm").serializeObject();
+         document.getElementById('app').innerHTML=formData;
+        (async () => {
+            const url ='http://localhost:8080/members';
+
+            const response = await fetch(url,{
+                method:'POST',
+                headers:{'Accept': 'application/json',
+                'Content-Type': 'application/json'},
+                body:JSON.stringify(formData)
+            });
+            const result = await response.json();
+            console.log(result);
+        })();
+    }
+
+
+
+    $.fn.serializeObject = function() {
+
+        var result = {}
+        var extend = function(i, element) {
+            var node = result[element.name]
+            if ("undefined" !== typeof node && node !== null) {
+                if ($.isArray(node)) {
+                    node.push(element.value)
+                } else {
+                    result[element.name] = [node, element.value]
+                }
+            } else {
+                result[element.name] = element.value
+            }
+        }
+
+        $.each(this.serializeArray(), extend)
+        return result
+    }
+
+
+
+
+    // jQuery.fn.serializeObject = function(){
+    //     //json 객체
+    //     console.log("aaa")
+    //     var obj = null;
+    //     try{
+    //         if(this[0].tagName && this[0].tagName.toUpperCase() == "FORM"){
+    //             var arr = this.serializeArray();
+    //             if(arr){
+    //                 obj ={};
+    //                 jQuery.each(arr, function(){
+    //                     obj[this.name] = this.value; });
+    //             }
+    //         }
+    //     }catch(e){
+    //         alert(e.message);
+    //     }finally {
+    //
+    //     }
+    //     to_ajax(obj)
+    //     console.log(obj)
+    //     return obj;
+    // }
+
+    // function to_ajax(obj){
+    //     const serializedValues2 = $('#signupForm').serializeObject()
+    //     $.ajax({
+    //         type: 'post',
+    //         url: '/test.jsp',
+    //         data: JSON.stringify(serializedValues2),
+    //         dataType: 'json',
+    //         error: function (xhr, status, error) {
+    //             alert(error);
+    //         }
+    //         success: function (json) {
+    //             alert(json)
+    //         },
+    //     });
+
+   // }
+
+</script>
+</html>

@@ -10,4 +10,9 @@ public class WelcomeController {
     public String home(){
         return "index";
     }
+
+    @GetMapping("/signup")
+    public String signUp(){
+        return "signup";
+    }
 }
